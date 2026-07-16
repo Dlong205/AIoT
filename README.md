@@ -83,3 +83,6 @@ thể tách ra `pdr_task` + queue riêng nếu cần.)*
   này, hàm sẽ không thực sự cắt dòng tĩnh của module.
 - `battery_monitor` dùng đường cong tuyến tính hoá đơn giản — %pin chỉ mang
   tính tương đối, không dùng để tính runtime chính xác.
+=======
+# AIoT
+>>>>>>> 68513e8d84a08d3d8cc283fe3c40a7d435ad657c
