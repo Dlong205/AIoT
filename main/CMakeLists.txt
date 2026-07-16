@@ -5,6 +5,7 @@ idf_component_register(
         common
         imu_driver
         mag_driver
+        baro_driver
         gnss_driver
         lora_driver
         display_driver

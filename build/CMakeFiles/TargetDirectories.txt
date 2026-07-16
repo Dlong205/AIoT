@@ -1143,6 +1143,13 @@
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/mag_driver/CMakeFiles/install.dir
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/mag_driver/CMakeFiles/install/local.dir
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/mag_driver/CMakeFiles/install/strip.dir
+/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/baro_driver/CMakeFiles/__idf_baro_driver.dir
+/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/baro_driver/CMakeFiles/edit_cache.dir
+/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/baro_driver/CMakeFiles/rebuild_cache.dir
+/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/baro_driver/CMakeFiles/list_install_components.dir
+/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/baro_driver/CMakeFiles/install.dir
+/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/baro_driver/CMakeFiles/install/local.dir
+/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/baro_driver/CMakeFiles/install/strip.dir
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/gnss_driver/CMakeFiles/__idf_gnss_driver.dir
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/gnss_driver/CMakeFiles/edit_cache.dir
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/gnss_driver/CMakeFiles/rebuild_cache.dir

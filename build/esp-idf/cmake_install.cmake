@@ -734,6 +734,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/baro_driver/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/gnss_driver/cmake_install.cmake")
 endif()
 

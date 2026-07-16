@@ -207,6 +207,7 @@ $<TARGET_FILE:__idf_driver>
 $<TARGET_FILE:__idf_main>
 $<TARGET_FILE:__idf_imu_driver>
 $<TARGET_FILE:__idf_mag_driver>
+$<TARGET_FILE:__idf_baro_driver>
 $<TARGET_FILE:__idf_gnss_driver>
 $<TARGET_FILE:__idf_lora_driver>
 $<TARGET_FILE:__idf_display_driver>
@@ -217,6 +218,7 @@ $<TARGET_FILE:__idf_battery_monitor>
 $<TARGET_FILE:__idf_power_mgmt>
 $<TARGET_FILE:__idf_mesh_protocol>
 $<TARGET_FILE:idf::mag_driver>
+$<TARGET_FILE:idf::baro_driver>
 $<TARGET_FILE:idf::gnss_driver>
 $<TARGET_FILE:idf::lora_driver>
 $<TARGET_FILE:idf::display_driver>

@@ -9,14 +9,21 @@
  * TODO: chỉnh lại số chân GPIO theo board thực tế của bạn.
  */
 
-/* ---------- I2C bus dùng chung cho MPU6050 + QMC5883L + OLED ---------- */
+/* ---------- I2C0: cảm biến (MPU9250 + QMC5883L + BMP280) ---------- */
 #define I2C_BUS_PORT        I2C_NUM_0
 #define I2C_SDA_GPIO        8
 #define I2C_SCL_GPIO        9
-#define I2C_CLK_HZ          400000
+#define I2C_CLK_HZ          100000
 
 #define MPU6050_I2C_ADDR    0x68
-#define QMC5883L_I2C_ADDR   0x0D
+#define QMC5883L_I2C_ADDR   0x2C
+#define BMP280_I2C_ADDR      0x76
+
+/* ---------- I2C1: OLED SSD1306 riêng ---------- */
+#define I2C_OLED_BUS_PORT   I2C_NUM_1
+#define I2C_OLED_SDA_GPIO   35
+#define I2C_OLED_SCL_GPIO   36
+#define I2C_OLED_CLK_HZ     100000
 #define SSD1306_I2C_ADDR    0x3C
 
 /* ---------- UART cho GY-NEO7M (GNSS) ---------- */
