@@ -1,0 +1,7 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.extensionActivationMode": "always",
+  "idf.espIdfPath": "/home/donglong/.espressif/v6.0.2/esp-idf",
+  "idf.toolsPath": "/home/donglong/.espressif",
+  "idf.currentSetup": "/home/donglong/.espressif/v6.0.2/esp-idf"
+}

@@ -1,0 +1,6 @@
+idf_component_register(
+    SRCS "state_machine.c"
+    INCLUDE_DIRS "include"
+    REQUIRES common
+    PRIV_REQUIRES main
+)
