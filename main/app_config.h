@@ -21,8 +21,8 @@
 
 /* ---------- I2C1: OLED SSD1306 riêng ---------- */
 #define I2C_OLED_BUS_PORT   I2C_NUM_1
-#define I2C_OLED_SDA_GPIO   35
-#define I2C_OLED_SCL_GPIO   36
+#define I2C_OLED_SDA_GPIO   2
+#define I2C_OLED_SCL_GPIO   1
 #define I2C_OLED_CLK_HZ     100000
 #define SSD1306_I2C_ADDR    0x3C
 

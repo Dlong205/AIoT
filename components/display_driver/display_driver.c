@@ -18,7 +18,7 @@ static int s_debug_mode = 0;
 #define FONT_W      5
 #define FONT_H      7
 #define CHAR_W      (FONT_W + 1)
-#define LINE_H      (FONT_H + 2)
+#define LINE_H      (FONT_H + 1)
 #define MAX_LINES   (OLED_HEIGHT / LINE_H)
 
 static uint8_t s_fb[FB_SIZE];
@@ -71,23 +71,24 @@ static void fb_fill_rect(int x, int y, int w, int h, int on)
             fb_set_pixel(xx, yy, on);
 }
 
+/* Thử 0 (SSD1306 chuẩn), nếu lệch hình đổi thành 2 (SH1106 clone) */
+#define OLED_COL_OFFSET  0
+
 static esp_err_t fb_flush(void)
 {
-    /* SSD1306: set column range, page range, then send data */
+    /* Page Addressing Mode (tương thích SSD1306 + SH1106) */
     esp_err_t err;
-    err = oled_cmd(0x21);  /* set column address */
-    if (err != ESP_OK) return err;
-    err = oled_cmd(0);      /* start col */
-    if (err != ESP_OK) return err;
-    err = oled_cmd(OLED_WIDTH - 1); /* end col */
-    if (err != ESP_OK) return err;
-    err = oled_cmd(0x22);  /* set page address */
-    if (err != ESP_OK) return err;
-    err = oled_cmd(0);      /* start page */
-    if (err != ESP_OK) return err;
-    err = oled_cmd(OLED_PAGES - 1); /* end page */
-    if (err != ESP_OK) return err;
-    return oled_data_bulk(s_fb, FB_SIZE);
+    for (int page = 0; page < OLED_PAGES; page++) {
+        err = oled_cmd(0xB0 | page);
+        if (err != ESP_OK) return err;
+        err = oled_cmd(0x00 | (OLED_COL_OFFSET & 0x0F));
+        if (err != ESP_OK) return err;
+        err = oled_cmd(0x10 | (OLED_COL_OFFSET >> 4));
+        if (err != ESP_OK) return err;
+        err = oled_data_bulk(s_fb + page * OLED_WIDTH, OLED_WIDTH);
+        if (err != ESP_OK) return err;
+    }
+    return ESP_OK;
 }
 
 /* ==================== Font 5x7 ==================== */
@@ -207,9 +208,9 @@ static void draw_char(int x, int y, char c)
 static void draw_str(int x, int y, const char *s)
 {
     while (*s) {
+        if (x + FONT_W > OLED_WIDTH) { x = 0; y += LINE_H; }
         draw_char(x, y, *s);
         x += CHAR_W;
-        if (x + FONT_W >= OLED_WIDTH) { x = 0; y += LINE_H; }
         s++;
     }
 }
@@ -295,23 +296,23 @@ static void draw_layout_normal(system_state_t state, uint8_t batt,
     draw_str(batt_x, 0, batt_str);
 
     /* Line 1: heading + alt */
-    char line1[32];
-    snprintf(line1, sizeof(line1), "H:%.1f deg ALT:%.0fm", heading, alt);
+    char line1[24];
+    snprintf(line1, sizeof(line1), "H:%.1f ALT:%.0fm", heading, alt);
     draw_str(0, LINE_H, line1);
 
     /* Line 2: accel */
-    char line2[32];
-    snprintf(line2, sizeof(line2), "AX:%.2f AY:%.2f AZ:%.2f", ax, ay, az);
+    char line2[24];
+    snprintf(line2, sizeof(line2), "A %.2f %.2f %.2f", ax, ay, az);
     draw_str(0, LINE_H * 2, line2);
 
-    /* Line 3: gyro + gnss */
-    char line3[32];
-    snprintf(line3, sizeof(line3), "GX:%.1f GY:%.1f GZ:%.1f", gx, gy, gz);
+    /* Line 3: gyro */
+    char line3[24];
+    snprintf(line3, sizeof(line3), "G %.1f %.1f %.1f", gx, gy, gz);
     draw_str(0, LINE_H * 3, line3);
 
-    /* Line 4: alt + temp */
-    char line4[32];
-    snprintf(line4, sizeof(line4), "%.1fm %.1fC %dPa", alt, temp, (int)press);
+    /* Line 4: alt + temp + press (hPa) */
+    char line4[24];
+    snprintf(line4, sizeof(line4), "%.0fm %.1fC %.0fhPa", alt, temp, press / 100.0f);
     draw_str(0, LINE_H * 4, line4);
 
     /* Line 5: GNSS + MAG status */
@@ -329,23 +330,23 @@ static void draw_layout_debug(system_state_t state, uint8_t batt,
     (void)state;
     draw_str(20, 0, "=== DEBUG ===");
 
-    char l1[32];
-    snprintf(l1, sizeof(l1), "AX:%.3f AY:%.3f", ax, ay);
+    char l1[24];
+    snprintf(l1, sizeof(l1), "A %.3f %.3f", ax, ay);
     draw_str(0, LINE_H, l1);
 
-    char l2[32];
-    snprintf(l2, sizeof(l2), "AZ:%.3f TEMP:%.1fC", az, temp);
+    char l2[24];
+    snprintf(l2, sizeof(l2), "Z%.3f T:%.1fC", az, temp);
     draw_str(0, LINE_H * 2, l2);
 
-    char l3[32];
-    snprintf(l3, sizeof(l3), "GX:%.2f GY:%.2f GZ:%.2f", gx, gy, gz);
+    char l3[24];
+    snprintf(l3, sizeof(l3), "G %.1f %.1f %.1f", gx, gy, gz);
     draw_str(0, LINE_H * 3, l3);
 
-    char l4[32];
-    snprintf(l4, sizeof(l4), "H:%.1f ALT:%.1f %dPa", heading, alt, (int)press);
+    char l4[24];
+    snprintf(l4, sizeof(l4), "H:%.1f A:%.1f %.0fhPa", heading, alt, press / 100.0f);
     draw_str(0, LINE_H * 4, l4);
 
-    char l5[32];
+    char l5[24];
     snprintf(l5, sizeof(l5), "BAT:%d%% %s %s", batt,
              gnss_fix ? "FIX" : "NO",
              mag_ok ? "MAG" : "NOM");
@@ -380,7 +381,6 @@ esp_err_t display_driver_init(void)
         0xD3, 0x00, /* display offset */
         0x40,       /* start line 0 */
         0x8D, 0x14, /* charge pump on */
-        0x20, 0x00, /* horizontal addressing */
         0xA1,       /* segment remap (col 127 = SEG0) */
         0xC8,       /* COM scan remapped */
         0xDA, 0x12, /* COM pins */
@@ -402,7 +402,7 @@ esp_err_t display_driver_init(void)
 
     fb_clear();
     fb_flush();
-    ESP_LOGI(TAG, "SSD1306 init OK @0x%02X on I2C1(GPIO35/36)", SSD1306_I2C_ADDR);
+    ESP_LOGI(TAG, "SSD1306 init OK @0x%02X on I2C1(GPIO1/2)", SSD1306_I2C_ADDR);
     return ESP_OK;
 }
 
