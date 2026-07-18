@@ -217,6 +217,7 @@
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/battery_monitor/libbattery_monitor.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/power_mgmt/libpower_mgmt.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/mesh_protocol/libmesh_protocol.a
+/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/fatfs/libfatfs.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/mag_driver/libmag_driver.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/baro_driver/libbaro_driver.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/gnss_driver/libgnss_driver.a

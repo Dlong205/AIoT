@@ -217,6 +217,7 @@ $<TARGET_FILE:__idf_state_machine>
 $<TARGET_FILE:__idf_battery_monitor>
 $<TARGET_FILE:__idf_power_mgmt>
 $<TARGET_FILE:__idf_mesh_protocol>
+$<TARGET_FILE:__idf_fatfs>
 $<TARGET_FILE:idf::mag_driver>
 $<TARGET_FILE:idf::baro_driver>
 $<TARGET_FILE:idf::gnss_driver>

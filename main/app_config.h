@@ -36,22 +36,30 @@
 /* GY-NEO7M không có chân bật/tắt nguồn riêng như module có EN,
  * nên "tắt GNSS" ở prototype = cắt nguồn qua MOSFET/load-switch điều
  * khiển bằng GPIO này (khuyến nghị thêm mạch ngoài để tiết kiệm pin). */
-#define GNSS_POWER_EN_GPIO  4
+#define GNSS_POWER_EN_GPIO  3
 
 /* ---------- SPI bus cho SX1262 ---------- */
 #define LORA_SPI_HOST       SPI2_HOST
-#define LORA_SCK_GPIO       12
-#define LORA_MOSI_GPIO      11
-#define LORA_MISO_GPIO      13
-#define LORA_CS_GPIO        10
+#define LORA_SCK_GPIO       33//
+#define LORA_MOSI_GPIO      34//
+#define LORA_MISO_GPIO      35//
+#define LORA_CS_GPIO        36//
 #define LORA_RST_GPIO       5
 #define LORA_BUSY_GPIO      6
 #define LORA_DIO1_GPIO      7
 
+/* ---------- UART cho AS32 (LoRa module AT-command qua UART) ---------- */
+#define AS32_UART_PORT       UART_NUM_2
+#define AS32_UART_TX_GPIO    19
+#define AS32_UART_RX_GPIO    20
+#define AS32_UART_BAUD       9600
+#define AS32_M0_GPIO         21
+#define AS32_M1_GPIO         33
+
 /* ---------- Nút bấm + buzzer ---------- */
 #define BTN_SOS_GPIO        14
 #define BTN_CANCEL_GPIO     15
-#define BUZZER_GPIO         16
+#define BUZZER_GPIO         21
 
 /* ---------- ADC đo pin (cầu phân áp) ---------- */
 #define BATTERY_ADC_UNIT    ADC_UNIT_1
@@ -65,3 +73,11 @@
 #define BREADCRUMB_MIN_DISTANCE_M   15.0f
 #define BREADCRUMB_MIN_HEADING_DEG  35.0f
 #define GNSS_FIX_BUFFER_COUNT        3      /* số fix liên tiếp trước khi tin P0 */
+
+/* ---------- SPI cho SD Card (lưu dữ liệu train AI) ---------- */
+#define SD_SPI_HOST         SPI3_HOST
+#define SD_CS_GPIO          10
+#define SD_MOSI_GPIO        12
+#define SD_MISO_GPIO        13
+#define SD_SCLK_GPIO        11
+#define SD_MOUNT_POINT      "/sdcard"
