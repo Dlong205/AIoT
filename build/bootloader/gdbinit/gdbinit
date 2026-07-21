@@ -1,2 +1,0 @@
-source /home/donglong/Downloads/esp32_rescue_node/build/bootloader/gdbinit/symbols
-source /home/donglong/Downloads/esp32_rescue_node/build/bootloader/gdbinit/connect
