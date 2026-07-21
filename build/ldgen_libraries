@@ -202,13 +202,14 @@
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/perfmon/libperfmon.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/rt/librt.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/spiffs/libspiffs.a
-/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/imu_driver/libimu_driver.a
-/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/driver/libdriver.a
+/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/common/libcommon.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/main/libmain.a
+/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/common/libcommon.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/imu_driver/libimu_driver.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/mag_driver/libmag_driver.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/baro_driver/libbaro_driver.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/gnss_driver/libgnss_driver.a
+/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/driver/libdriver.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/lora_driver/liblora_driver.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/display_driver/libdisplay_driver.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/activity_classifier/libactivity_classifier.a
@@ -218,6 +219,7 @@
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/power_mgmt/libpower_mgmt.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/mesh_protocol/libmesh_protocol.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/fatfs/libfatfs.a
+/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/imu_driver/libimu_driver.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/mag_driver/libmag_driver.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/baro_driver/libbaro_driver.a
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/gnss_driver/libgnss_driver.a

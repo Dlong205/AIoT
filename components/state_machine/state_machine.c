@@ -49,12 +49,12 @@ void state_machine_process(void)
     case SYS_STATE_IDLE:
         if (evt.type == EVT_STEP_DETECTED) transition(SYS_STATE_WALKING);
         else if (evt.type == EVT_FALL_SUSPECTED) transition(SYS_STATE_FALL_SUSPECTED);
-        else if (evt.type == EVT_BTN_SOS_PRESSED) transition(SYS_STATE_FALL_SUSPECTED);
+        else if (evt.type == EVT_BTN_SOS_PRESSED) transition(SYS_STATE_SOS);
         break;
 
     case SYS_STATE_WALKING:
         if (evt.type == EVT_FALL_SUSPECTED) transition(SYS_STATE_FALL_SUSPECTED);
-        else if (evt.type == EVT_BTN_SOS_PRESSED) transition(SYS_STATE_FALL_SUSPECTED);
+        else if (evt.type == EVT_BTN_SOS_PRESSED) transition(SYS_STATE_SOS);
         else if (evt.type == EVT_RETURN_REQUESTED) transition(SYS_STATE_RETURN);
         /* TODO: quay về IDLE sau N giây không có STEP_DETECTED. */
         break;
@@ -80,6 +80,7 @@ void state_machine_process(void)
 
     case SYS_STATE_LOW_POWER:
         /* TODO: giảm heartbeat interval, tắt GNSS, giảm sample rate IMU. */
+        if (evt.type == EVT_BTN_SOS_PRESSED) transition(SYS_STATE_SOS);
         break;
     }
 

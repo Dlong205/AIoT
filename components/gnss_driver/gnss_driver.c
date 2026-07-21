@@ -21,16 +21,21 @@ esp_err_t gnss_driver_init(void)
         .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
         .source_clk = UART_SCLK_DEFAULT,
     };
-    ESP_ERROR_CHECK(uart_param_config(GNSS_UART_PORT, &cfg));
-    ESP_ERROR_CHECK(uart_set_pin(GNSS_UART_PORT, GNSS_UART_TX_GPIO, GNSS_UART_RX_GPIO,
-                                  UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE));
-    ESP_ERROR_CHECK(uart_driver_install(GNSS_UART_PORT, GNSS_RX_BUF_SIZE * 2, 0, 0, NULL, 0));
+    esp_err_t err;
+    err = uart_param_config(GNSS_UART_PORT, &cfg);
+    if (err != ESP_OK) { ESP_LOGE(TAG, "uart_param_config fail"); return err; }
+    err = uart_set_pin(GNSS_UART_PORT, GNSS_UART_TX_GPIO, GNSS_UART_RX_GPIO,
+                                  UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+    if (err != ESP_OK) { ESP_LOGE(TAG, "uart_set_pin fail"); return err; }
+    err = uart_driver_install(GNSS_UART_PORT, GNSS_RX_BUF_SIZE * 2, 0, 0, NULL, 0);
+    if (err != ESP_OK) { ESP_LOGE(TAG, "uart_driver_install fail"); return err; }
 
     gpio_config_t io_cfg = {
         .pin_bit_mask = 1ULL << GNSS_POWER_EN_GPIO,
         .mode = GPIO_MODE_OUTPUT,
     };
-    ESP_ERROR_CHECK(gpio_config(&io_cfg));
+    err = gpio_config(&io_cfg);
+    if (err != ESP_OK) { ESP_LOGE(TAG, "gpio_config fail"); return err; }
     gpio_set_level(GNSS_POWER_EN_GPIO, 1);
 
     ESP_LOGI(TAG, "GY-NEO7M UART init (baud=%d)", GNSS_UART_BAUD);

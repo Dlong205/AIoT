@@ -3,16 +3,19 @@
 #include <unistd.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "driver/i2c.h"
+#include "freertos/semphr.h"
+#include "driver/i2c_master.h"
 #include "driver/gpio.h"
 #include "driver/uart.h"
 #include "nvs_flash.h"
 #include "esp_log.h"
 #include "esp_timer.h"
+#include "esp_mac.h"
 
 #include "app_config.h"
 #include "rescue_types.h"
 
+#include "i2c_shared.h"
 #include "imu_driver.h"
 #include "mag_driver.h"
 #include "gnss_driver.h"
@@ -35,16 +38,7 @@ static const char *TAG = "main";
 
 static void init_i2c_bus(void)
 {
-    i2c_config_t cfg = {
-        .mode = I2C_MODE_MASTER,
-        .sda_io_num = I2C_SDA_GPIO,
-        .scl_io_num = I2C_SCL_GPIO,
-        .sda_pullup_en = GPIO_PULLUP_ENABLE,
-        .scl_pullup_en = GPIO_PULLUP_ENABLE,
-        .master.clk_speed = I2C_CLK_HZ,
-    };
-    ESP_ERROR_CHECK(i2c_param_config(I2C_BUS_PORT, &cfg));
-    ESP_ERROR_CHECK(i2c_driver_install(I2C_BUS_PORT, cfg.mode, 0, 0, 0));
+    ESP_ERROR_CHECK(i2c_shared_init());
 }
 
 static void init_buttons(void)
@@ -58,30 +52,7 @@ static void init_buttons(void)
     gpio_config(&cfg);
 }
 
-/* ===================== Quét bus I2C ===================== */
-
-static void i2c_scan_bus(i2c_port_t port, const char *name)
-{
-    ESP_LOGI(TAG, "Scanning %s...", name);
-    for (uint8_t addr = 1; addr < 0x7F; addr++) {
-        i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-        i2c_master_start(cmd);
-        i2c_master_write_byte(cmd, (addr << 1) | I2C_MASTER_WRITE, true);
-        i2c_master_stop(cmd);
-        esp_err_t ret = i2c_master_cmd_begin(port, cmd, pdMS_TO_TICKS(50));
-        i2c_cmd_link_delete(cmd);
-        if (ret == ESP_OK) {
-            ESP_LOGI(TAG, "  %s: Found device at 0x%02X", name, addr);
-        }
-    }
-    ESP_LOGI(TAG, "%s scan done.", name);
-}
-
-static void i2c_scan(void)
-{
-    i2c_scan_bus(I2C_BUS_PORT, "I2C0");
-    /* I2C1 (OLED) driver chưa được install ở giai đoạn này → skip scan */
-}
+/* I2C scan removed — new driver uses bus probe. Devices found during init. */
 
 /* ===================== Shared sensor data (cho OLED) ===================== */
 static imu_sample_t s_latest_imu;
@@ -92,6 +63,10 @@ static float s_latest_alt = 0.0f;
 static bool s_mag_ok = false;
 static bool s_gnss_fix = false;
 static bool s_display_ok = false;
+static gnss_fix_t s_latest_gnss_fix;  /* BUG5 FIX: lưu GNSS fix tập trung */
+
+/* BUG8 FIX: Mutex bảo vệ biến shared giữa các task (data race trên dual-core) */
+static SemaphoreHandle_t s_sensor_mutex = NULL;
 
 /* ===================== Task: đọc IMU + phân loại hoạt động ===================== */
 
@@ -123,13 +98,18 @@ static void imu_task(void *arg)
 
             float heading = 0;
             esp_err_t mag_err = mag_driver_read_heading(sample.ax, sample.ay, sample.az, &heading);
-            s_mag_ok = (mag_err == ESP_OK);
-            if ((act == ACTIVITY_WALKING || act == ACTIVITY_RUNNING) && s_mag_ok) {
+            bool mag_ok_local = (mag_err == ESP_OK);
+            if ((act == ACTIVITY_WALKING || act == ACTIVITY_RUNNING) && mag_ok_local) {
                 pdr_on_step(heading);
             }
 
-            s_latest_imu = sample;
-            s_latest_heading = heading;
+            /* BUG8 FIX: bảo vệ ghi biến shared bằng mutex */
+            if (xSemaphoreTake(s_sensor_mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+                s_latest_imu = sample;
+                s_latest_heading = heading;
+                s_mag_ok = mag_ok_local;
+                xSemaphoreGive(s_sensor_mutex);
+            }
         }
         vTaskDelay(pdMS_TO_TICKS(20));
     }
@@ -141,18 +121,40 @@ static void gnss_task(void *arg)
 {
     for (;;) {
         gnss_fix_t fix;
+        /* BUG5 FIX: chỉ task này đọc GNSS UART, lưu kết quả vào biến shared */
         esp_err_t err = gnss_driver_read_fix(&fix, 100);
-        s_gnss_fix = (err == ESP_OK && fix.has_fix);
-        if (s_gnss_fix) {
+        bool has_fix = (err == ESP_OK && fix.has_fix);
+
+        if (xSemaphoreTake(s_sensor_mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+            s_gnss_fix = has_fix;
+            if (has_fix) {
+                s_latest_gnss_fix = fix;
+            }
+            xSemaphoreGive(s_sensor_mutex);
+        }
+
+        if (has_fix) {
             state_machine_post_event((app_event_t){ .type = EVT_GNSS_FIX_ACQUIRED });
-        } else {
-            /* Không spam event khi chưa có fix */
         }
         vTaskDelay(pdMS_TO_TICKS(10000));
     }
 }
 
 /* ===================== Task: LoRa ===================== */
+
+static uint32_t s_node_source_id = 0;
+
+static uint32_t get_node_id(void)
+{
+    if (s_node_source_id != 0) return s_node_source_id;
+    /* Tạo source_id duy nhất từ 4 byte cuối MAC address */
+    uint8_t mac[6];
+    esp_read_mac(mac, ESP_MAC_WIFI_STA);
+    s_node_source_id = ((uint32_t)mac[2] << 24) | ((uint32_t)mac[3] << 16) |
+                        ((uint32_t)mac[4] << 8)  | (uint32_t)mac[5];
+    if (s_node_source_id == 0) s_node_source_id = 1;  /* tránh ID = 0 */
+    return s_node_source_id;
+}
 
 static void lora_task(void *arg)
 {
@@ -161,14 +163,40 @@ static void lora_task(void *arg)
     for (;;) {
         if (state_machine_get_state() == SYS_STATE_SOS) {
             if (s_msg_id == 0 || (s_msg_id % 5 == 0)) {
+
+                /* Lấy dữ liệu vị trí từ shared vars */
+                gnss_fix_t gnss_copy;
+                bool gnss_has_fix = false;
+                if (xSemaphoreTake(s_sensor_mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+                    gnss_copy = s_latest_gnss_fix;
+                    gnss_has_fix = s_gnss_fix;
+                    xSemaphoreGive(s_sensor_mutex);
+                }
+
+                /* Lấy vị trí PDR tương đối */
+                position_t pdr_pos = pdr_get_position();
+
+                /* Điền ĐẦY ĐỦ gói SOS */
                 sos_packet_t pkt = {
-                    .source_id = 0x0001,
+                    .source_id = get_node_id(),
                     .message_id = s_msg_id,
                     .packet_type = PKT_TYPE_SOS,
-                    .hop_limit = 5,
+                    .confidence = 0,  /* TODO: lấy từ activity_classifier khi implement */
+                    .lat = gnss_has_fix ? gnss_copy.lat : 0.0,
+                    .lon = gnss_has_fix ? gnss_copy.lon : 0.0,
+                    .rel_x_m = pdr_pos.rel_x_m,
+                    .rel_y_m = pdr_pos.rel_y_m,
+                    .position_is_absolute = gnss_has_fix,
                     .battery_pct = battery_monitor_read_percent(),
+                    .hop_count = 0,
+                    .hop_limit = 5,
                 };
+
                 lora_driver_send_sos(&pkt);
+                ESP_LOGI("SOS", "TX id=%lu src=0x%08lX pos=%s lat=%.6f lon=%.6f rel=(%.1f,%.1f) batt=%d%%",
+                         (unsigned long)s_msg_id, (unsigned long)pkt.source_id,
+                         gnss_has_fix ? "GPS" : "PDR",
+                         pkt.lat, pkt.lon, pkt.rel_x_m, pkt.rel_y_m, pkt.battery_pct);
             }
             s_msg_id++;
         }
@@ -206,11 +234,30 @@ static void display_task(void *arg)
             system_state_t st = state_machine_get_state();
             uint8_t batt = battery_monitor_read_percent();
 
-            display_driver_update(st, batt, s_latest_heading,
-                                   s_latest_imu.ax, s_latest_imu.ay, s_latest_imu.az,
-                                   s_latest_imu.gx, s_latest_imu.gy, s_latest_imu.gz,
-                                   s_latest_alt, s_latest_temp, s_latest_pressure,
-                                   s_gnss_fix, s_mag_ok);
+            /* BUG8 FIX: đọc shared vars dưới mutex */
+            imu_sample_t imu_copy;
+            float heading_copy, alt_copy, temp_copy, press_copy;
+            bool gnss_copy, mag_copy;
+            if (xSemaphoreTake(s_sensor_mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+                imu_copy = s_latest_imu;
+                heading_copy = s_latest_heading;
+                alt_copy = s_latest_alt;
+                temp_copy = s_latest_temp;
+                press_copy = s_latest_pressure;
+                gnss_copy = s_gnss_fix;
+                mag_copy = s_mag_ok;
+                xSemaphoreGive(s_sensor_mutex);
+            } else {
+                memset(&imu_copy, 0, sizeof(imu_copy));
+                heading_copy = alt_copy = temp_copy = press_copy = 0;
+                gnss_copy = mag_copy = false;
+            }
+
+            display_driver_update(st, batt, heading_copy,
+                                   imu_copy.ax, imu_copy.ay, imu_copy.az,
+                                   imu_copy.gx, imu_copy.gy, imu_copy.gz,
+                                   alt_copy, temp_copy, press_copy,
+                                   gnss_copy, mag_copy);
         }
         vTaskDelay(pdMS_TO_TICKS(100));
     }
@@ -228,6 +275,8 @@ static void state_machine_task(void *arg)
             power_mgmt_on_state_change(st);
             last_state = st;
         }
+        /* BUG4 FIX: tránh chiếm CPU khi queue có event liên tục */
+        vTaskDelay(pdMS_TO_TICKS(10));
     }
 }
 
@@ -244,51 +293,98 @@ static void battery_task(void *arg)
     }
 }
 
+/* ===================== Task: đọc nút SOS ===================== */
+
+static void button_task(void *arg)
+{
+    for (;;) {
+        if (gpio_get_level(BTN_SOS_GPIO) == 0) {
+            vTaskDelay(pdMS_TO_TICKS(50));
+            if (gpio_get_level(BTN_SOS_GPIO) == 0) {
+                ESP_LOGI("BTN", "SOS pressed!");
+                state_machine_post_event((app_event_t){ .type = EVT_BTN_SOS_PRESSED });
+                while (gpio_get_level(BTN_SOS_GPIO) == 0) vTaskDelay(pdMS_TO_TICKS(50));
+            }
+        }
+        if (gpio_get_level(BTN_CANCEL_GPIO) == 0) {
+            vTaskDelay(pdMS_TO_TICKS(50));
+            if (gpio_get_level(BTN_CANCEL_GPIO) == 0) {
+                ESP_LOGI("BTN", "CANCEL pressed!");
+                state_machine_post_event((app_event_t){ .type = EVT_BTN_CANCEL_PRESSED });
+                while (gpio_get_level(BTN_CANCEL_GPIO) == 0) vTaskDelay(pdMS_TO_TICKS(50));
+            }
+        }
+        vTaskDelay(pdMS_TO_TICKS(20));
+    }
+}
+
+/* ===================== Task: Buzzer cảnh báo ===================== */
+
+static void buzzer_task(void *arg)
+{
+    gpio_config_t cfg = {
+        .pin_bit_mask = (1ULL << BUZZER_GPIO),
+        .mode = GPIO_MODE_OUTPUT,
+    };
+    gpio_config(&cfg);
+    gpio_set_level(BUZZER_GPIO, 0);
+
+    for (;;) {
+        if (state_machine_get_state() == SYS_STATE_SOS) {
+            /* Kêu bíp bíp liên tục khi đang SOS */
+            gpio_set_level(BUZZER_GPIO, 1);
+            vTaskDelay(pdMS_TO_TICKS(200));
+            gpio_set_level(BUZZER_GPIO, 0);
+            vTaskDelay(pdMS_TO_TICKS(300));
+        } else {
+            gpio_set_level(BUZZER_GPIO, 0);
+            vTaskDelay(pdMS_TO_TICKS(500));
+        }
+    }
+}
+
 /* ===================== Task: đọc cảm biến liên tục (debug) ===================== */
 
 static void sensors_debug_task(void *arg)
 {
     for (;;) {
-        ESP_LOGI("SENSORS", "IMU  ax=%.2f ay=%.2f az=%.2f gx=%.1f gy=%.1f gz=%.1f",
-                 s_latest_imu.ax, s_latest_imu.ay, s_latest_imu.az,
-                 s_latest_imu.gx, s_latest_imu.gy, s_latest_imu.gz);
-
-        ESP_LOGI("SENSORS", "MAG  heading=%.1f deg", s_latest_heading);
-
-        /* Doc raw MAG truc tiep de debug */
-        {
-            uint8_t reg = 0x01, raw6[6];
-            if (i2c_master_write_read_device(I2C_BUS_PORT, QMC5883L_I2C_ADDR, &reg, 1, raw6, 6, pdMS_TO_TICKS(50)) == ESP_OK) {
-                int16_t mx = (int16_t)((raw6[1] << 8) | raw6[0]);
-                int16_t my = (int16_t)((raw6[3] << 8) | raw6[2]);
-                int16_t mz = (int16_t)((raw6[5] << 8) | raw6[4]);
-                uint8_t st = 0;
-                reg = 0x09;
-                i2c_master_write_read_device(I2C_BUS_PORT, QMC5883L_I2C_ADDR, &reg, 1, &st, 1, pdMS_TO_TICKS(50));
-                ESP_LOGI("SENSORS", "MAG_RAW mx=%d my=%d mz=%d status=0x%02X", mx, my, mz, st);
-            } else {
-                ESP_LOGW("SENSORS", "MAG_RAW I2C read FAILED");
-            }
+        /* BUG8 FIX: đọc shared vars dưới mutex */
+        imu_sample_t imu_dbg;
+        float heading_dbg;
+        bool gnss_dbg;
+        if (xSemaphoreTake(s_sensor_mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+            imu_dbg = s_latest_imu;
+            heading_dbg = s_latest_heading;
+            gnss_dbg = s_gnss_fix;
+            xSemaphoreGive(s_sensor_mutex);
+        } else {
+            memset(&imu_dbg, 0, sizeof(imu_dbg));
+            heading_dbg = 0;
+            gnss_dbg = false;
         }
+
+        ESP_LOGI("SENSORS", "IMU  ax=%.2f ay=%.2f az=%.2f gx=%.1f gy=%.1f gz=%.1f",
+                 imu_dbg.ax, imu_dbg.ay, imu_dbg.az,
+                 imu_dbg.gx, imu_dbg.gy, imu_dbg.gz);
+
+        ESP_LOGI("SENSORS", "MAG  heading=%.1f deg", heading_dbg);
 
         float pressure, temp;
         if (baro_driver_read(&pressure, &temp) == ESP_OK) {
-            s_latest_pressure = pressure;
-            s_latest_temp = temp;
-            s_latest_alt = baro_driver_altitude_m(pressure, 101325.0f);
+            float alt = baro_driver_altitude_m(pressure, 101325.0f);
+            /* BUG8 FIX: ghi baro data dưới mutex */
+            if (xSemaphoreTake(s_sensor_mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+                s_latest_pressure = pressure;
+                s_latest_temp = temp;
+                s_latest_alt = alt;
+                xSemaphoreGive(s_sensor_mutex);
+            }
             ESP_LOGI("SENSORS", "BARO p=%.1f Pa  t=%.2f C  alt=%.1f m",
-                     pressure, temp, s_latest_alt);
+                     pressure, temp, alt);
         }
 
-        /* Đọc raw NMEA từ GPS - in ra để debug */
-        uint8_t raw[256];
-        int len = uart_read_bytes(GNSS_UART_PORT, raw, sizeof(raw) - 1, pdMS_TO_TICKS(200));
-        if (len > 0) {
-            raw[len] = '\0';
-            ESP_LOGI("GNSS_RAW", "%s", (char *)raw);
-        } else {
-            ESP_LOGI("GNSS_RAW", "no UART data");
-        }
+        /* BUG5 FIX: không đọc GNSS UART trực tiếp nữa, dùng shared var từ gnss_task */
+        ESP_LOGI("SENSORS", "GNSS fix=%s", gnss_dbg ? "YES" : "NO");
 
         vTaskDelay(pdMS_TO_TICKS(2000));
     }
@@ -371,19 +467,31 @@ static void sd_log_task(void *arg)
         int64_t now = esp_timer_get_time();
         int64_t t = (now - start) / 1000;
 
+        /* BUG5 FIX: đọc GNSS fix từ shared var thay vì gọi UART trực tiếp */
         gnss_fix_t fix;
-        fix.has_fix = false;
-        fix.lat = 0; fix.lon = 0; fix.hdop = 0; fix.satellites = 0;
-        if (gnss_driver_read_fix(&fix, 200) != ESP_OK) {
-            fix.has_fix = false;
+        imu_sample_t imu_log;
+        float heading_log, press_log, temp_log, alt_log;
+
+        if (xSemaphoreTake(s_sensor_mutex, pdMS_TO_TICKS(50)) == pdTRUE) {
+            fix = s_latest_gnss_fix;
+            imu_log = s_latest_imu;
+            heading_log = s_latest_heading;
+            press_log = s_latest_pressure;
+            temp_log = s_latest_temp;
+            alt_log = s_latest_alt;
+            xSemaphoreGive(s_sensor_mutex);
+        } else {
+            memset(&fix, 0, sizeof(fix));
+            memset(&imu_log, 0, sizeof(imu_log));
+            heading_log = press_log = temp_log = alt_log = 0;
         }
 
         fprintf(f, "%lld,%.3f,%.3f,%.3f,%.1f,%.1f,%.1f,%.1f,%.1f,%.2f,%.1f,%.6f,%.6f,%.1f,%d\n",
                 t,
-                s_latest_imu.ax, s_latest_imu.ay, s_latest_imu.az,
-                s_latest_imu.gx, s_latest_imu.gy, s_latest_imu.gz,
-                s_latest_heading,
-                s_latest_pressure, s_latest_temp, s_latest_alt,
+                imu_log.ax, imu_log.ay, imu_log.az,
+                imu_log.gx, imu_log.gy, imu_log.gz,
+                heading_log,
+                press_log, temp_log, alt_log,
                 fix.lat, fix.lon, fix.hdop, fix.satellites);
         fflush(f);
         fsync(fileno(f));
@@ -401,10 +509,6 @@ void app_main(void)
 
     init_i2c_bus();
 
-    /* ---- Scan I2C để debug ---- */
-    vTaskDelay(pdMS_TO_TICKS(200));
-    i2c_scan();
-
     /* ---- Khởi tạo toàn bộ hệ thống ---- */
     init_buttons();
 
@@ -412,7 +516,10 @@ void app_main(void)
     if (imu_err != ESP_OK) {
         ESP_LOGW(TAG, "imu_driver_init FAILED: %s - tiếp tục không có IMU", esp_err_to_name(imu_err));
     } else {
-        ESP_ERROR_CHECK(imu_driver_calibrate(200));
+        esp_err_t cal_err = imu_driver_calibrate(200);
+        if (cal_err != ESP_OK) {
+            ESP_LOGW(TAG, "imu_calibrate FAILED: %s - tiếp tục", esp_err_to_name(cal_err));
+        }
     }
 
     esp_err_t mag_err = mag_driver_init();
@@ -425,7 +532,10 @@ void app_main(void)
         ESP_LOGW(TAG, "baro_driver_init FAILED: %s - tiếp tục không có BARO", esp_err_to_name(baro_err));
     }
 
-    ESP_ERROR_CHECK(gnss_driver_init());
+    esp_err_t gnss_err = gnss_driver_init();
+    if (gnss_err != ESP_OK) {
+        ESP_LOGW(TAG, "gnss_driver_init FAILED: %s - tiếp tục không có GNSS", esp_err_to_name(gnss_err));
+    }
     esp_err_t lora_err = lora_driver_init();
     if (lora_err != ESP_OK) {
         ESP_LOGW(TAG, "lora_driver_init FAILED: %s - tiếp tục không có AS32", esp_err_to_name(lora_err));
@@ -434,13 +544,26 @@ void app_main(void)
     if (!s_display_ok) {
         ESP_LOGW(TAG, "display_driver_init FAILED - tiếp tục không có OLED");
     }
-    ESP_ERROR_CHECK(battery_monitor_init());
-    ESP_ERROR_CHECK(power_mgmt_init());
+    esp_err_t batt_err = battery_monitor_init();
+    if (batt_err != ESP_OK) {
+        ESP_LOGW(TAG, "battery_monitor_init FAILED: %s", esp_err_to_name(batt_err));
+    }
+    esp_err_t pwr_err = power_mgmt_init();
+    if (pwr_err != ESP_OK) {
+        ESP_LOGW(TAG, "power_mgmt_init FAILED: %s", esp_err_to_name(pwr_err));
+    }
 
     esp_err_t sd_err = sd_card_init();
     if (sd_err != ESP_OK) {
         ESP_LOGW(TAG, "SD card init FAILED - tiếp tục không ghi log");
     }
+
+    /* BUG8 FIX: tạo mutex trước khi bắt đầu các task */
+    s_sensor_mutex = xSemaphoreCreateMutex();
+    configASSERT(s_sensor_mutex);
+
+    /* Khởi tạo GNSS fix mặc định */
+    memset(&s_latest_gnss_fix, 0, sizeof(s_latest_gnss_fix));
 
     state_machine_init();
     pdr_reset();
@@ -449,8 +572,10 @@ void app_main(void)
     xTaskCreate(gnss_task,          "gnss_task", 4096, NULL, 4, NULL);
     xTaskCreate(lora_task,          "lora_task", 4096, NULL, 4, NULL);
     xTaskCreate(display_task,       "disp_task", 4096, NULL, 3, NULL);
-    xTaskCreate(state_machine_task, "sm_task",   4096, NULL, 6, NULL);
-    xTaskCreate(battery_task,       "batt_task", 2048, NULL, 2, NULL);
+    xTaskCreatePinnedToCore(state_machine_task, "state_machine", 3072, NULL, 6, NULL, 0);
+    xTaskCreatePinnedToCore(battery_task, "battery", 2048, NULL, 2, NULL, 0);
+    xTaskCreatePinnedToCore(button_task, "buttons", 2048, NULL, 5, NULL, 0);
+    xTaskCreatePinnedToCore(buzzer_task, "buzzer", 2048, NULL, 3, NULL, 0);
     xTaskCreate(sensors_debug_task, "sens_task", 4096, NULL, 2, NULL);
     xTaskCreate(sd_log_task,        "sd_task",   4096, NULL, 1, NULL);
 

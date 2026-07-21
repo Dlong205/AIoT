@@ -1123,6 +1123,7 @@
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/ulp/CMakeFiles/install.dir
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/ulp/CMakeFiles/install/local.dir
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/ulp/CMakeFiles/install/strip.dir
+/home/donglong/Downloads/esp32_rescue_node/build/esp-idf/common/CMakeFiles/__idf_common.dir
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/common/CMakeFiles/edit_cache.dir
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/common/CMakeFiles/rebuild_cache.dir
 /home/donglong/Downloads/esp32_rescue_node/build/esp-idf/common/CMakeFiles/list_install_components.dir

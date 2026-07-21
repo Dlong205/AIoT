@@ -1,140 +1,162 @@
 #include "baro_driver.h"
 #include "app_config.h"
-#include "driver/i2c.h"
+#include "i2c_shared.h"
+#include "driver/i2c_master.h"
 #include "esp_log.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 #include <math.h>
 
 static const char *TAG = "baro_driver";
+static i2c_master_dev_handle_t s_dev = NULL;
 
-#define BMP280_REG_CHIP_ID     0xD0
-#define BMP280_CHIP_ID_VAL     0x58
-#define BMP280_REG_RESET       0xE0
-#define BMP280_REG_CTRL_MEAS   0xF4
-#define BMP280_REG_CONFIG      0xF5
-#define BMP280_REG_PRESS_MSB   0xF7   /* press(3B) + temp(3B) liên tiếp */
-#define BMP280_REG_CALIB_START 0x88   /* 24 byte calib, xem datasheet 3.11.2 */
+/* BMP280 registers */
+#define REG_CHIP_ID     0xD0
+#define REG_RESET       0xE0
+#define REG_CTRL_MEAS   0xF4
+#define REG_CONFIG      0xF5
+#define REG_PRESS_MSB   0xF7
+#define REG_TEMP_MSB    0xFA
+#define REG_CALIB_START 0x88
 
-/* osrs_t=x1(001) osrs_p=x1(001) mode=normal(11) -> 0b00100111 */
-#define BMP280_CTRL_MEAS_VAL   0x27
-/* t_sb=0.5ms(000) filter=off(000) spi3w=0 -> 0b00000000 */
-#define BMP280_CONFIG_VAL      0x00
+#define BMP280_CHIP_ID  0x58
 
+/* Calibration data */
 typedef struct {
-    uint16_t dig_T1;
-    int16_t  dig_T2, dig_T3;
-    uint16_t dig_P1;
-    int16_t  dig_P2, dig_P3, dig_P4, dig_P5, dig_P6, dig_P7, dig_P8, dig_P9;
+    uint16_t T1;
+    int16_t  T2, T3;
+    uint16_t P1;
+    int16_t  P2, P3, P4, P5, P6, P7, P8, P9;
 } bmp280_calib_t;
 
-static bmp280_calib_t s_calib;
-static int32_t s_t_fine; /* dùng chung giữa compensate T và P, theo đúng datasheet */
+static bmp280_calib_t s_cal;
+static int32_t s_t_fine;
 
-static inline esp_err_t i2c_write_reg(uint8_t reg, uint8_t val)
+static esp_err_t write_reg(uint8_t reg, uint8_t val)
 {
     uint8_t buf[2] = {reg, val};
-    return i2c_master_write_to_device(I2C_BUS_PORT, BMP280_I2C_ADDR, buf, 2, pdMS_TO_TICKS(100));
+    return i2c_master_transmit(s_dev, buf, 2, 100);
 }
 
-static inline esp_err_t i2c_read_regs(uint8_t reg, uint8_t *buf, size_t len)
+static esp_err_t read_regs(uint8_t reg, uint8_t *buf, size_t len)
 {
-    return i2c_master_write_read_device(I2C_BUS_PORT, BMP280_I2C_ADDR, &reg, 1, buf, len, pdMS_TO_TICKS(100));
+    return i2c_master_transmit_receive(s_dev, &reg, 1, buf, len, 100);
 }
 
 static esp_err_t read_calib(void)
 {
-    uint8_t c[24];
-    esp_err_t err = i2c_read_regs(BMP280_REG_CALIB_START, c, sizeof(c));
+    uint8_t buf[24];
+    esp_err_t err = read_regs(REG_CALIB_START, buf, 24);
     if (err != ESP_OK) return err;
 
-    s_calib.dig_T1 = (uint16_t)(c[1] << 8 | c[0]);
-    s_calib.dig_T2 = (int16_t)(c[3] << 8 | c[2]);
-    s_calib.dig_T3 = (int16_t)(c[5] << 8 | c[4]);
-    s_calib.dig_P1 = (uint16_t)(c[7] << 8 | c[6]);
-    s_calib.dig_P2 = (int16_t)(c[9] << 8 | c[8]);
-    s_calib.dig_P3 = (int16_t)(c[11] << 8 | c[10]);
-    s_calib.dig_P4 = (int16_t)(c[13] << 8 | c[12]);
-    s_calib.dig_P5 = (int16_t)(c[15] << 8 | c[14]);
-    s_calib.dig_P6 = (int16_t)(c[17] << 8 | c[16]);
-    s_calib.dig_P7 = (int16_t)(c[19] << 8 | c[18]);
-    s_calib.dig_P8 = (int16_t)(c[21] << 8 | c[20]);
-    s_calib.dig_P9 = (int16_t)(c[23] << 8 | c[22]);
+    s_cal.T1 = (uint16_t)(buf[0] | (buf[1] << 8));
+    s_cal.T2 = (int16_t)(buf[2] | (buf[3] << 8));
+    s_cal.T3 = (int16_t)(buf[4] | (buf[5] << 8));
+    s_cal.P1 = (uint16_t)(buf[6] | (buf[7] << 8));
+    s_cal.P2 = (int16_t)(buf[8] | (buf[9] << 8));
+    s_cal.P3 = (int16_t)(buf[10] | (buf[11] << 8));
+    s_cal.P4 = (int16_t)(buf[12] | (buf[13] << 8));
+    s_cal.P5 = (int16_t)(buf[14] | (buf[15] << 8));
+    s_cal.P6 = (int16_t)(buf[16] | (buf[17] << 8));
+    s_cal.P7 = (int16_t)(buf[18] | (buf[19] << 8));
+    s_cal.P8 = (int16_t)(buf[20] | (buf[21] << 8));
+    s_cal.P9 = (int16_t)(buf[22] | (buf[23] << 8));
+
     return ESP_OK;
+}
+
+static int32_t compensate_temp(int32_t adc_T)
+{
+    int32_t var1 = (((adc_T >> 3) - ((int32_t)s_cal.T1 << 1)) * ((int32_t)s_cal.T2)) >> 11;
+    int32_t var2 = (((((adc_T >> 4) - ((int32_t)s_cal.T1)) * ((adc_T >> 4) - ((int32_t)s_cal.T1))) >> 12) * ((int32_t)s_cal.T3)) >> 14;
+    s_t_fine = var1 + var2;
+    return (s_t_fine * 5 + 128) >> 8;
+}
+
+static uint32_t compensate_pressure(int32_t adc_P)
+{
+    int64_t var1 = ((int64_t)s_t_fine) - 128000;
+    int64_t var2 = var1 * var1 * (int64_t)s_cal.P6;
+    var2 = var2 + ((var1 * (int64_t)s_cal.P5) << 17);
+    var2 = var2 + (((int64_t)s_cal.P4) << 35);
+    var1 = ((var1 * var1 * (int64_t)s_cal.P3) >> 8) + ((var1 * (int64_t)s_cal.P2) << 12);
+    var1 = (((((int64_t)1) << 47) + var1)) * ((int64_t)s_cal.P1) >> 33;
+
+    if (var1 == 0) return 0;
+    int64_t p = 1048576 - adc_P;
+    p = (((p << 31) - var2) * 3125) / var1;
+    var1 = (((int64_t)s_cal.P9) * (p >> 13) * (p >> 13)) >> 25;
+    var2 = (((int64_t)s_cal.P8) * p) >> 19;
+    p = ((p + var1 + var2) >> 8) + (((int64_t)s_cal.P7) << 4);
+    return (uint32_t)p;
 }
 
 esp_err_t baro_driver_init(void)
 {
-    uint8_t chip_id = 0;
-    esp_err_t err = i2c_read_regs(BMP280_REG_CHIP_ID, &chip_id, 1);
+    if (i2c0_bus == NULL) {
+        ESP_LOGE(TAG, "I2C0 bus not initialized");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    i2c_device_config_t dev_cfg = {
+        .dev_addr_length = I2C_ADDR_BIT_LEN_7,
+        .device_address = BMP280_I2C_ADDR,
+        .scl_speed_hz = I2C_CLK_HZ,
+    };
+    esp_err_t err = i2c_master_bus_add_device(i2c0_bus, &dev_cfg, &s_dev);
     if (err != ESP_OK) {
-        ESP_LOGE(TAG, "I2C read CHIP_ID failed: %s", esp_err_to_name(err));
+        ESP_LOGE(TAG, "i2c_master_bus_add_device failed: %s", esp_err_to_name(err));
         return err;
     }
-    if (chip_id != BMP280_CHIP_ID_VAL) {
-        ESP_LOGW(TAG, "CHIP_ID = 0x%02X (expect 0x%02X)", chip_id, BMP280_CHIP_ID_VAL);
-    }
 
-    err = i2c_write_reg(BMP280_REG_RESET, 0xB6);
-    if (err != ESP_OK) return err;
-    vTaskDelay(pdMS_TO_TICKS(10));
+    uint8_t chip_id;
+    err = read_regs(REG_CHIP_ID, &chip_id, 1);
+    if (err != ESP_OK || chip_id != BMP280_CHIP_ID) {
+        ESP_LOGE(TAG, "I2C read CHIP_ID failed: %s (id=0x%02X)", esp_err_to_name(err), chip_id);
+        return ESP_FAIL;
+    }
+    ESP_LOGI(TAG, "BMP280 CHIP_ID=0x%02X", chip_id);
+
+    /* BUG11 FIX: reset TRƯỚC, rồi mới đọc calibration */
+    write_reg(REG_RESET, 0xB6);
+    vTaskDelay(pdMS_TO_TICKS(50));
 
     err = read_calib();
-    if (err != ESP_OK) return err;
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Read calibration failed");
+        return err;
+    }
 
-    err = i2c_write_reg(BMP280_REG_CONFIG, BMP280_CONFIG_VAL);
-    if (err != ESP_OK) return err;
+    /* crtl_meas: oversampling x16 for both, normal mode */
+    write_reg(REG_CTRL_MEAS, 0x57);
+    /* config: standby 500ms, filter x16 */
+    write_reg(REG_CONFIG, 0x18);
 
-    err = i2c_write_reg(BMP280_REG_CTRL_MEAS, BMP280_CTRL_MEAS_VAL);
-    if (err != ESP_OK) return err;
+    vTaskDelay(pdMS_TO_TICKS(100));
 
-    ESP_LOGI(TAG, "BMP280 init OK @0x%02X (normal mode, osrs x1)", BMP280_I2C_ADDR);
+    ESP_LOGI(TAG, "BMP280 init OK (oversampling x16, normal mode)");
     return ESP_OK;
 }
 
-/* Công thức compensate lấy nguyên theo Bosch datasheet BMP280 §3.11.3 */
-static float compensate_temperature(int32_t adc_T)
-{
-    float var1 = (((float)adc_T) / 16384.0f - ((float)s_calib.dig_T1) / 1024.0f) * ((float)s_calib.dig_T2);
-    float var2 = ((((float)adc_T) / 131072.0f - ((float)s_calib.dig_T1) / 8192.0f) *
-                  (((float)adc_T) / 131072.0f - ((float)s_calib.dig_T1) / 8192.0f)) * ((float)s_calib.dig_T3);
-    s_t_fine = (int32_t)(var1 + var2);
-    return (var1 + var2) / 5120.0f;
-}
-
-static float compensate_pressure(int32_t adc_P)
-{
-    float var1 = ((float)s_t_fine / 2.0f) - 64000.0f;
-    float var2 = var1 * var1 * ((float)s_calib.dig_P6) / 32768.0f;
-    var2 = var2 + var1 * ((float)s_calib.dig_P5) * 2.0f;
-    var2 = (var2 / 4.0f) + (((float)s_calib.dig_P4) * 65536.0f);
-    var1 = (((float)s_calib.dig_P3) * var1 * var1 / 524288.0f + ((float)s_calib.dig_P2) * var1) / 524288.0f;
-    var1 = (1.0f + var1 / 32768.0f) * ((float)s_calib.dig_P1);
-    if (var1 == 0.0f) return 0.0f; /* tránh chia 0 */
-
-    float p = 1048576.0f - (float)adc_P;
-    p = (p - (var2 / 4096.0f)) * 6250.0f / var1;
-    var1 = ((float)s_calib.dig_P9) * p * p / 2147483648.0f;
-    var2 = p * ((float)s_calib.dig_P8) / 32768.0f;
-    p = p + (var1 + var2 + ((float)s_calib.dig_P7)) / 16.0f;
-    return p; /* Pa */
-}
-
-esp_err_t baro_driver_read(float *out_pressure_pa, float *out_temperature_c)
+esp_err_t baro_driver_read(float *out_pressure_pa, float *out_temp_c)
 {
     uint8_t raw[6];
-    esp_err_t err = i2c_read_regs(BMP280_REG_PRESS_MSB, raw, sizeof(raw));
+    esp_err_t err = read_regs(REG_PRESS_MSB, raw, 6);
     if (err != ESP_OK) return err;
 
-    int32_t adc_P = ((int32_t)raw[0] << 12) | ((int32_t)raw[1] << 4) | (raw[2] >> 4);
-    int32_t adc_T = ((int32_t)raw[3] << 12) | ((int32_t)raw[4] << 4) | (raw[5] >> 4);
+    int32_t adc_P = (int32_t)((raw[0] << 12) | (raw[1] << 4) | (raw[2] >> 4));
+    int32_t adc_T = (int32_t)((raw[3] << 12) | (raw[4] << 4) | (raw[5] >> 4));
 
-    /* PHẢI compensate temperature trước để có s_t_fine cho compensate pressure */
-    *out_temperature_c = compensate_temperature(adc_T);
-    *out_pressure_pa = compensate_pressure(adc_P);
+    int32_t t = compensate_temp(adc_T);
+    uint32_t p = compensate_pressure(adc_P);
+
+    *out_temp_c = t / 100.0f;
+    *out_pressure_pa = p / 256.0f;
+
     return ESP_OK;
 }
 
 float baro_driver_altitude_m(float pressure_pa, float sea_level_pa)
 {
-    /* Công thức barometric chuẩn, dùng cho ước lượng độ cao tương đối */
-    return 44330.0f * (1.0f - powf(pressure_pa / sea_level_pa, 0.1903f));
+    return 44330.0f * (1.0f - powf(pressure_pa / sea_level_pa, 1.0f / 5.255f));
 }

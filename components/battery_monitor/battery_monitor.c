@@ -30,6 +30,7 @@ esp_err_t battery_monitor_init(void)
 
 float battery_monitor_read_voltage(void)
 {
+    if (!s_adc_handle) return BATT_V_FULL;
     int raw = 0;
     /* TODO: dùng adc_cali (ESP-IDF calibration API) thay vì quy đổi thô để
      * giảm sai số - vẫn sẽ có sai số vì không có fuel gauge chuyên dụng. */
@@ -40,6 +41,7 @@ float battery_monitor_read_voltage(void)
 
 uint8_t battery_monitor_read_percent(void)
 {
+    if (!s_adc_handle) return 100;
     float v = battery_monitor_read_voltage();
     if (v >= BATT_V_FULL) return 100;
     if (v <= BATT_V_EMPTY) return 0;

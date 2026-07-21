@@ -1,4 +1,5 @@
 #include "lora_driver.h"
+#include "mesh_protocol.h"  /* BUG10 FIX: explicit include (was implicit via lora_driver.h) */
 #include "app_config.h"
 #include "driver/uart.h"
 #include "driver/gpio.h"
@@ -22,7 +23,9 @@ esp_err_t lora_driver_init(void)
         .pin_bit_mask = (1ULL << AS32_M0_GPIO) | (1ULL << AS32_M1_GPIO),
         .mode = GPIO_MODE_OUTPUT,
     };
-    ESP_ERROR_CHECK(gpio_config(&io_cfg));
+    esp_err_t err;
+    err = gpio_config(&io_cfg);
+    if (err != ESP_OK) { ESP_LOGE(TAG, "gpio_config fail"); return err; }
 
     uart_config_t cfg = {
         .baud_rate = AS32_UART_BAUD,
@@ -32,10 +35,13 @@ esp_err_t lora_driver_init(void)
         .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
         .source_clk = UART_SCLK_DEFAULT,
     };
-    ESP_ERROR_CHECK(uart_param_config(AS32_UART_PORT, &cfg));
-    ESP_ERROR_CHECK(uart_set_pin(AS32_UART_PORT, AS32_UART_TX_GPIO, AS32_UART_RX_GPIO,
-                                  UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE));
-    ESP_ERROR_CHECK(uart_driver_install(AS32_UART_PORT, AS32_RX_BUF_SIZE * 2, 0, 0, NULL, 0));
+    err = uart_param_config(AS32_UART_PORT, &cfg);
+    if (err != ESP_OK) { ESP_LOGE(TAG, "uart_param_config fail"); return err; }
+    err = uart_set_pin(AS32_UART_PORT, AS32_UART_TX_GPIO, AS32_UART_RX_GPIO,
+                                  UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+    if (err != ESP_OK) { ESP_LOGE(TAG, "uart_set_pin fail"); return err; }
+    err = uart_driver_install(AS32_UART_PORT, AS32_RX_BUF_SIZE * 2, 0, 0, NULL, 0);
+    if (err != ESP_OK) { ESP_LOGE(TAG, "uart_driver_install fail"); return err; }
 
     as32_set_mode_normal();
 

@@ -1,0 +1,1927 @@
+Command: /home/donglong/.espressif/python_env/idf6.0_py3.10_env/bin/python /home/donglong/.espressif/v6.0.2/esp-idf/tools/idf_monitor.py -p /dev/ttyACM0 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 /home/donglong/Downloads/esp32_rescue_node/build/esp32_rescue_node.elf /home/donglong/Downloads/esp32_rescue_node/build/bootloader/bootloader.elf -m '/home/donglong/.espressif/python_env/idf6.0_py3.10_env/bin/python' '/home/donglong/.espressif/v6.0.2/esp-idf/tools/idf.py' '-p' '/dev/ttyACM0'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0xb (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x14f0
+load:0x403c8700,len:0xda0
+load:0x403cb700,len:0x2f54
+entry 0x403c8908
+[0;32mI (24) boot: ESP-IDF v6.0.2 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Jul 20 2026 00:11:01[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.3[0m
+[0;32mI (31) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (35) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (39) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (43) boot: Enabling RNG early entropy source...[0m
+[0;32mI (47) boot: Partition Table:[0m
+[0;32mI (50) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (63) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (69) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (76) boot: End of partition table[0m
+[0;32mI (79) esp_image: segment 0: paddr=00010020 vaddr=3c040020 size=129d0h ( 76240) map[0m
+[0;32mI (100) esp_image: segment 1: paddr=000229f8 vaddr=3fc94600 size=0342ch ( 13356) load[0m
+[0;32mI (104) esp_image: segment 2: paddr=00025e2c vaddr=40374000 size=0a1ech ( 41452) load[0m
+[0;32mI (114) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=314e8h (201960) map[0m
+[0;32mI (151) esp_image: segment 4: paddr=00061510 vaddr=4037e1ec size=0635ch ( 25436) load[0m
+[0;32mI (157) esp_image: segment 5: paddr=00067874 vaddr=50000000 size=00024h (    36) load[0m
+[0;32mI (164) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (164) boot: Disabling RNG early entropy source...[0m
+[0;32mI (176) cpu_start: Multicore app[0m
+[0;32mI (185) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (185) cpu_start: Pro cpu start user code[0m
+[0;32mI (185) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (187) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32_rescue_node[0m
+[0;32mI (196) app_init: App version:      21e0d77-dirty[0m
+[0;32mI (200) app_init: Compile time:     Jul 20 2026 00:10:53[0m
+[0;32mI (205) app_init: ELF file SHA256:  250927649...[0m
+[0;32mI (209) app_init: ESP-IDF:          v6.0.2[0m
+[0;32mI (213) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (217) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (221) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (225) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (231) heap_init: At 3FC990C0 len 00050650 (321 KiB): RAM[0m
+[0;32mI (236) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (241) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (247) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (253) spi_flash: detected chip: boya[0m
+[0;32mI (255) spi_flash: flash io: dio[0m
+[0;32mI (259) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (265) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (272) main_task: Started on CPU0[0m
+[0;32mI (302) main_task: Calling app_main()[0m
+[0;32mI (312) i2c_shared: I2C0 init OK (SDA=8, SCL=9)[0m
+[0;32mI (312) i2c_shared: I2C1 init OK (SDA=2, SCL=1)[0m
+[0;32mI (312) imu_driver: Probing MPU9250 @0x68...[0m
+[0;32mI (312) imu_driver: WHO_AM_I = 0x70 (MPU6500)[0m
+[0;32mI (422) imu_driver: MPU9250 init OK[0m
+[0;32mI (752) imu_driver: calibrate: gyro offset (9.32, -3.13, 1.48) deg/s - SAVED[0m
+[0;32mI (752) mag_driver: Init QMC5883P @0x2C...[0m
+[0;32mI (972) mag_driver: Init done, status=0x19[0m
+[0;32mI (972) baro_driver: BMP280 CHIP_ID=0x58[0m
+[0;32mI (1122) baro_driver: BMP280 init OK (oversampling x16, normal mode)[0m
+[0;32mI (1122) gnss_driver: GY-NEO7M UART init (baud=9600)[0m
+[0;32mI (1172) lora_driver: AS32 init OK (UART2, baud=9600, normal mode)[0m
+[0;32mI (1382) display_driver: SSD1306 init OK @0x3C on I2C1(GPIO1/2)[0m
+[0;32mI (1382) battery_monitor: ADC battery monitor init[0m
+[0;32mI (1382) power_mgmt: power_mgmt init[0m
+[1;31mE (1582) sdmmc_sd: sdmmc_init_sd_if_cond: send_if_cond (1) returned 0x108[0m
+[1;31mE (1582) vfs_fat_sdmmc: sdmmc_card_init failed (0x108).[0m
+[1;31mE (1582) vfs_fat_sdmmc: esp_vfs_fat_sdspi_sdcard_init failed (0x108).[0m
+[1;31mE (1582) main: SD mount failed: ESP_ERR_INVALID_RESPONSE[0m
+[0;33mW (1592) main: SD card init FAILED - tiếp tục không ghi log[0m
+[0;32mI (1602) state_machine: state: 0 -> 5[0m
+[0;32mI (1602) power_mgmt: policy: LOW_POWER -> giam tan suat heartbeat/display, GNSS off[0m
+[0;32mI (1602) SENSORS: IMU  ax=0.00 ay=0.00 az=0.00 gx=0.0 gy=0.0 gz=0.0[0m
+[0;32mI (1612) SENSORS: MAG  heading=0.0 deg[0m
+[0;32mI (1612) main: esp32_rescue_node started[0m
+[0;32mI (1612) SENSORS: BARO p=100328.1 Pa  t=28.34 C  alt=83.3 m[0m
+[0;33mW (1622) main: SD card not mounted - skip log[0m
+[0;32mI (1622) SENSORS: GNSS fix=NO[0m
+[0;32mI (1622) main_task: Returned from app_main()[0m
+[0;32mI (3632) SENSORS: IMU  ax=0.25 ay=-0.04 az=0.94 gx=-0.2 gy=-0.3 gz=-0.1[0m
+[0;32mI (3632) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (3632) SENSORS: BARO p=100328.4 Pa  t=28.40 C  alt=83.3 m[0m
+[0;32mI (3632) SENSORS: GNSS fix=NO[0m
+[0;32mI (5632) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.97 gx=0.0 gy=-0.0 gz=0.1[0m
+[0;32mI (5632) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (5632) SENSORS: BARO p=100328.9 Pa  t=28.41 C  alt=83.3 m[0m
+[0;32mI (5632) SENSORS: GNSS fix=NO[0m
+[0;32mI (7632) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=0.0 gy=0.5 gz=0.0[0m
+[0;32mI (7632) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (7632) SENSORS: BARO p=100327.6 Pa  t=28.41 C  alt=83.4 m[0m
+[0;32mI (7632) SENSORS: GNSS fix=NO[0m
+[0;32mI (9632) SENSORS: IMU  ax=0.26 ay=-0.03 az=0.96 gx=-0.0 gy=-0.3 gz=-0.0[0m
+[0;32mI (9632) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (9632) SENSORS: BARO p=100328.0 Pa  t=28.41 C  alt=83.3 m[0m
+[0;32mI (9632) SENSORS: GNSS fix=NO[0m
+[0;32mI (10932) BTN: SOS pressed![0m
+[0;32mI (11632) SENSORS: IMU  ax=0.22 ay=-0.01 az=0.96 gx=-0.2 gy=0.3 gz=0.1[0m
+[0;32mI (11632) SENSORS: MAG  heading=164.5 deg[0m
+[0;33mW (11632) main: SD card not mounted - skip log[0m
+[0;32mI (11632) SENSORS: BARO p=100328.2 Pa  t=28.42 C  alt=83.3 m[0m
+[0;32mI (11632) SENSORS: GNSS fix=NO[0m
+[0;32mI (12232) BTN: SOS pressed![0m
+[0;32mI (13142) BTN: SOS pressed![0m
+[0;32mI (13642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.96 gx=-1.1 gy=-0.9 gz=0.2[0m
+[0;32mI (13642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (13642) SENSORS: BARO p=100329.4 Pa  t=28.43 C  alt=83.2 m[0m
+[0;32mI (13642) SENSORS: GNSS fix=NO[0m
+[0;32mI (14812) BTN: SOS pressed![0m
+[0;32mI (15642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.95 gx=-0.3 gy=0.3 gz=0.1[0m
+[0;32mI (15642) SENSORS: MAG  heading=164.8 deg[0m
+[0;32mI (15642) SENSORS: BARO p=100328.2 Pa  t=28.43 C  alt=83.3 m[0m
+[0;32mI (15642) SENSORS: GNSS fix=NO[0m
+[0;32mI (16892) BTN: SOS pressed![0m
+[0;32mI (17642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.96 gx=-0.3 gy=-0.3 gz=0.1[0m
+[0;32mI (17642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (17642) SENSORS: BARO p=100328.4 Pa  t=28.42 C  alt=83.3 m[0m
+[0;32mI (17642) SENSORS: GNSS fix=NO[0m
+[0;32mI (18942) BTN: SOS pressed![0m
+[0;32mI (19642) SENSORS: IMU  ax=0.21 ay=0.03 az=0.97 gx=-0.5 gy=-0.8 gz=-0.2[0m
+[0;32mI (19642) SENSORS: MAG  heading=163.3 deg[0m
+[0;32mI (19642) SENSORS: BARO p=100328.7 Pa  t=28.42 C  alt=83.3 m[0m
+[0;32mI (19642) SENSORS: GNSS fix=NO[0m
+[0;32mI (21102) BTN: SOS pressed![0m
+[0;33mW (21632) main: SD card not mounted - skip log[0m
+[0;32mI (21642) SENSORS: IMU  ax=0.21 ay=0.03 az=0.97 gx=-1.2 gy=-0.4 gz=0.4[0m
+[0;32mI (21642) SENSORS: MAG  heading=163.0 deg[0m
+[0;32mI (21642) SENSORS: BARO p=100329.2 Pa  t=28.42 C  alt=83.2 m[0m
+[0;32mI (21642) SENSORS: GNSS fix=NO[0m
+[0;32mI (23232) BTN: SOS pressed![0m
+[0;32mI (23642) SENSORS: IMU  ax=0.21 ay=0.03 az=0.97 gx=-0.0 gy=-0.3 gz=-0.1[0m
+[0;32mI (23642) SENSORS: MAG  heading=162.9 deg[0m
+[0;32mI (23642) SENSORS: BARO p=100328.5 Pa  t=28.40 C  alt=83.3 m[0m
+[0;32mI (23642) SENSORS: GNSS fix=NO[0m
+[0;32mI (25282) BTN: SOS pressed![0m
+[0;32mI (25642) SENSORS: IMU  ax=0.27 ay=0.03 az=0.91 gx=-0.6 gy=-2.8 gz=0.1[0m
+[0;32mI (25642) SENSORS: MAG  heading=163.6 deg[0m
+[0;32mI (25642) SENSORS: BARO p=100329.0 Pa  t=28.41 C  alt=83.3 m[0m
+[0;32mI (25642) SENSORS: GNSS fix=NO[0m
+[0;32mI (27192) BTN: SOS pressed![0m
+[0;32mI (27642) SENSORS: IMU  ax=0.21 ay=0.03 az=0.98 gx=-2.1 gy=-1.2 gz=0.5[0m
+[0;32mI (27642) SENSORS: MAG  heading=163.0 deg[0m
+[0;32mI (27642) SENSORS: BARO p=100327.9 Pa  t=28.42 C  alt=83.3 m[0m
+[0;32mI (27642) SENSORS: GNSS fix=NO[0m
+[0;32mI (29642) SENSORS: IMU  ax=0.23 ay=-0.00 az=0.96 gx=0.2 gy=-0.2 gz=-0.3[0m
+[0;32mI (29642) SENSORS: MAG  heading=163.5 deg[0m
+[0;32mI (29642) SENSORS: BARO p=100328.2 Pa  t=28.41 C  alt=83.3 m[0m
+[0;32mI (29642) SENSORS: GNSS fix=NO[0m
+[0;33mW (31632) main: SD card not mounted - skip log[0m
+[0;32mI (31642) SENSORS: IMU  ax=0.23 ay=-0.00 az=0.96 gx=-0.0 gy=-0.0 gz=0.2[0m
+[0;32mI (31642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (31642) SENSORS: BARO p=100327.4 Pa  t=28.41 C  alt=83.4 m[0m
+[0;32mI (31642) SENSORS: GNSS fix=NO[0m
+[0;32mI (33642) SENSORS: IMU  ax=0.23 ay=-0.00 az=0.97 gx=0.0 gy=0.2 gz=0.1[0m
+[0;32mI (33642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (33642) SENSORS: BARO p=100327.7 Pa  t=28.41 C  alt=83.4 m[0m
+[0;32mI (33642) SENSORS: GNSS fix=NO[0m
+[0;32mI (35642) SENSORS: IMU  ax=0.23 ay=-0.01 az=0.96 gx=0.2 gy=-0.2 gz=-0.3[0m
+[0;32mI (35642) SENSORS: MAG  heading=163.7 deg[0m
+[0;32mI (35642) SENSORS: BARO p=100327.3 Pa  t=28.41 C  alt=83.4 m[0m
+[0;32mI (35642) SENSORS: GNSS fix=NO[0m
+[0;32mI (37642) SENSORS: IMU  ax=0.24 ay=-0.00 az=1.03 gx=-8.3 gy=-5.7 gz=1.4[0m
+[0;32mI (37642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (37642) SENSORS: BARO p=100329.1 Pa  t=28.41 C  alt=83.2 m[0m
+[0;32mI (37642) SENSORS: GNSS fix=NO[0m
+[0;32mI (39642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.1 gy=-0.1 gz=-0.3[0m
+[0;32mI (39642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (39642) SENSORS: BARO p=100329.7 Pa  t=28.41 C  alt=83.2 m[0m
+[0;32mI (39642) SENSORS: GNSS fix=NO[0m
+[0;33mW (41632) main: SD card not mounted - skip log[0m
+[0;32mI (41642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.1 gy=0.1 gz=-0.2[0m
+[0;32mI (41642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (41642) SENSORS: BARO p=100328.0 Pa  t=28.41 C  alt=83.3 m[0m
+[0;32mI (41642) SENSORS: GNSS fix=NO[0m
+[0;32mI (43642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.96 gx=-0.0 gy=-0.1 gz=0.2[0m
+[0;32mI (43642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (43642) SENSORS: BARO p=100328.0 Pa  t=28.41 C  alt=83.3 m[0m
+[0;32mI (43642) SENSORS: GNSS fix=NO[0m
+[0;32mI (45642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=0.1 gz=0.1[0m
+[0;32mI (45642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (45642) SENSORS: BARO p=100327.7 Pa  t=28.40 C  alt=83.4 m[0m
+[0;32mI (45642) SENSORS: GNSS fix=NO[0m
+[0;32mI (47642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.97 gx=-0.0 gy=0.2 gz=0.0[0m
+[0;32mI (47642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (47642) SENSORS: BARO p=100328.7 Pa  t=28.39 C  alt=83.3 m[0m
+[0;32mI (47642) SENSORS: GNSS fix=NO[0m
+[0;32mI (49642) SENSORS: IMU  ax=0.24 ay=-0.04 az=0.95 gx=0.0 gy=-0.1 gz=-0.1[0m
+[0;32mI (49642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (49642) SENSORS: BARO p=100328.7 Pa  t=28.38 C  alt=83.3 m[0m
+[0;32mI (49642) SENSORS: GNSS fix=NO[0m
+[0;33mW (51632) main: SD card not mounted - skip log[0m
+[0;32mI (51642) SENSORS: IMU  ax=0.25 ay=-0.02 az=0.96 gx=0.1 gy=-0.2 gz=-0.0[0m
+[0;32mI (51642) SENSORS: MAG  heading=164.8 deg[0m
+[0;32mI (51642) SENSORS: BARO p=100327.2 Pa  t=28.38 C  alt=83.4 m[0m
+[0;32mI (51642) SENSORS: GNSS fix=NO[0m
+[0;32mI (53642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.2 gy=0.3 gz=0.0[0m
+[0;32mI (53642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (53642) SENSORS: BARO p=100327.4 Pa  t=28.37 C  alt=83.4 m[0m
+[0;32mI (53642) SENSORS: GNSS fix=NO[0m
+[0;32mI (55642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=-0.0 gy=0.0 gz=0.2[0m
+[0;32mI (55642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (55642) SENSORS: BARO p=100326.8 Pa  t=28.36 C  alt=83.4 m[0m
+[0;32mI (55642) SENSORS: GNSS fix=NO[0m
+[0;32mI (57642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.95 gx=0.0 gy=0.0 gz=-0.1[0m
+[0;32mI (57642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (57642) SENSORS: BARO p=100325.9 Pa  t=28.36 C  alt=83.5 m[0m
+[0;32mI (57642) SENSORS: GNSS fix=NO[0m
+[0;32mI (59642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.95 gx=-0.0 gy=-0.2 gz=-0.2[0m
+[0;32mI (59642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (59642) SENSORS: BARO p=100327.7 Pa  t=28.36 C  alt=83.4 m[0m
+[0;32mI (59642) SENSORS: GNSS fix=NO[0m
+[0;33mW (61632) main: SD card not mounted - skip log[0m
+[0;32mI (61642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.1 gy=-0.1 gz=-0.0[0m
+[0;32mI (61642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (61642) SENSORS: BARO p=100325.6 Pa  t=28.36 C  alt=83.5 m[0m
+[0;32mI (61642) SENSORS: GNSS fix=NO[0m
+[0;32mI (63642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=-0.0 gy=0.1 gz=-0.0[0m
+[0;32mI (63642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (63642) SENSORS: BARO p=100325.8 Pa  t=28.35 C  alt=83.5 m[0m
+[0;32mI (63642) SENSORS: GNSS fix=NO[0m
+[0;32mI (65642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.96 gx=-0.0 gy=0.0 gz=-0.2[0m
+[0;32mI (65642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (65642) SENSORS: BARO p=100326.6 Pa  t=28.35 C  alt=83.5 m[0m
+[0;32mI (65642) SENSORS: GNSS fix=NO[0m
+[0;32mI (67642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.1 gy=-0.0 gz=-0.0[0m
+[0;32mI (67642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (67642) SENSORS: BARO p=100327.6 Pa  t=28.34 C  alt=83.4 m[0m
+[0;32mI (67642) SENSORS: GNSS fix=NO[0m
+[0;32mI (69642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.0 gy=0.1 gz=0.2[0m
+[0;32mI (69642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (69642) SENSORS: BARO p=100325.0 Pa  t=28.33 C  alt=83.6 m[0m
+[0;32mI (69642) SENSORS: GNSS fix=NO[0m
+[0;33mW (71632) main: SD card not mounted - skip log[0m
+[0;32mI (71642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.96 gx=0.0 gy=-0.1 gz=0.1[0m
+[0;32mI (71642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (71642) SENSORS: BARO p=100325.8 Pa  t=28.32 C  alt=83.5 m[0m
+[0;32mI (71642) SENSORS: GNSS fix=NO[0m
+[0;32mI (71912) BTN: SOS pressed![0m
+[0;32mI (72122) BTN: SOS pressed![0m
+[0;32mI (72302) BTN: SOS pressed![0m
+[0;32mI (72462) BTN: SOS pressed![0m
+[0;32mI (72772) BTN: SOS pressed![0m
+[0;32mI (72892) BTN: SOS pressed![0m
+[0;32mI (73102) BTN: SOS pressed![0m
+[0;32mI (73642) SENSORS: IMU  ax=0.22 ay=0.02 az=0.97 gx=4.2 gy=2.1 gz=-0.9[0m
+[0;32mI (73642) SENSORS: MAG  heading=163.5 deg[0m
+[0;32mI (73642) SENSORS: BARO p=100326.7 Pa  t=28.32 C  alt=83.5 m[0m
+[0;32mI (73642) SENSORS: GNSS fix=NO[0m
+[0;32mI (73812) BTN: SOS pressed![0m
+[0;32mI (74062) BTN: SOS pressed![0m
+[0;32mI (74242) BTN: SOS pressed![0m
+[0;32mI (74402) BTN: SOS pressed![0m
+[0;32mI (74732) BTN: SOS pressed![0m
+[0;32mI (74892) BTN: SOS pressed![0m
+[0;32mI (75072) BTN: SOS pressed![0m
+[0;32mI (75192) BTN: SOS pressed![0m
+[0;32mI (75422) BTN: SOS pressed![0m
+[0;32mI (75602) BTN: SOS pressed![0m
+[0;32mI (75642) SENSORS: IMU  ax=0.21 ay=0.03 az=0.98 gx=-6.9 gy=-1.3 gz=1.5[0m
+[0;32mI (75642) SENSORS: MAG  heading=163.0 deg[0m
+[0;32mI (75642) SENSORS: BARO p=100327.4 Pa  t=28.33 C  alt=83.4 m[0m
+[0;32mI (75642) SENSORS: GNSS fix=NO[0m
+[0;32mI (75982) BTN: SOS pressed![0m
+[0;32mI (76192) BTN: SOS pressed![0m
+[0;32mI (76372) BTN: SOS pressed![0m
+[0;32mI (76602) BTN: SOS pressed![0m
+[0;32mI (76802) BTN: SOS pressed![0m
+[0;32mI (77002) BTN: SOS pressed![0m
+[0;32mI (77182) BTN: SOS pressed![0m
+[0;32mI (77412) BTN: SOS pressed![0m
+[0;32mI (77592) BTN: SOS pressed![0m
+[0;32mI (77642) SENSORS: IMU  ax=0.21 ay=0.02 az=0.96 gx=-6.5 gy=-2.0 gz=1.4[0m
+[0;32mI (77642) SENSORS: MAG  heading=163.3 deg[0m
+[0;32mI (77642) SENSORS: BARO p=100327.2 Pa  t=28.35 C  alt=83.4 m[0m
+[0;32mI (77642) SENSORS: GNSS fix=NO[0m
+[0;32mI (77782) BTN: SOS pressed![0m
+[0;32mI (78182) BTN: SOS pressed![0m
+[0;32mI (78592) BTN: SOS pressed![0m
+[0;32mI (78812) BTN: SOS pressed![0m
+[0;32mI (79202) BTN: SOS pressed![0m
+[0;32mI (79382) BTN: SOS pressed![0m
+[0;32mI (79562) BTN: SOS pressed![0m
+[0;32mI (79642) SENSORS: IMU  ax=-0.15 ay=-0.06 az=1.12 gx=-2.9 gy=9.6 gz=1.1[0m
+[0;32mI (79642) SENSORS: MAG  heading=157.7 deg[0m
+[0;32mI (79642) SENSORS: BARO p=100326.1 Pa  t=28.36 C  alt=83.5 m[0m
+[0;32mI (79642) SENSORS: GNSS fix=NO[0m
+[0;32mI (79742) BTN: SOS pressed![0m
+[0;32mI (79942) BTN: SOS pressed![0m
+[0;32mI (80142) BTN: SOS pressed![0m
+[0;32mI (80322) BTN: SOS pressed![0m
+[0;32mI (80532) BTN: SOS pressed![0m
+[0;32mI (80732) BTN: SOS pressed![0m
+[0;32mI (80952) BTN: SOS pressed![0m
+[0;32mI (81172) BTN: SOS pressed![0m
+[0;32mI (81412) BTN: SOS pressed![0m
+[0;32mI (81632) BTN: SOS pressed![0m
+[0;33mW (81632) main: SD card not mounted - skip log[0m
+[0;32mI (81642) SENSORS: IMU  ax=0.23 ay=0.02 az=1.01 gx=-6.2 gy=-1.7 gz=1.7[0m
+[0;32mI (81642) SENSORS: MAG  heading=162.7 deg[0m
+[0;32mI (81642) SENSORS: BARO p=100326.2 Pa  t=28.38 C  alt=83.5 m[0m
+[0;32mI (81642) SENSORS: GNSS fix=NO[0m
+[0;32mI (81832) BTN: SOS pressed![0m
+[0;32mI (82092) BTN: SOS pressed![0m
+[0;32mI (82312) BTN: SOS pressed![0m
+[0;32mI (82532) BTN: SOS pressed![0m
+[0;32mI (82752) BTN: SOS pressed![0m
+[0;32mI (82972) BTN: SOS pressed![0m
+[0;32mI (83152) BTN: SOS pressed![0m
+[0;32mI (83642) SENSORS: IMU  ax=0.23 ay=-0.01 az=0.97 gx=-2.6 gy=-1.8 gz=0.5[0m
+[0;32mI (83642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (83642) SENSORS: BARO p=100325.3 Pa  t=28.39 C  alt=83.6 m[0m
+[0;32mI (83642) SENSORS: GNSS fix=NO[0m
+[0;32mI (85642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.97 gx=0.0 gy=0.0 gz=0.2[0m
+[0;32mI (85642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (85642) SENSORS: BARO p=100326.0 Pa  t=28.39 C  alt=83.5 m[0m
+[0;32mI (85642) SENSORS: GNSS fix=NO[0m
+[0;32mI (87642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.96 gx=-0.0 gy=0.0 gz=-0.2[0m
+[0;32mI (87642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (87642) SENSORS: BARO p=100325.5 Pa  t=28.38 C  alt=83.5 m[0m
+[0;32mI (87642) SENSORS: GNSS fix=NO[0m
+[0;32mI (89642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=0.3 gz=0.1[0m
+[0;32mI (89642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (89642) SENSORS: BARO p=100325.2 Pa  t=28.38 C  alt=83.6 m[0m
+[0;32mI (89642) SENSORS: GNSS fix=NO[0m
+[0;33mW (91632) main: SD card not mounted - skip log[0m
+[0;32mI (91642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.0 gy=0.4 gz=0.1[0m
+[0;32mI (91642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (91642) SENSORS: BARO p=100325.7 Pa  t=28.38 C  alt=83.5 m[0m
+[0;32mI (91642) SENSORS: GNSS fix=NO[0m
+[0;32mI (93642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.0 gy=-0.1 gz=-0.0[0m
+[0;32mI (93642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (93642) SENSORS: BARO p=100324.8 Pa  t=28.37 C  alt=83.6 m[0m
+[0;32mI (93642) SENSORS: GNSS fix=NO[0m
+[0;32mI (95642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.95 gx=0.0 gy=-0.3 gz=-0.0[0m
+[0;32mI (95642) SENSORS: MAG  heading=163.7 deg[0m
+[0;32mI (95642) SENSORS: BARO p=100325.3 Pa  t=28.37 C  alt=83.6 m[0m
+[0;32mI (95642) SENSORS: GNSS fix=NO[0m
+[0;32mI (97642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.95 gx=-0.1 gy=-0.3 gz=-0.1[0m
+[0;32mI (97642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (97642) SENSORS: BARO p=100325.8 Pa  t=28.35 C  alt=83.5 m[0m
+[0;32mI (97642) SENSORS: GNSS fix=NO[0m
+[0;32mI (99642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.96 gx=0.1 gy=0.0 gz=0.0[0m
+[0;32mI (99642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (99642) SENSORS: BARO p=100324.4 Pa  t=28.32 C  alt=83.6 m[0m
+[0;32mI (99642) SENSORS: GNSS fix=NO[0m
+[0;33mW (101632) main: SD card not mounted - skip log[0m
+[0;32mI (101642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.1 gy=0.1 gz=-0.1[0m
+[0;32mI (101642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (101642) SENSORS: BARO p=100325.5 Pa  t=28.30 C  alt=83.5 m[0m
+[0;32mI (101642) SENSORS: GNSS fix=NO[0m
+[0;32mI (103642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.96 gx=0.0 gy=-0.1 gz=-0.2[0m
+[0;32mI (103642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (103642) SENSORS: BARO p=100325.7 Pa  t=28.29 C  alt=83.5 m[0m
+[0;32mI (103642) SENSORS: GNSS fix=NO[0m
+[0;32mI (105642) SENSORS: IMU  ax=0.25 ay=-0.02 az=0.95 gx=0.1 gy=-0.4 gz=0.1[0m
+[0;32mI (105642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (105642) SENSORS: BARO p=100326.1 Pa  t=28.28 C  alt=83.5 m[0m
+[0;32mI (105642) SENSORS: GNSS fix=NO[0m
+[0;32mI (107642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.95 gx=0.2 gy=-0.2 gz=-0.2[0m
+[0;32mI (107642) SENSORS: MAG  heading=163.6 deg[0m
+[0;32mI (107642) SENSORS: BARO p=100325.5 Pa  t=28.28 C  alt=83.5 m[0m
+[0;32mI (107642) SENSORS: GNSS fix=NO[0m
+[0;32mI (109642) SENSORS: IMU  ax=0.25 ay=-0.02 az=0.96 gx=0.1 gy=-0.0 gz=0.1[0m
+[0;32mI (109642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (109642) SENSORS: BARO p=100322.6 Pa  t=28.29 C  alt=83.8 m[0m
+[0;32mI (109642) SENSORS: GNSS fix=NO[0m
+[0;33mW (111632) main: SD card not mounted - skip log[0m
+[0;32mI (111642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.96 gx=0.2 gy=-0.1 gz=0.0[0m
+[0;32mI (111642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (111642) SENSORS: BARO p=100323.4 Pa  t=28.30 C  alt=83.7 m[0m
+[0;32mI (111642) SENSORS: GNSS fix=NO[0m
+[0;32mI (113642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=-0.3 gy=-0.0 gz=-0.1[0m
+[0;32mI (113642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (113642) SENSORS: BARO p=100324.0 Pa  t=28.29 C  alt=83.7 m[0m
+[0;32mI (113642) SENSORS: GNSS fix=NO[0m
+[0;32mI (115642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.96 gx=0.2 gy=0.2 gz=0.1[0m
+[0;32mI (115642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (115642) SENSORS: BARO p=100324.2 Pa  t=28.28 C  alt=83.7 m[0m
+[0;32mI (115642) SENSORS: GNSS fix=NO[0m
+[0;32mI (117642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.0 gy=0.0 gz=-0.1[0m
+[0;32mI (117642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (117642) SENSORS: BARO p=100324.9 Pa  t=28.28 C  alt=83.6 m[0m
+[0;32mI (117642) SENSORS: GNSS fix=NO[0m
+[0;32mI (119642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.96 gx=-0.2 gy=0.2 gz=-0.1[0m
+[0;32mI (119642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (119642) SENSORS: BARO p=100324.8 Pa  t=28.29 C  alt=83.6 m[0m
+[0;32mI (119642) SENSORS: GNSS fix=NO[0m
+[0;33mW (121632) main: SD card not mounted - skip log[0m
+[0;32mI (121642) SENSORS: IMU  ax=0.25 ay=-0.02 az=0.96 gx=0.1 gy=-0.3 gz=-0.1[0m
+[0;32mI (121642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (121642) SENSORS: BARO p=100324.0 Pa  t=28.31 C  alt=83.7 m[0m
+[0;32mI (121642) SENSORS: GNSS fix=NO[0m
+[0;32mI (123642) SENSORS: IMU  ax=0.24 ay=-0.04 az=0.95 gx=-0.1 gy=-0.3 gz=-0.1[0m
+[0;32mI (123642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (123642) SENSORS: BARO p=100322.8 Pa  t=28.32 C  alt=83.8 m[0m
+[0;32mI (123642) SENSORS: GNSS fix=NO[0m
+[0;32mI (125642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.95 gx=0.0 gy=-0.5 gz=-0.1[0m
+[0;32mI (125642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (125642) SENSORS: BARO p=100326.1 Pa  t=28.32 C  alt=83.5 m[0m
+[0;32mI (125642) SENSORS: GNSS fix=NO[0m
+[0;32mI (127642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.96 gx=0.0 gy=-0.1 gz=-0.1[0m
+[0;32mI (127642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (127642) SENSORS: BARO p=100325.7 Pa  t=28.33 C  alt=83.5 m[0m
+[0;32mI (127642) SENSORS: GNSS fix=NO[0m
+[0;32mI (129642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.0 gy=-0.1 gz=0.2[0m
+[0;32mI (129642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (129642) SENSORS: BARO p=100325.7 Pa  t=28.33 C  alt=83.5 m[0m
+[0;32mI (129642) SENSORS: GNSS fix=NO[0m
+[0;33mW (131632) main: SD card not mounted - skip log[0m
+[0;32mI (131642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.97 gx=0.1 gy=0.2 gz=-0.1[0m
+[0;32mI (131642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (131642) SENSORS: BARO p=100324.5 Pa  t=28.34 C  alt=83.6 m[0m
+[0;32mI (131642) SENSORS: GNSS fix=NO[0m
+[0;32mI (133642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.2 gy=0.1 gz=-0.1[0m
+[0;32mI (133642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (133642) SENSORS: BARO p=100324.3 Pa  t=28.35 C  alt=83.6 m[0m
+[0;32mI (133642) SENSORS: GNSS fix=NO[0m
+[0;32mI (135642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.0 gy=0.1 gz=-0.2[0m
+[0;32mI (135642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (135642) SENSORS: BARO p=100325.1 Pa  t=28.35 C  alt=83.6 m[0m
+[0;32mI (135642) SENSORS: GNSS fix=NO[0m
+[0;32mI (137642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.1 gy=-0.2 gz=0.1[0m
+[0;32mI (137642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (137642) SENSORS: BARO p=100324.8 Pa  t=28.35 C  alt=83.6 m[0m
+[0;32mI (137642) SENSORS: GNSS fix=NO[0m
+[0;32mI (139642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.96 gx=0.2 gy=0.1 gz=0.0[0m
+[0;32mI (139642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (139642) SENSORS: BARO p=100325.4 Pa  t=28.34 C  alt=83.6 m[0m
+[0;32mI (139642) SENSORS: GNSS fix=NO[0m
+[0;33mW (141632) main: SD card not mounted - skip log[0m
+[0;32mI (141642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.0 gy=-0.0 gz=-0.1[0m
+[0;32mI (141642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (141642) SENSORS: BARO p=100325.5 Pa  t=28.33 C  alt=83.6 m[0m
+[0;32mI (141642) SENSORS: GNSS fix=NO[0m
+[0;32mI (143642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.96 gx=-0.1 gy=-0.0 gz=0.1[0m
+[0;32mI (143642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (143642) SENSORS: BARO p=100324.7 Pa  t=28.31 C  alt=83.6 m[0m
+[0;32mI (143642) SENSORS: GNSS fix=NO[0m
+[0;32mI (145642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.0 gy=0.1 gz=-0.1[0m
+[0;32mI (145642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (145642) SENSORS: BARO p=100323.7 Pa  t=28.30 C  alt=83.7 m[0m
+[0;32mI (145642) SENSORS: GNSS fix=NO[0m
+[0;32mI (147642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.97 gx=-0.1 gy=0.3 gz=0.2[0m
+[0;32mI (147642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (147642) SENSORS: BARO p=100324.5 Pa  t=28.31 C  alt=83.6 m[0m
+[0;32mI (147642) SENSORS: GNSS fix=NO[0m
+[0;32mI (149642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=-0.0 gy=0.4 gz=-0.0[0m
+[0;32mI (149642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (149642) SENSORS: BARO p=100325.6 Pa  t=28.31 C  alt=83.5 m[0m
+[0;32mI (149642) SENSORS: GNSS fix=NO[0m
+[0;33mW (151632) main: SD card not mounted - skip log[0m
+[0;32mI (151642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=0.6 gz=0.2[0m
+[0;32mI (151642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (151642) SENSORS: BARO p=100324.4 Pa  t=28.32 C  alt=83.6 m[0m
+[0;32mI (151642) SENSORS: GNSS fix=NO[0m
+[0;32mI (153642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=0.2 gy=0.1 gz=0.3[0m
+[0;32mI (153642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (153642) SENSORS: BARO p=100324.2 Pa  t=28.33 C  alt=83.7 m[0m
+[0;32mI (153642) SENSORS: GNSS fix=NO[0m
+[0;32mI (155642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=0.0 gz=0.1[0m
+[0;32mI (155642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (155642) SENSORS: BARO p=100324.3 Pa  t=28.34 C  alt=83.6 m[0m
+[0;32mI (155642) SENSORS: GNSS fix=NO[0m
+[0;32mI (157642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.97 gx=-0.2 gy=0.2 gz=0.3[0m
+[0;32mI (157642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (157642) SENSORS: BARO p=100323.9 Pa  t=28.34 C  alt=83.7 m[0m
+[0;32mI (157642) SENSORS: GNSS fix=NO[0m
+[0;32mI (159642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.97 gx=0.0 gy=-0.1 gz=0.1[0m
+[0;32mI (159642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (159642) SENSORS: BARO p=100325.0 Pa  t=28.32 C  alt=83.6 m[0m
+[0;32mI (159642) SENSORS: GNSS fix=NO[0m
+[0;33mW (161632) main: SD card not mounted - skip log[0m
+[0;32mI (161642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.97 gx=0.1 gy=0.3 gz=0.2[0m
+[0;32mI (161642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (161642) SENSORS: BARO p=100325.4 Pa  t=28.32 C  alt=83.6 m[0m
+[0;32mI (161642) SENSORS: GNSS fix=NO[0m
+[0;32mI (163642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.96 gx=0.0 gy=0.2 gz=0.2[0m
+[0;32mI (163642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (163642) SENSORS: BARO p=100326.2 Pa  t=28.29 C  alt=83.5 m[0m
+[0;32mI (163642) SENSORS: GNSS fix=NO[0m
+[0;32mI (165642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.95 gx=0.0 gy=-0.5 gz=-0.2[0m
+[0;32mI (165642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (165642) SENSORS: BARO p=100325.3 Pa  t=28.27 C  alt=83.6 m[0m
+[0;32mI (165642) SENSORS: GNSS fix=NO[0m
+[0;32mI (167642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.0 gy=-0.2 gz=-0.0[0m
+[0;32mI (167642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (167642) SENSORS: BARO p=100324.8 Pa  t=28.28 C  alt=83.6 m[0m
+[0;32mI (167642) SENSORS: GNSS fix=NO[0m
+[0;32mI (169642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.1 gy=-0.1 gz=-0.1[0m
+[0;32mI (169642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (169642) SENSORS: BARO p=100324.9 Pa  t=28.28 C  alt=83.6 m[0m
+[0;32mI (169642) SENSORS: GNSS fix=NO[0m
+[0;33mW (171632) main: SD card not mounted - skip log[0m
+[0;32mI (171642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.96 gx=-0.1 gy=0.0 gz=-0.0[0m
+[0;32mI (171642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (171642) SENSORS: BARO p=100323.2 Pa  t=28.28 C  alt=83.7 m[0m
+[0;32mI (171642) SENSORS: GNSS fix=NO[0m
+[0;32mI (173642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.0 gy=-0.0 gz=0.1[0m
+[0;32mI (173642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (173642) SENSORS: BARO p=100324.8 Pa  t=28.28 C  alt=83.6 m[0m
+[0;32mI (173642) SENSORS: GNSS fix=NO[0m
+[0;32mI (175642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.0 gy=0.2 gz=-0.2[0m
+[0;32mI (175642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (175642) SENSORS: BARO p=100324.2 Pa  t=28.29 C  alt=83.7 m[0m
+[0;32mI (175642) SENSORS: GNSS fix=NO[0m
+[0;32mI (177642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.97 gx=-0.1 gy=0.2 gz=-0.0[0m
+[0;32mI (177642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (177642) SENSORS: BARO p=100323.5 Pa  t=28.30 C  alt=83.7 m[0m
+[0;32mI (177642) SENSORS: GNSS fix=NO[0m
+[0;32mI (179642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=-0.2 gy=0.3 gz=0.4[0m
+[0;32mI (179642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (179642) SENSORS: BARO p=100323.6 Pa  t=28.30 C  alt=83.7 m[0m
+[0;32mI (179642) SENSORS: GNSS fix=NO[0m
+[0;33mW (181632) main: SD card not mounted - skip log[0m
+[0;32mI (181642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=0.2 gz=-0.3[0m
+[0;32mI (181642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (181642) SENSORS: BARO p=100324.0 Pa  t=28.30 C  alt=83.7 m[0m
+[0;32mI (181642) SENSORS: GNSS fix=NO[0m
+[0;32mI (183642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.95 gx=-0.0 gy=-0.3 gz=0.0[0m
+[0;32mI (183642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (183642) SENSORS: BARO p=100324.0 Pa  t=28.31 C  alt=83.7 m[0m
+[0;32mI (183642) SENSORS: GNSS fix=NO[0m
+[0;32mI (185642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.0 gy=0.2 gz=-0.2[0m
+[0;32mI (185642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (185642) SENSORS: BARO p=100324.2 Pa  t=28.30 C  alt=83.7 m[0m
+[0;32mI (185642) SENSORS: GNSS fix=NO[0m
+[0;32mI (187642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=0.1 gy=0.1 gz=0.1[0m
+[0;32mI (187642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (187642) SENSORS: BARO p=100323.1 Pa  t=28.30 C  alt=83.7 m[0m
+[0;32mI (187642) SENSORS: GNSS fix=NO[0m
+[0;32mI (189642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.96 gx=0.0 gy=0.0 gz=-0.1[0m
+[0;32mI (189642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (189642) SENSORS: BARO p=100325.5 Pa  t=28.29 C  alt=83.5 m[0m
+[0;32mI (189642) SENSORS: GNSS fix=NO[0m
+[0;33mW (191632) main: SD card not mounted - skip log[0m
+[0;32mI (191642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=-0.1 gy=0.6 gz=0.0[0m
+[0;32mI (191642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (191642) SENSORS: BARO p=100325.0 Pa  t=28.30 C  alt=83.6 m[0m
+[0;32mI (191642) SENSORS: GNSS fix=NO[0m
+[0;32mI (193642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=0.3 gz=-0.1[0m
+[0;32mI (193642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (193642) SENSORS: BARO p=100324.1 Pa  t=28.30 C  alt=83.7 m[0m
+[0;32mI (193642) SENSORS: GNSS fix=NO[0m
+[0;32mI (195642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.97 gx=-0.0 gy=0.3 gz=-0.2[0m
+[0;32mI (195642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (195642) SENSORS: BARO p=100324.7 Pa  t=28.31 C  alt=83.6 m[0m
+[0;32mI (195642) SENSORS: GNSS fix=NO[0m
+[0;32mI (197642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=0.3 gz=0.1[0m
+[0;32mI (197642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (197642) SENSORS: BARO p=100325.3 Pa  t=28.29 C  alt=83.6 m[0m
+[0;32mI (197642) SENSORS: GNSS fix=NO[0m
+[0;32mI (199642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=-0.0 gy=-0.1 gz=0.1[0m
+[0;32mI (199642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (199642) SENSORS: BARO p=100325.9 Pa  t=28.30 C  alt=83.5 m[0m
+[0;32mI (199642) SENSORS: GNSS fix=NO[0m
+[0;33mW (201632) main: SD card not mounted - skip log[0m
+[0;32mI (201642) SENSORS: IMU  ax=0.24 ay=-0.04 az=0.96 gx=-0.0 gy=0.0 gz=-0.1[0m
+[0;32mI (201642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (201642) SENSORS: BARO p=100325.7 Pa  t=28.29 C  alt=83.5 m[0m
+[0;32mI (201642) SENSORS: GNSS fix=NO[0m
+[0;32mI (203642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.1 gy=0.2 gz=-0.1[0m
+[0;32mI (203642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (203642) SENSORS: BARO p=100324.7 Pa  t=28.29 C  alt=83.6 m[0m
+[0;32mI (203642) SENSORS: GNSS fix=NO[0m
+[0;32mI (205642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.0 gy=-0.0 gz=-0.0[0m
+[0;32mI (205642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (205642) SENSORS: BARO p=100323.0 Pa  t=28.28 C  alt=83.8 m[0m
+[0;32mI (205642) SENSORS: GNSS fix=NO[0m
+[0;32mI (207642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.0 gy=-0.1 gz=0.1[0m
+[0;32mI (207642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (207642) SENSORS: BARO p=100322.4 Pa  t=28.28 C  alt=83.8 m[0m
+[0;32mI (207642) SENSORS: GNSS fix=NO[0m
+[0;32mI (209642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.96 gx=0.1 gy=0.1 gz=-0.0[0m
+[0;32mI (209642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (209642) SENSORS: BARO p=100323.9 Pa  t=28.29 C  alt=83.7 m[0m
+[0;32mI (209642) SENSORS: GNSS fix=NO[0m
+[0;33mW (211632) main: SD card not mounted - skip log[0m
+[0;32mI (211642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.0 gy=-0.1 gz=-0.0[0m
+[0;32mI (211642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (211642) SENSORS: BARO p=100323.6 Pa  t=28.28 C  alt=83.7 m[0m
+[0;32mI (211642) SENSORS: GNSS fix=NO[0m
+[0;32mI (213642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.0 gy=0.1 gz=-0.0[0m
+[0;32mI (213642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (213642) SENSORS: BARO p=100323.4 Pa  t=28.23 C  alt=83.7 m[0m
+[0;32mI (213642) SENSORS: GNSS fix=NO[0m
+[0;32mI (215642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=0.0 gy=-0.0 gz=-0.1[0m
+[0;32mI (215642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (215642) SENSORS: BARO p=100323.9 Pa  t=28.21 C  alt=83.7 m[0m
+[0;32mI (215642) SENSORS: GNSS fix=NO[0m
+[0;32mI (217642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.96 gx=-0.0 gy=-0.2 gz=0.0[0m
+[0;32mI (217642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (217642) SENSORS: BARO p=100324.2 Pa  t=28.20 C  alt=83.7 m[0m
+[0;32mI (217642) SENSORS: GNSS fix=NO[0m
+[0;32mI (219642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.0 gy=-0.0 gz=-0.1[0m
+[0;32mI (219642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (219642) SENSORS: BARO p=100324.3 Pa  t=28.18 C  alt=83.7 m[0m
+[0;32mI (219642) SENSORS: GNSS fix=NO[0m
+[0;33mW (221632) main: SD card not mounted - skip log[0m
+[0;32mI (221642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.0 gy=0.3 gz=0.2[0m
+[0;32mI (221642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (221642) SENSORS: BARO p=100324.4 Pa  t=28.18 C  alt=83.6 m[0m
+[0;32mI (221642) SENSORS: GNSS fix=NO[0m
+[0;32mI (223642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=0.1 gy=-0.2 gz=0.0[0m
+[0;32mI (223642) SENSORS: MAG  heading=164.8 deg[0m
+[0;32mI (223642) SENSORS: BARO p=100323.9 Pa  t=28.18 C  alt=83.7 m[0m
+[0;32mI (223642) SENSORS: GNSS fix=NO[0m
+[0;32mI (225642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.0 gy=-0.1 gz=0.0[0m
+[0;32mI (225642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (225642) SENSORS: BARO p=100323.9 Pa  t=28.19 C  alt=83.7 m[0m
+[0;32mI (225642) SENSORS: GNSS fix=NO[0m
+[0;32mI (227642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.97 gx=-0.1 gy=0.2 gz=-0.0[0m
+[0;32mI (227642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (227642) SENSORS: BARO p=100322.8 Pa  t=28.19 C  alt=83.8 m[0m
+[0;32mI (227642) SENSORS: GNSS fix=NO[0m
+[0;32mI (229642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.0 gy=0.2 gz=0.0[0m
+[0;32mI (229642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (229642) SENSORS: BARO p=100321.8 Pa  t=28.20 C  alt=83.9 m[0m
+[0;32mI (229642) SENSORS: GNSS fix=NO[0m
+[0;33mW (231632) main: SD card not mounted - skip log[0m
+[0;32mI (231642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.3 gy=-0.1 gz=-0.0[0m
+[0;32mI (231642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (231642) SENSORS: BARO p=100324.8 Pa  t=28.20 C  alt=83.6 m[0m
+[0;32mI (231642) SENSORS: GNSS fix=NO[0m
+[0;32mI (233642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.1 gy=-0.2 gz=0.0[0m
+[0;32mI (233642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (233642) SENSORS: BARO p=100324.2 Pa  t=28.19 C  alt=83.7 m[0m
+[0;32mI (233642) SENSORS: GNSS fix=NO[0m
+[0;32mI (235642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=0.2 gy=-0.2 gz=0.1[0m
+[0;32mI (235642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (235642) SENSORS: BARO p=100323.3 Pa  t=28.19 C  alt=83.7 m[0m
+[0;32mI (235642) SENSORS: GNSS fix=NO[0m
+[0;32mI (237642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.0 gy=0.1 gz=-0.1[0m
+[0;32mI (237642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (237642) SENSORS: BARO p=100324.4 Pa  t=28.19 C  alt=83.6 m[0m
+[0;32mI (237642) SENSORS: GNSS fix=NO[0m
+[0;32mI (239642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.96 gx=0.1 gy=0.1 gz=-0.1[0m
+[0;32mI (239642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (239642) SENSORS: BARO p=100324.4 Pa  t=28.18 C  alt=83.6 m[0m
+[0;32mI (239642) SENSORS: GNSS fix=NO[0m
+[0;33mW (241632) main: SD card not mounted - skip log[0m
+[0;32mI (241642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.0 gy=-0.3 gz=0.0[0m
+[0;32mI (241642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (241642) SENSORS: BARO p=100324.4 Pa  t=28.19 C  alt=83.6 m[0m
+[0;32mI (241642) SENSORS: GNSS fix=NO[0m
+[0;32mI (243642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=-0.1 gy=0.3 gz=0.0[0m
+[0;32mI (243642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (243642) SENSORS: BARO p=100325.5 Pa  t=28.19 C  alt=83.6 m[0m
+[0;32mI (243642) SENSORS: GNSS fix=NO[0m
+[0;32mI (245642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=0.4 gz=-0.0[0m
+[0;32mI (245642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (245642) SENSORS: BARO p=100324.2 Pa  t=28.18 C  alt=83.7 m[0m
+[0;32mI (245642) SENSORS: GNSS fix=NO[0m
+[0;32mI (247642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.2 gy=-0.2 gz=0.1[0m
+[0;32mI (247642) SENSORS: MAG  heading=163.8 deg[0m
+[0;32mI (247642) SENSORS: BARO p=100324.6 Pa  t=28.17 C  alt=83.6 m[0m
+[0;32mI (247642) SENSORS: GNSS fix=NO[0m
+[0;32mI (249642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.96 gx=0.2 gy=0.0 gz=-0.2[0m
+[0;32mI (249642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (249642) SENSORS: BARO p=100325.3 Pa  t=28.17 C  alt=83.6 m[0m
+[0;32mI (249642) SENSORS: GNSS fix=NO[0m
+[0;33mW (251632) main: SD card not mounted - skip log[0m
+[0;32mI (251642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=0.2 gy=-0.3 gz=0.0[0m
+[0;32mI (251642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (251642) SENSORS: BARO p=100325.3 Pa  t=28.18 C  alt=83.6 m[0m
+[0;32mI (251642) SENSORS: GNSS fix=NO[0m
+[0;32mI (253642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.2 gy=-0.2 gz=-0.1[0m
+[0;32mI (253642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (253642) SENSORS: BARO p=100325.0 Pa  t=28.19 C  alt=83.6 m[0m
+[0;32mI (253642) SENSORS: GNSS fix=NO[0m
+[0;32mI (255642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.97 gx=-0.0 gy=-0.0 gz=0.0[0m
+[0;32mI (255642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (255642) SENSORS: BARO p=100325.1 Pa  t=28.17 C  alt=83.6 m[0m
+[0;32mI (255642) SENSORS: GNSS fix=NO[0m
+[0;32mI (257642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.0 gy=-0.2 gz=0.1[0m
+[0;32mI (257642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (257642) SENSORS: BARO p=100324.3 Pa  t=28.17 C  alt=83.6 m[0m
+[0;32mI (257642) SENSORS: GNSS fix=NO[0m
+[0;32mI (259642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.96 gx=0.0 gy=-0.1 gz=-0.1[0m
+[0;32mI (259642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (259642) SENSORS: BARO p=100324.7 Pa  t=28.18 C  alt=83.6 m[0m
+[0;32mI (259642) SENSORS: GNSS fix=NO[0m
+[0;33mW (261632) main: SD card not mounted - skip log[0m
+[0;32mI (261642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.97 gx=-0.0 gy=0.1 gz=0.0[0m
+[0;32mI (261642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (261642) SENSORS: BARO p=100324.3 Pa  t=28.19 C  alt=83.6 m[0m
+[0;32mI (261642) SENSORS: GNSS fix=NO[0m
+[0;32mI (263642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=0.1 gy=0.3 gz=0.1[0m
+[0;32mI (263642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (263642) SENSORS: BARO p=100324.8 Pa  t=28.20 C  alt=83.6 m[0m
+[0;32mI (263642) SENSORS: GNSS fix=NO[0m
+[0;32mI (265642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.95 gx=-0.0 gy=0.1 gz=-0.1[0m
+[0;32mI (265642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (265642) SENSORS: BARO p=100322.2 Pa  t=28.21 C  alt=83.8 m[0m
+[0;32mI (265642) SENSORS: GNSS fix=NO[0m
+[0;32mI (267642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.97 gx=0.1 gy=-0.1 gz=0.1[0m
+[0;32mI (267642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (267642) SENSORS: BARO p=100325.1 Pa  t=28.22 C  alt=83.6 m[0m
+[0;32mI (267642) SENSORS: GNSS fix=NO[0m
+[0;32mI (269642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.96 gx=0.1 gy=-0.2 gz=-0.1[0m
+[0;32mI (269642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (269642) SENSORS: BARO p=100323.8 Pa  t=28.23 C  alt=83.7 m[0m
+[0;32mI (269642) SENSORS: GNSS fix=NO[0m
+[0;33mW (271632) main: SD card not mounted - skip log[0m
+[0;32mI (271642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=0.1 gy=-0.0 gz=-0.1[0m
+[0;32mI (271642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (271642) SENSORS: BARO p=100324.6 Pa  t=28.23 C  alt=83.6 m[0m
+[0;32mI (271642) SENSORS: GNSS fix=NO[0m
+[0;32mI (273642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.0 gy=0.1 gz=-0.0[0m
+[0;32mI (273642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (273642) SENSORS: BARO p=100322.7 Pa  t=28.23 C  alt=83.8 m[0m
+[0;32mI (273642) SENSORS: GNSS fix=NO[0m
+[0;32mI (275642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=0.0 gz=0.0[0m
+[0;32mI (275642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (275642) SENSORS: BARO p=100323.6 Pa  t=28.23 C  alt=83.7 m[0m
+[0;32mI (275642) SENSORS: GNSS fix=NO[0m
+[0;32mI (277642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.0 gy=-0.2 gz=0.4[0m
+[0;32mI (277642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (277642) SENSORS: BARO p=100324.4 Pa  t=28.23 C  alt=83.6 m[0m
+[0;32mI (277642) SENSORS: GNSS fix=NO[0m
+[0;32mI (279642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.1 gy=0.0 gz=0.0[0m
+[0;32mI (279642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (279642) SENSORS: BARO p=100323.2 Pa  t=28.20 C  alt=83.7 m[0m
+[0;32mI (279642) SENSORS: GNSS fix=NO[0m
+[0;33mW (281632) main: SD card not mounted - skip log[0m
+[0;32mI (281642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=-0.2 gy=-0.2 gz=-0.1[0m
+[0;32mI (281642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (281642) SENSORS: BARO p=100322.9 Pa  t=28.18 C  alt=83.8 m[0m
+[0;32mI (281642) SENSORS: GNSS fix=NO[0m
+[0;32mI (283642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=-0.0 gy=-0.2 gz=-0.3[0m
+[0;32mI (283642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (283642) SENSORS: BARO p=100323.4 Pa  t=28.15 C  alt=83.7 m[0m
+[0;32mI (283642) SENSORS: GNSS fix=NO[0m
+[0;32mI (285642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=0.2 gz=-0.0[0m
+[0;32mI (285642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (285642) SENSORS: BARO p=100323.7 Pa  t=28.11 C  alt=83.7 m[0m
+[0;32mI (285642) SENSORS: GNSS fix=NO[0m
+[0;32mI (287642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=-0.0 gy=0.3 gz=-0.0[0m
+[0;32mI (287642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (287642) SENSORS: BARO p=100322.9 Pa  t=28.07 C  alt=83.8 m[0m
+[0;32mI (287642) SENSORS: GNSS fix=NO[0m
+[0;32mI (289642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=0.0 gy=-0.1 gz=-0.2[0m
+[0;32mI (289642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (289642) SENSORS: BARO p=100324.7 Pa  t=28.03 C  alt=83.6 m[0m
+[0;32mI (289642) SENSORS: GNSS fix=NO[0m
+[0;33mW (291632) main: SD card not mounted - skip log[0m
+[0;32mI (291642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.1 gy=-0.1 gz=0.1[0m
+[0;32mI (291642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (291642) SENSORS: BARO p=100325.8 Pa  t=28.01 C  alt=83.5 m[0m
+[0;32mI (291642) SENSORS: GNSS fix=NO[0m
+[0;32mI (293642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=0.3 gz=0.0[0m
+[0;32mI (293642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (293642) SENSORS: BARO p=100325.4 Pa  t=27.99 C  alt=83.6 m[0m
+[0;32mI (293642) SENSORS: GNSS fix=NO[0m
+[0;32mI (295642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=0.0 gy=-0.2 gz=-0.2[0m
+[0;32mI (295642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (295642) SENSORS: BARO p=100324.9 Pa  t=27.96 C  alt=83.6 m[0m
+[0;32mI (295642) SENSORS: GNSS fix=NO[0m
+[0;32mI (297642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.0 gy=-0.2 gz=0.1[0m
+[0;32mI (297642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (297642) SENSORS: BARO p=100324.9 Pa  t=27.95 C  alt=83.6 m[0m
+[0;32mI (297642) SENSORS: GNSS fix=NO[0m
+[0;32mI (299642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.1 gy=0.3 gz=-0.1[0m
+[0;32mI (299642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (299642) SENSORS: BARO p=100325.6 Pa  t=27.95 C  alt=83.5 m[0m
+[0;32mI (299642) SENSORS: GNSS fix=NO[0m
+[0;33mW (301632) main: SD card not mounted - skip log[0m
+[0;32mI (301642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.96 gx=-0.1 gy=-0.0 gz=0.0[0m
+[0;32mI (301642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (301642) SENSORS: BARO p=100325.2 Pa  t=27.95 C  alt=83.6 m[0m
+[0;32mI (301642) SENSORS: GNSS fix=NO[0m
+[0;32mI (303642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.95 gx=-0.2 gy=-0.0 gz=0.0[0m
+[0;32mI (303642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (303642) SENSORS: BARO p=100325.8 Pa  t=27.94 C  alt=83.5 m[0m
+[0;32mI (303642) SENSORS: GNSS fix=NO[0m
+[0;32mI (305642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.2 gy=-0.0 gz=0.5[0m
+[0;32mI (305642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (305642) SENSORS: BARO p=100324.8 Pa  t=27.94 C  alt=83.6 m[0m
+[0;32mI (305642) SENSORS: GNSS fix=NO[0m
+[0;32mI (307642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.95 gx=-0.2 gy=-0.1 gz=-0.0[0m
+[0;32mI (307642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (307642) SENSORS: BARO p=100326.2 Pa  t=27.95 C  alt=83.5 m[0m
+[0;32mI (307642) SENSORS: GNSS fix=NO[0m
+[0;32mI (309642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.96 gx=0.1 gy=0.4 gz=-0.2[0m
+[0;32mI (309642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (309642) SENSORS: BARO p=100325.8 Pa  t=27.95 C  alt=83.5 m[0m
+[0;32mI (309642) SENSORS: GNSS fix=NO[0m
+[0;33mW (311632) main: SD card not mounted - skip log[0m
+[0;32mI (311642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.1 gy=-0.2 gz=0.2[0m
+[0;32mI (311642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (311642) SENSORS: BARO p=100325.4 Pa  t=27.97 C  alt=83.6 m[0m
+[0;32mI (311642) SENSORS: GNSS fix=NO[0m
+[0;32mI (313642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.1 gy=0.1 gz=-0.2[0m
+[0;32mI (313642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (313642) SENSORS: BARO p=100325.4 Pa  t=27.99 C  alt=83.6 m[0m
+[0;32mI (313642) SENSORS: GNSS fix=NO[0m
+[0;32mI (315642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=-0.1 gz=0.0[0m
+[0;32mI (315642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (315642) SENSORS: BARO p=100325.1 Pa  t=27.99 C  alt=83.6 m[0m
+[0;32mI (315642) SENSORS: GNSS fix=NO[0m
+[0;32mI (317642) SENSORS: IMU  ax=0.24 ay=-0.04 az=0.96 gx=-0.1 gy=-0.0 gz=0.0[0m
+[0;32mI (317642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (317642) SENSORS: BARO p=100325.5 Pa  t=27.99 C  alt=83.5 m[0m
+[0;32mI (317642) SENSORS: GNSS fix=NO[0m
+[0;32mI (319642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=0.0 gy=0.0 gz=0.1[0m
+[0;32mI (319642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (319642) SENSORS: BARO p=100323.9 Pa  t=28.00 C  alt=83.7 m[0m
+[0;32mI (319642) SENSORS: GNSS fix=NO[0m
+[0;33mW (321632) main: SD card not mounted - skip log[0m
+[0;32mI (321642) SENSORS: IMU  ax=0.25 ay=-0.01 az=0.96 gx=0.1 gy=0.1 gz=-0.0[0m
+[0;32mI (321642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (321642) SENSORS: BARO p=100326.7 Pa  t=28.01 C  alt=83.4 m[0m
+[0;32mI (321642) SENSORS: GNSS fix=NO[0m
+[0;32mI (323642) SENSORS: IMU  ax=0.24 ay=-0.04 az=0.97 gx=-0.0 gy=-0.1 gz=-0.1[0m
+[0;32mI (323642) SENSORS: MAG  heading=163.8 deg[0m
+[0;32mI (323642) SENSORS: BARO p=100326.5 Pa  t=28.01 C  alt=83.5 m[0m
+[0;32mI (323642) SENSORS: GNSS fix=NO[0m
+[0;32mI (325642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.1 gy=0.1 gz=-0.1[0m
+[0;32mI (325642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (325642) SENSORS: BARO p=100323.7 Pa  t=28.02 C  alt=83.7 m[0m
+[0;32mI (325642) SENSORS: GNSS fix=NO[0m
+[0;32mI (327642) SENSORS: IMU  ax=0.26 ay=-0.02 az=0.94 gx=0.0 gy=-0.3 gz=0.1[0m
+[0;32mI (327642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (327642) SENSORS: BARO p=100324.4 Pa  t=28.03 C  alt=83.6 m[0m
+[0;32mI (327642) SENSORS: GNSS fix=NO[0m
+[0;32mI (329642) SENSORS: IMU  ax=0.23 ay=-0.05 az=0.96 gx=-0.2 gy=-0.6 gz=-0.1[0m
+[0;32mI (329642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (329642) SENSORS: BARO p=100324.6 Pa  t=28.04 C  alt=83.6 m[0m
+[0;32mI (329642) SENSORS: GNSS fix=NO[0m
+[0;33mW (331632) main: SD card not mounted - skip log[0m
+[0;32mI (331642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.96 gx=0.0 gy=-0.3 gz=0.0[0m
+[0;32mI (331642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (331642) SENSORS: BARO p=100325.2 Pa  t=28.06 C  alt=83.6 m[0m
+[0;32mI (331642) SENSORS: GNSS fix=NO[0m
+[0;32mI (333642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.96 gx=-0.0 gy=0.5 gz=0.2[0m
+[0;32mI (333642) SENSORS: MAG  heading=164.9 deg[0m
+[0;32mI (333642) SENSORS: BARO p=100323.8 Pa  t=28.08 C  alt=83.7 m[0m
+[0;32mI (333642) SENSORS: GNSS fix=NO[0m
+[0;32mI (335642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.99 gx=-0.1 gy=0.1 gz=-0.1[0m
+[0;32mI (335642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (335642) SENSORS: BARO p=100323.5 Pa  t=28.08 C  alt=83.7 m[0m
+[0;32mI (335642) SENSORS: GNSS fix=NO[0m
+[0;32mI (337642) SENSORS: IMU  ax=0.25 ay=-0.04 az=0.96 gx=0.1 gy=0.1 gz=0.1[0m
+[0;32mI (337642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (337642) SENSORS: BARO p=100323.2 Pa  t=28.07 C  alt=83.7 m[0m
+[0;32mI (337642) SENSORS: GNSS fix=NO[0m
+[0;32mI (339642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.98 gx=0.2 gy=0.2 gz=0.2[0m
+[0;32mI (339642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (339642) SENSORS: BARO p=100323.7 Pa  t=28.07 C  alt=83.7 m[0m
+[0;32mI (339642) SENSORS: GNSS fix=NO[0m
+[0;33mW (341632) main: SD card not mounted - skip log[0m
+[0;32mI (341642) SENSORS: IMU  ax=0.25 ay=-0.02 az=0.93 gx=0.1 gy=-0.1 gz=0.2[0m
+[0;32mI (341642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (341642) SENSORS: BARO p=100323.6 Pa  t=28.08 C  alt=83.7 m[0m
+[0;32mI (341642) SENSORS: GNSS fix=NO[0m
+[0;32mI (343642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.1 gy=0.2 gz=-0.0[0m
+[0;32mI (343642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (343642) SENSORS: BARO p=100323.8 Pa  t=28.09 C  alt=83.7 m[0m
+[0;32mI (343642) SENSORS: GNSS fix=NO[0m
+[0;32mI (345642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.0 gy=0.6 gz=0.0[0m
+[0;32mI (345642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (345642) SENSORS: BARO p=100323.9 Pa  t=28.09 C  alt=83.7 m[0m
+[0;32mI (345642) SENSORS: GNSS fix=NO[0m
+[0;32mI (347642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=-0.1 gy=0.0 gz=-0.1[0m
+[0;32mI (347642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (347642) SENSORS: BARO p=100323.2 Pa  t=28.06 C  alt=83.7 m[0m
+[0;32mI (347642) SENSORS: GNSS fix=NO[0m
+[0;32mI (349642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=-0.1 gy=-0.4 gz=-0.1[0m
+[0;32mI (349642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (349642) SENSORS: BARO p=100323.6 Pa  t=28.03 C  alt=83.7 m[0m
+[0;32mI (349642) SENSORS: GNSS fix=NO[0m
+[0;33mW (351632) main: SD card not mounted - skip log[0m
+[0;32mI (351642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=-0.1 gy=0.2 gz=-0.0[0m
+[0;32mI (351642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (351642) SENSORS: BARO p=100323.9 Pa  t=28.00 C  alt=83.7 m[0m
+[0;32mI (351642) SENSORS: GNSS fix=NO[0m
+[0;32mI (353642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=0.0 gy=-0.1 gz=0.0[0m
+[0;32mI (353642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (353642) SENSORS: BARO p=100324.4 Pa  t=27.97 C  alt=83.6 m[0m
+[0;32mI (353642) SENSORS: GNSS fix=NO[0m
+[0;32mI (355642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.97 gx=-0.1 gy=0.2 gz=0.0[0m
+[0;32mI (355642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (355642) SENSORS: BARO p=100325.4 Pa  t=27.96 C  alt=83.6 m[0m
+[0;32mI (355642) SENSORS: GNSS fix=NO[0m
+[0;32mI (357642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.94 gx=0.0 gy=-0.3 gz=-0.1[0m
+[0;32mI (357642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (357642) SENSORS: BARO p=100325.7 Pa  t=27.94 C  alt=83.5 m[0m
+[0;32mI (357642) SENSORS: GNSS fix=NO[0m
+[0;32mI (359642) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.97 gx=0.0 gy=0.1 gz=0.0[0m
+[0;32mI (359642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (359642) SENSORS: BARO p=100325.2 Pa  t=27.92 C  alt=83.6 m[0m
+[0;32mI (359642) SENSORS: GNSS fix=NO[0m
+[0;33mW (361632) main: SD card not mounted - skip log[0m
+[0;32mI (361642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.0 gy=0.1 gz=0.0[0m
+[0;32mI (361642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (361642) SENSORS: BARO p=100324.8 Pa  t=27.91 C  alt=83.6 m[0m
+[0;32mI (361642) SENSORS: GNSS fix=NO[0m
+[0;32mI (363642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=-0.2 gy=0.2 gz=-0.1[0m
+[0;32mI (363642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (363642) SENSORS: BARO p=100324.8 Pa  t=27.91 C  alt=83.6 m[0m
+[0;32mI (363642) SENSORS: GNSS fix=NO[0m
+[0;32mI (365642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=-0.1 gy=0.4 gz=-0.0[0m
+[0;32mI (365642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (365642) SENSORS: BARO p=100323.9 Pa  t=27.91 C  alt=83.7 m[0m
+[0;32mI (365642) SENSORS: GNSS fix=NO[0m
+[0;32mI (367642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.0 gy=0.1 gz=-0.2[0m
+[0;32mI (367642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (367642) SENSORS: BARO p=100324.7 Pa  t=27.92 C  alt=83.6 m[0m
+[0;32mI (367642) SENSORS: GNSS fix=NO[0m
+[0;32mI (369642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=-0.1 gz=-0.1[0m
+[0;32mI (369642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (369642) SENSORS: BARO p=100324.8 Pa  t=27.93 C  alt=83.6 m[0m
+[0;32mI (369642) SENSORS: GNSS fix=NO[0m
+[0;33mW (371632) main: SD card not mounted - skip log[0m
+[0;32mI (371642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.0 gy=-0.1 gz=-0.1[0m
+[0;32mI (371642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (371642) SENSORS: BARO p=100326.3 Pa  t=27.94 C  alt=83.5 m[0m
+[0;32mI (371642) SENSORS: GNSS fix=NO[0m
+[0;32mI (373642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.95 gx=-0.0 gy=0.2 gz=0.1[0m
+[0;32mI (373642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (373642) SENSORS: BARO p=100325.5 Pa  t=27.96 C  alt=83.5 m[0m
+[0;32mI (373642) SENSORS: GNSS fix=NO[0m
+[0;32mI (375642) SENSORS: IMU  ax=0.24 ay=-0.04 az=0.97 gx=-0.0 gy=0.0 gz=0.1[0m
+[0;32mI (375642) SENSORS: MAG  heading=163.6 deg[0m
+[0;32mI (375642) SENSORS: BARO p=100325.2 Pa  t=27.96 C  alt=83.6 m[0m
+[0;32mI (375642) SENSORS: GNSS fix=NO[0m
+[0;32mI (377642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.96 gx=0.1 gy=0.1 gz=-0.3[0m
+[0;32mI (377642) SENSORS: MAG  heading=164.9 deg[0m
+[0;32mI (377642) SENSORS: BARO p=100325.6 Pa  t=27.97 C  alt=83.5 m[0m
+[0;32mI (377642) SENSORS: GNSS fix=NO[0m
+[0;32mI (379642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.2 gy=0.1 gz=0.0[0m
+[0;32mI (379642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (379642) SENSORS: BARO p=100325.1 Pa  t=27.96 C  alt=83.6 m[0m
+[0;32mI (379642) SENSORS: GNSS fix=NO[0m
+[0;33mW (381632) main: SD card not mounted - skip log[0m
+[0;32mI (381642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=0.1 gz=0.1[0m
+[0;32mI (381642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (381642) SENSORS: BARO p=100326.7 Pa  t=27.96 C  alt=83.4 m[0m
+[0;32mI (381642) SENSORS: GNSS fix=NO[0m
+[0;32mI (383642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=0.0 gz=-0.1[0m
+[0;32mI (383642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (383642) SENSORS: BARO p=100327.0 Pa  t=27.95 C  alt=83.4 m[0m
+[0;32mI (383642) SENSORS: GNSS fix=NO[0m
+[0;32mI (385642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=0.1 gy=0.2 gz=-0.1[0m
+[0;32mI (385642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (385642) SENSORS: BARO p=100326.7 Pa  t=27.96 C  alt=83.4 m[0m
+[0;32mI (385642) SENSORS: GNSS fix=NO[0m
+[0;32mI (387642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.0 gy=-0.1 gz=0.1[0m
+[0;32mI (387642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (387642) SENSORS: BARO p=100326.7 Pa  t=27.96 C  alt=83.4 m[0m
+[0;32mI (387642) SENSORS: GNSS fix=NO[0m
+[0;32mI (389642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=0.1 gy=-0.0 gz=-0.1[0m
+[0;32mI (389642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (389642) SENSORS: BARO p=100326.4 Pa  t=27.97 C  alt=83.5 m[0m
+[0;32mI (389642) SENSORS: GNSS fix=NO[0m
+[0;33mW (391632) main: SD card not mounted - skip log[0m
+[0;32mI (391642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.1 gy=-0.1 gz=-0.0[0m
+[0;32mI (391642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (391642) SENSORS: BARO p=100326.0 Pa  t=27.97 C  alt=83.5 m[0m
+[0;32mI (391642) SENSORS: GNSS fix=NO[0m
+[0;32mI (393642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=0.0 gy=0.0 gz=0.1[0m
+[0;32mI (393642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (393642) SENSORS: BARO p=100326.2 Pa  t=27.96 C  alt=83.5 m[0m
+[0;32mI (393642) SENSORS: GNSS fix=NO[0m
+[0;32mI (395642) SENSORS: IMU  ax=0.24 ay=-0.04 az=0.96 gx=0.2 gy=-0.1 gz=-0.1[0m
+[0;32mI (395642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (395642) SENSORS: BARO p=100327.6 Pa  t=27.96 C  alt=83.4 m[0m
+[0;32mI (395642) SENSORS: GNSS fix=NO[0m
+[0;32mI (397642) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.96 gx=-0.1 gy=0.0 gz=0.2[0m
+[0;32mI (397642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (397642) SENSORS: BARO p=100326.3 Pa  t=27.97 C  alt=83.5 m[0m
+[0;32mI (397642) SENSORS: GNSS fix=NO[0m
+[0;32mI (399642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.0 gy=-0.1 gz=0.3[0m
+[0;32mI (399642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (399642) SENSORS: BARO p=100325.4 Pa  t=27.97 C  alt=83.6 m[0m
+[0;32mI (399642) SENSORS: GNSS fix=NO[0m
+[0;33mW (401632) main: SD card not mounted - skip log[0m
+[0;32mI (401642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=-0.0 gy=0.4 gz=-0.1[0m
+[0;32mI (401642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (401642) SENSORS: BARO p=100327.4 Pa  t=27.99 C  alt=83.4 m[0m
+[0;32mI (401642) SENSORS: GNSS fix=NO[0m
+[0;32mI (403642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=0.1 gy=0.1 gz=0.1[0m
+[0;32mI (403642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (403642) SENSORS: BARO p=100326.5 Pa  t=28.00 C  alt=83.5 m[0m
+[0;32mI (403642) SENSORS: GNSS fix=NO[0m
+[0;32mI (405642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=0.1 gy=-0.2 gz=-0.1[0m
+[0;32mI (405642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (405642) SENSORS: BARO p=100326.2 Pa  t=28.02 C  alt=83.5 m[0m
+[0;32mI (405642) SENSORS: GNSS fix=NO[0m
+[0;32mI (407642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=0.3 gy=-0.1 gz=-0.0[0m
+[0;32mI (407642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (407642) SENSORS: BARO p=100325.0 Pa  t=28.02 C  alt=83.6 m[0m
+[0;32mI (407642) SENSORS: GNSS fix=NO[0m
+[0;32mI (409642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.0 gy=0.0 gz=-0.1[0m
+[0;32mI (409642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (409642) SENSORS: BARO p=100326.5 Pa  t=28.04 C  alt=83.5 m[0m
+[0;32mI (409642) SENSORS: GNSS fix=NO[0m
+[0;33mW (411632) main: SD card not mounted - skip log[0m
+[0;32mI (411642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.97 gx=0.0 gy=-0.2 gz=-0.1[0m
+[0;32mI (411642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (411642) SENSORS: BARO p=100324.7 Pa  t=28.05 C  alt=83.6 m[0m
+[0;32mI (411642) SENSORS: GNSS fix=NO[0m
+[0;32mI (413642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=0.1 gy=0.2 gz=-0.0[0m
+[0;32mI (413642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (413642) SENSORS: BARO p=100325.7 Pa  t=28.05 C  alt=83.5 m[0m
+[0;32mI (413642) SENSORS: GNSS fix=NO[0m
+[0;32mI (415642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=-0.0 gy=-0.2 gz=0.1[0m
+[0;32mI (415642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (415642) SENSORS: BARO p=100324.7 Pa  t=28.05 C  alt=83.6 m[0m
+[0;32mI (415642) SENSORS: GNSS fix=NO[0m
+[0;32mI (417642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.97 gx=0.0 gy=0.2 gz=0.2[0m
+[0;32mI (417642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (417642) SENSORS: BARO p=100324.3 Pa  t=28.06 C  alt=83.7 m[0m
+[0;32mI (417642) SENSORS: GNSS fix=NO[0m
+[0;32mI (419642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.0 gy=-0.1 gz=0.1[0m
+[0;32mI (419642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (419642) SENSORS: BARO p=100324.4 Pa  t=28.07 C  alt=83.6 m[0m
+[0;32mI (419642) SENSORS: GNSS fix=NO[0m
+[0;33mW (421632) main: SD card not mounted - skip log[0m
+[0;32mI (421642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=0.2 gz=0.1[0m
+[0;32mI (421642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (421642) SENSORS: BARO p=100323.8 Pa  t=28.07 C  alt=83.7 m[0m
+[0;32mI (421642) SENSORS: GNSS fix=NO[0m
+[0;32mI (423642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.97 gx=-0.2 gy=-0.2 gz=0.1[0m
+[0;32mI (423642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (423642) SENSORS: BARO p=100326.0 Pa  t=28.07 C  alt=83.5 m[0m
+[0;32mI (423642) SENSORS: GNSS fix=NO[0m
+[0;32mI (425642) SENSORS: IMU  ax=0.22 ay=-0.02 az=0.96 gx=0.1 gy=0.3 gz=-0.1[0m
+[0;32mI (425642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (425642) SENSORS: BARO p=100327.0 Pa  t=28.06 C  alt=83.4 m[0m
+[0;32mI (425642) SENSORS: GNSS fix=NO[0m
+[0;32mI (427642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=-0.2 gz=0.0[0m
+[0;32mI (427642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (427642) SENSORS: BARO p=100326.0 Pa  t=28.05 C  alt=83.5 m[0m
+[0;32mI (427642) SENSORS: GNSS fix=NO[0m
+[0;32mI (429642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=-0.0 gz=0.0[0m
+[0;32mI (429642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (429642) SENSORS: BARO p=100326.8 Pa  t=28.03 C  alt=83.4 m[0m
+[0;32mI (429642) SENSORS: GNSS fix=NO[0m
+[0;33mW (431632) main: SD card not mounted - skip log[0m
+[0;32mI (431642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.97 gx=0.1 gy=-0.3 gz=-0.1[0m
+[0;32mI (431642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (431642) SENSORS: BARO p=100326.9 Pa  t=28.04 C  alt=83.4 m[0m
+[0;32mI (431642) SENSORS: GNSS fix=NO[0m
+[0;32mI (433642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=0.1 gz=-0.2[0m
+[0;32mI (433642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (433642) SENSORS: BARO p=100328.0 Pa  t=28.03 C  alt=83.3 m[0m
+[0;32mI (433642) SENSORS: GNSS fix=NO[0m
+[0;32mI (435642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=0.0 gy=0.0 gz=0.0[0m
+[0;32mI (435642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (435642) SENSORS: BARO p=100328.5 Pa  t=28.00 C  alt=83.3 m[0m
+[0;32mI (435642) SENSORS: GNSS fix=NO[0m
+[0;32mI (437642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=-0.1 gy=0.0 gz=0.1[0m
+[0;32mI (437642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (437642) SENSORS: BARO p=100327.5 Pa  t=27.98 C  alt=83.4 m[0m
+[0;32mI (437642) SENSORS: GNSS fix=NO[0m
+[0;32mI (439642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=-0.1 gy=-0.1 gz=0.2[0m
+[0;32mI (439642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (439642) SENSORS: BARO p=100328.5 Pa  t=27.95 C  alt=83.3 m[0m
+[0;32mI (439642) SENSORS: GNSS fix=NO[0m
+[0;33mW (441632) main: SD card not mounted - skip log[0m
+[0;32mI (441642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=0.0 gz=0.1[0m
+[0;32mI (441642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (441642) SENSORS: BARO p=100325.9 Pa  t=27.93 C  alt=83.5 m[0m
+[0;32mI (441642) SENSORS: GNSS fix=NO[0m
+[0;32mI (443642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=-0.1 gz=-0.0[0m
+[0;32mI (443642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (443642) SENSORS: BARO p=100327.0 Pa  t=27.91 C  alt=83.4 m[0m
+[0;32mI (443642) SENSORS: GNSS fix=NO[0m
+[0;32mI (445642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.2 gy=-0.0 gz=-0.0[0m
+[0;32mI (445642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (445642) SENSORS: BARO p=100327.8 Pa  t=27.90 C  alt=83.4 m[0m
+[0;32mI (445642) SENSORS: GNSS fix=NO[0m
+[0;32mI (447642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.0 gy=-0.1 gz=0.0[0m
+[0;32mI (447642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (447642) SENSORS: BARO p=100328.1 Pa  t=27.90 C  alt=83.3 m[0m
+[0;32mI (447642) SENSORS: GNSS fix=NO[0m
+[0;32mI (449642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=0.2 gy=-0.1 gz=-0.0[0m
+[0;32mI (449642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (449642) SENSORS: BARO p=100327.7 Pa  t=27.89 C  alt=83.4 m[0m
+[0;32mI (449642) SENSORS: GNSS fix=NO[0m
+[0;33mW (451632) main: SD card not mounted - skip log[0m
+[0;32mI (451642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=-0.1 gz=-0.0[0m
+[0;32mI (451642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (451642) SENSORS: BARO p=100327.1 Pa  t=27.88 C  alt=83.4 m[0m
+[0;32mI (451642) SENSORS: GNSS fix=NO[0m
+[0;32mI (453642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=-0.0 gy=0.1 gz=-0.1[0m
+[0;32mI (453642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (453642) SENSORS: BARO p=100326.4 Pa  t=27.87 C  alt=83.5 m[0m
+[0;32mI (453642) SENSORS: GNSS fix=NO[0m
+[0;32mI (455642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=0.0 gy=-0.5 gz=0.0[0m
+[0;32mI (455642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (455642) SENSORS: BARO p=100326.5 Pa  t=27.89 C  alt=83.5 m[0m
+[0;32mI (455642) SENSORS: GNSS fix=NO[0m
+[0;32mI (457642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.97 gx=0.0 gy=0.2 gz=-0.0[0m
+[0;32mI (457642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (457642) SENSORS: BARO p=100325.9 Pa  t=27.89 C  alt=83.5 m[0m
+[0;32mI (457642) SENSORS: GNSS fix=NO[0m
+[0;32mI (459642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=-0.2 gz=0.0[0m
+[0;32mI (459642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (459642) SENSORS: BARO p=100326.3 Pa  t=27.89 C  alt=83.5 m[0m
+[0;32mI (459642) SENSORS: GNSS fix=NO[0m
+[0;33mW (461632) main: SD card not mounted - skip log[0m
+[0;32mI (461642) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.96 gx=-0.1 gy=0.1 gz=-0.0[0m
+[0;32mI (461642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (461642) SENSORS: BARO p=100326.6 Pa  t=27.90 C  alt=83.5 m[0m
+[0;32mI (461642) SENSORS: GNSS fix=NO[0m
+[0;32mI (463642) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.96 gx=-0.2 gy=0.2 gz=-0.2[0m
+[0;32mI (463642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (463642) SENSORS: BARO p=100326.7 Pa  t=27.91 C  alt=83.5 m[0m
+[0;32mI (463642) SENSORS: GNSS fix=NO[0m
+[0;32mI (465642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=-0.0 gy=-0.3 gz=-0.1[0m
+[0;32mI (465642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (465642) SENSORS: BARO p=100325.5 Pa  t=27.93 C  alt=83.5 m[0m
+[0;32mI (465642) SENSORS: GNSS fix=NO[0m
+[0;32mI (467642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=-0.1 gy=-0.0 gz=-0.2[0m
+[0;32mI (467642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (467642) SENSORS: BARO p=100326.6 Pa  t=27.94 C  alt=83.5 m[0m
+[0;32mI (467642) SENSORS: GNSS fix=NO[0m
+[0;32mI (469642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=0.2 gz=-0.1[0m
+[0;32mI (469642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (469642) SENSORS: BARO p=100328.4 Pa  t=27.94 C  alt=83.3 m[0m
+[0;32mI (469642) SENSORS: GNSS fix=NO[0m
+[0;33mW (471632) main: SD card not mounted - skip log[0m
+[0;32mI (471642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=-0.1 gy=-0.3 gz=0.0[0m
+[0;32mI (471642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (471642) SENSORS: BARO p=100329.4 Pa  t=27.94 C  alt=83.2 m[0m
+[0;32mI (471642) SENSORS: GNSS fix=NO[0m
+[0;32mI (473642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.0 gy=0.2 gz=-0.1[0m
+[0;32mI (473642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (473642) SENSORS: BARO p=100328.5 Pa  t=27.95 C  alt=83.3 m[0m
+[0;32mI (473642) SENSORS: GNSS fix=NO[0m
+[0;32mI (475642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=-0.0 gy=-0.2 gz=-0.1[0m
+[0;32mI (475642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (475642) SENSORS: BARO p=100326.9 Pa  t=27.96 C  alt=83.4 m[0m
+[0;32mI (475642) SENSORS: GNSS fix=NO[0m
+[0;32mI (477642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=-0.0 gy=0.3 gz=-0.2[0m
+[0;32mI (477642) SENSORS: MAG  heading=163.8 deg[0m
+[0;32mI (477642) SENSORS: BARO p=100327.3 Pa  t=27.98 C  alt=83.4 m[0m
+[0;32mI (477642) SENSORS: GNSS fix=NO[0m
+[0;32mI (479642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=-0.2 gz=-0.0[0m
+[0;32mI (479642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (479642) SENSORS: BARO p=100326.9 Pa  t=27.99 C  alt=83.4 m[0m
+[0;32mI (479642) SENSORS: GNSS fix=NO[0m
+[0;33mW (481632) main: SD card not mounted - skip log[0m
+[0;32mI (481642) SENSORS: IMU  ax=0.24 ay=-0.04 az=0.97 gx=-0.1 gy=0.4 gz=0.2[0m
+[0;32mI (481642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (481642) SENSORS: BARO p=100327.8 Pa  t=28.01 C  alt=83.4 m[0m
+[0;32mI (481642) SENSORS: GNSS fix=NO[0m
+[0;32mI (483642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=0.3 gy=-0.0 gz=0.0[0m
+[0;32mI (483642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (483642) SENSORS: BARO p=100329.2 Pa  t=28.02 C  alt=83.2 m[0m
+[0;32mI (483642) SENSORS: GNSS fix=NO[0m
+[0;32mI (485642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.5 gy=-0.9 gz=0.1[0m
+[0;32mI (485642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (485642) SENSORS: BARO p=100326.8 Pa  t=28.02 C  alt=83.4 m[0m
+[0;32mI (485642) SENSORS: GNSS fix=NO[0m
+[0;32mI (487642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.97 gx=0.1 gy=0.3 gz=0.1[0m
+[0;32mI (487642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (487642) SENSORS: BARO p=100326.6 Pa  t=28.03 C  alt=83.5 m[0m
+[0;32mI (487642) SENSORS: GNSS fix=NO[0m
+[0;32mI (489642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=-0.1 gy=-0.0 gz=-0.1[0m
+[0;32mI (489642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (489642) SENSORS: BARO p=100326.6 Pa  t=28.04 C  alt=83.5 m[0m
+[0;32mI (489642) SENSORS: GNSS fix=NO[0m
+[0;33mW (491632) main: SD card not mounted - skip log[0m
+[0;32mI (491642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.97 gx=-0.0 gy=0.1 gz=0.1[0m
+[0;32mI (491642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (491642) SENSORS: BARO p=100326.4 Pa  t=28.05 C  alt=83.5 m[0m
+[0;32mI (491642) SENSORS: GNSS fix=NO[0m
+[0;32mI (493642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=-0.1 gy=-0.2 gz=0.1[0m
+[0;32mI (493642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (493642) SENSORS: BARO p=100326.9 Pa  t=28.06 C  alt=83.4 m[0m
+[0;32mI (493642) SENSORS: GNSS fix=NO[0m
+[0;32mI (495642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.0 gy=-0.3 gz=-0.2[0m
+[0;32mI (495642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (495642) SENSORS: BARO p=100326.5 Pa  t=28.07 C  alt=83.5 m[0m
+[0;32mI (495642) SENSORS: GNSS fix=NO[0m
+[0;32mI (497642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.1 gy=0.2 gz=0.1[0m
+[0;32mI (497642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (497642) SENSORS: BARO p=100326.5 Pa  t=28.08 C  alt=83.5 m[0m
+[0;32mI (497642) SENSORS: GNSS fix=NO[0m
+[0;32mI (499642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=0.1 gy=-0.4 gz=0.1[0m
+[0;32mI (499642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (499642) SENSORS: BARO p=100326.3 Pa  t=28.08 C  alt=83.5 m[0m
+[0;32mI (499642) SENSORS: GNSS fix=NO[0m
+[0;33mW (501632) main: SD card not mounted - skip log[0m
+[0;32mI (501642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.1 gy=0.1 gz=0.1[0m
+[0;32mI (501642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (501642) SENSORS: BARO p=100325.0 Pa  t=28.08 C  alt=83.6 m[0m
+[0;32mI (501642) SENSORS: GNSS fix=NO[0m
+[0;32mI (503642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=-0.1 gy=0.2 gz=0.0[0m
+[0;32mI (503642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (503642) SENSORS: BARO p=100325.7 Pa  t=28.07 C  alt=83.5 m[0m
+[0;32mI (503642) SENSORS: GNSS fix=NO[0m
+[0;32mI (505642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.0 gy=-0.4 gz=-0.0[0m
+[0;32mI (505642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (505642) SENSORS: BARO p=100327.3 Pa  t=28.08 C  alt=83.4 m[0m
+[0;32mI (505642) SENSORS: GNSS fix=NO[0m
+[0;32mI (507642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.0 gy=0.0 gz=-0.1[0m
+[0;32mI (507642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (507642) SENSORS: BARO p=100326.5 Pa  t=28.08 C  alt=83.5 m[0m
+[0;32mI (507642) SENSORS: GNSS fix=NO[0m
+[0;32mI (509642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=-0.0 gy=-0.0 gz=-0.0[0m
+[0;32mI (509642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (509642) SENSORS: BARO p=100325.6 Pa  t=28.08 C  alt=83.5 m[0m
+[0;32mI (509642) SENSORS: GNSS fix=NO[0m
+[0;33mW (511632) main: SD card not mounted - skip log[0m
+[0;32mI (511642) SENSORS: IMU  ax=0.25 ay=-0.01 az=0.97 gx=-0.2 gy=-0.0 gz=-0.1[0m
+[0;32mI (511642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (511642) SENSORS: BARO p=100325.4 Pa  t=28.06 C  alt=83.6 m[0m
+[0;32mI (511642) SENSORS: GNSS fix=NO[0m
+[0;32mI (513642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.94 gx=-0.1 gy=-0.0 gz=0.1[0m
+[0;32mI (513642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (513642) SENSORS: BARO p=100326.4 Pa  t=28.07 C  alt=83.5 m[0m
+[0;32mI (513642) SENSORS: GNSS fix=NO[0m
+[0;32mI (515642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=-0.1 gy=0.5 gz=0.3[0m
+[0;32mI (515642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (515642) SENSORS: BARO p=100325.9 Pa  t=28.08 C  alt=83.5 m[0m
+[0;32mI (515642) SENSORS: GNSS fix=NO[0m
+[0;32mI (517642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.93 gx=-0.1 gy=-0.2 gz=-0.1[0m
+[0;32mI (517642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (517642) SENSORS: BARO p=100326.0 Pa  t=28.09 C  alt=83.5 m[0m
+[0;32mI (517642) SENSORS: GNSS fix=NO[0m
+[0;32mI (519642) SENSORS: IMU  ax=0.25 ay=-0.04 az=0.96 gx=0.1 gy=-0.3 gz=0.0[0m
+[0;32mI (519642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (519642) SENSORS: BARO p=100323.7 Pa  t=28.10 C  alt=83.7 m[0m
+[0;32mI (519642) SENSORS: GNSS fix=NO[0m
+[0;33mW (521632) main: SD card not mounted - skip log[0m
+[0;32mI (521642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.0 gy=0.2 gz=-0.1[0m
+[0;32mI (521642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (521642) SENSORS: BARO p=100324.1 Pa  t=28.11 C  alt=83.7 m[0m
+[0;32mI (521642) SENSORS: GNSS fix=NO[0m
+[0;32mI (523642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.95 gx=0.1 gy=0.0 gz=-0.1[0m
+[0;32mI (523642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (523642) SENSORS: BARO p=100325.4 Pa  t=28.13 C  alt=83.6 m[0m
+[0;32mI (523642) SENSORS: GNSS fix=NO[0m
+[0;32mI (525642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.1 gy=0.1 gz=-0.1[0m
+[0;32mI (525642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (525642) SENSORS: BARO p=100326.2 Pa  t=28.14 C  alt=83.5 m[0m
+[0;32mI (525642) SENSORS: GNSS fix=NO[0m
+[0;32mI (527642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=0.2 gy=0.2 gz=0.0[0m
+[0;32mI (527642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (527642) SENSORS: BARO p=100324.8 Pa  t=28.14 C  alt=83.6 m[0m
+[0;32mI (527642) SENSORS: GNSS fix=NO[0m
+[0;32mI (529642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.96 gx=-0.0 gy=-0.0 gz=-0.1[0m
+[0;32mI (529642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (529642) SENSORS: BARO p=100326.7 Pa  t=28.15 C  alt=83.5 m[0m
+[0;32mI (529642) SENSORS: GNSS fix=NO[0m
+[0;33mW (531632) main: SD card not mounted - skip log[0m
+[0;32mI (531642) SENSORS: IMU  ax=0.24 ay=-0.02 az=0.95 gx=-0.0 gy=-0.5 gz=-0.2[0m
+[0;32mI (531642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (531642) SENSORS: BARO p=100325.7 Pa  t=28.16 C  alt=83.5 m[0m
+[0;32mI (531642) SENSORS: GNSS fix=NO[0m
+[0;32mI (533642) SENSORS: IMU  ax=0.24 ay=-0.04 az=0.96 gx=-0.1 gy=0.2 gz=-0.1[0m
+[0;32mI (533642) SENSORS: MAG  heading=163.8 deg[0m
+[0;32mI (533642) SENSORS: BARO p=100326.9 Pa  t=28.17 C  alt=83.4 m[0m
+[0;32mI (533642) SENSORS: GNSS fix=NO[0m
+[0;32mI (535642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.95 gx=-0.1 gy=0.1 gz=-0.2[0m
+[0;32mI (535642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (535642) SENSORS: BARO p=100326.7 Pa  t=28.18 C  alt=83.4 m[0m
+[0;32mI (535642) SENSORS: GNSS fix=NO[0m
+[0;32mI (537642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.96 gx=0.3 gy=0.0 gz=-0.0[0m
+[0;32mI (537642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (537642) SENSORS: BARO p=100325.0 Pa  t=28.18 C  alt=83.6 m[0m
+[0;32mI (537642) SENSORS: GNSS fix=NO[0m
+[0;32mI (539642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.97 gx=0.2 gy=0.1 gz=0.1[0m
+[0;32mI (539642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (539642) SENSORS: BARO p=100325.3 Pa  t=28.18 C  alt=83.6 m[0m
+[0;32mI (539642) SENSORS: GNSS fix=NO[0m
+[0;33mW (541632) main: SD card not mounted - skip log[0m
+[0;32mI (541642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.0 gy=0.0 gz=-0.1[0m
+[0;32mI (541642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (541642) SENSORS: BARO p=100326.5 Pa  t=28.19 C  alt=83.5 m[0m
+[0;32mI (541642) SENSORS: GNSS fix=NO[0m
+[0;32mI (543642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.97 gx=-0.1 gy=0.3 gz=0.2[0m
+[0;32mI (543642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (543642) SENSORS: BARO p=100327.3 Pa  t=28.19 C  alt=83.4 m[0m
+[0;32mI (543642) SENSORS: GNSS fix=NO[0m
+[0;32mI (545642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.96 gx=-0.1 gy=-0.1 gz=-0.0[0m
+[0;32mI (545642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (545642) SENSORS: BARO p=100324.9 Pa  t=28.19 C  alt=83.6 m[0m
+[0;32mI (545642) SENSORS: GNSS fix=NO[0m
+[0;32mI (547642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.95 gx=0.0 gy=-0.1 gz=0.1[0m
+[0;32mI (547642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (547642) SENSORS: BARO p=100324.9 Pa  t=28.20 C  alt=83.6 m[0m
+[0;32mI (547642) SENSORS: GNSS fix=NO[0m
+[0;32mI (549642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.0 gy=0.0 gz=0.1[0m
+[0;32mI (549642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (549642) SENSORS: BARO p=100326.0 Pa  t=28.21 C  alt=83.5 m[0m
+[0;32mI (549642) SENSORS: GNSS fix=NO[0m
+[0;33mW (551632) main: SD card not mounted - skip log[0m
+[0;32mI (551642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.97 gx=-0.1 gy=0.0 gz=0.1[0m
+[0;32mI (551642) SENSORS: MAG  heading=163.7 deg[0m
+[0;32mI (551642) SENSORS: BARO p=100325.0 Pa  t=28.22 C  alt=83.6 m[0m
+[0;32mI (551642) SENSORS: GNSS fix=NO[0m
+[0;32mI (553642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.96 gx=-0.1 gy=-0.1 gz=0.0[0m
+[0;32mI (553642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (553642) SENSORS: BARO p=100325.5 Pa  t=28.24 C  alt=83.5 m[0m
+[0;32mI (553642) SENSORS: GNSS fix=NO[0m
+[0;32mI (555642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=-0.2 gz=0.1[0m
+[0;32mI (555642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (555642) SENSORS: BARO p=100324.7 Pa  t=28.25 C  alt=83.6 m[0m
+[0;32mI (555642) SENSORS: GNSS fix=NO[0m
+[0;32mI (557642) SENSORS: IMU  ax=0.21 ay=-0.03 az=1.00 gx=0.4 gy=-0.4 gz=-0.0[0m
+[0;32mI (557642) SENSORS: MAG  heading=164.8 deg[0m
+[0;32mI (557642) SENSORS: BARO p=100326.3 Pa  t=28.26 C  alt=83.5 m[0m
+[0;32mI (557642) SENSORS: GNSS fix=NO[0m
+[0;32mI (559642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=-0.0 gz=-0.2[0m
+[0;32mI (559642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (559642) SENSORS: BARO p=100324.9 Pa  t=28.25 C  alt=83.6 m[0m
+[0;32mI (559642) SENSORS: GNSS fix=NO[0m
+[0;33mW (561632) main: SD card not mounted - skip log[0m
+[0;32mI (561642) SENSORS: IMU  ax=0.24 ay=-0.04 az=0.97 gx=-0.2 gy=-0.2 gz=-0.1[0m
+[0;32mI (561642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (561642) SENSORS: BARO p=100325.5 Pa  t=28.26 C  alt=83.5 m[0m
+[0;32mI (561642) SENSORS: GNSS fix=NO[0m
+[0;32mI (563642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=0.1 gy=0.0 gz=0.1[0m
+[0;32mI (563642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (563642) SENSORS: BARO p=100325.2 Pa  t=28.26 C  alt=83.6 m[0m
+[0;32mI (563642) SENSORS: GNSS fix=NO[0m
+[0;32mI (565642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=-0.1 gy=0.1 gz=0.1[0m
+[0;32mI (565642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (565642) SENSORS: BARO p=100325.7 Pa  t=28.25 C  alt=83.5 m[0m
+[0;32mI (565642) SENSORS: GNSS fix=NO[0m
+[0;32mI (567642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=-0.1 gy=-0.7 gz=0.1[0m
+[0;32mI (567642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (567642) SENSORS: BARO p=100323.5 Pa  t=28.25 C  alt=83.7 m[0m
+[0;32mI (567642) SENSORS: GNSS fix=NO[0m
+[0;32mI (569642) SENSORS: IMU  ax=0.25 ay=-0.02 az=0.96 gx=0.1 gy=-0.2 gz=-0.1[0m
+[0;32mI (569642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (569642) SENSORS: BARO p=100325.1 Pa  t=28.25 C  alt=83.6 m[0m
+[0;32mI (569642) SENSORS: GNSS fix=NO[0m
+[0;33mW (571632) main: SD card not mounted - skip log[0m
+[0;32mI (571642) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.97 gx=-0.1 gy=0.2 gz=0.1[0m
+[0;32mI (571642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (571642) SENSORS: BARO p=100326.1 Pa  t=28.26 C  alt=83.5 m[0m
+[0;32mI (571642) SENSORS: GNSS fix=NO[0m
+[0;32mI (573642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.2 gy=-0.2 gz=0.2[0m
+[0;32mI (573642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (573642) SENSORS: BARO p=100325.7 Pa  t=28.27 C  alt=83.5 m[0m
+[0;32mI (573642) SENSORS: GNSS fix=NO[0m
+[0;32mI (575642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.95 gx=0.0 gy=-0.1 gz=-0.0[0m
+[0;32mI (575642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (575642) SENSORS: BARO p=100325.5 Pa  t=28.27 C  alt=83.6 m[0m
+[0;32mI (575642) SENSORS: GNSS fix=NO[0m
+[0;32mI (577642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=0.1 gy=-0.0 gz=-0.3[0m
+[0;32mI (577642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (577642) SENSORS: BARO p=100325.8 Pa  t=28.28 C  alt=83.5 m[0m
+[0;32mI (577642) SENSORS: GNSS fix=NO[0m
+[0;32mI (579642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.97 gx=0.2 gy=0.0 gz=-0.1[0m
+[0;32mI (579642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (579642) SENSORS: BARO p=100327.1 Pa  t=28.29 C  alt=83.4 m[0m
+[0;32mI (579642) SENSORS: GNSS fix=NO[0m
+[0;33mW (581632) main: SD card not mounted - skip log[0m
+[0;32mI (581642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=0.0 gy=0.2 gz=-0.1[0m
+[0;32mI (581642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (581642) SENSORS: BARO p=100326.6 Pa  t=28.28 C  alt=83.5 m[0m
+[0;32mI (581642) SENSORS: GNSS fix=NO[0m
+[0;32mI (583642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=-0.1 gy=0.0 gz=0.2[0m
+[0;32mI (583642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (583642) SENSORS: BARO p=100324.6 Pa  t=28.28 C  alt=83.6 m[0m
+[0;32mI (583642) SENSORS: GNSS fix=NO[0m
+[0;32mI (585642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=0.0 gy=-0.1 gz=0.0[0m
+[0;32mI (585642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (585642) SENSORS: BARO p=100326.3 Pa  t=28.28 C  alt=83.5 m[0m
+[0;32mI (585642) SENSORS: GNSS fix=NO[0m
+[0;32mI (587642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=-0.0 gy=0.1 gz=0.3[0m
+[0;32mI (587642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (587642) SENSORS: BARO p=100326.9 Pa  t=28.28 C  alt=83.4 m[0m
+[0;32mI (587642) SENSORS: GNSS fix=NO[0m
+[0;32mI (589642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.1 gy=-0.0 gz=0.2[0m
+[0;32mI (589642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (589642) SENSORS: BARO p=100326.5 Pa  t=28.29 C  alt=83.5 m[0m
+[0;32mI (589642) SENSORS: GNSS fix=NO[0m
+[0;33mW (591632) main: SD card not mounted - skip log[0m
+[0;32mI (591642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=0.1 gy=0.0 gz=-0.1[0m
+[0;32mI (591642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (591642) SENSORS: BARO p=100325.8 Pa  t=28.30 C  alt=83.5 m[0m
+[0;32mI (591642) SENSORS: GNSS fix=NO[0m
+[0;32mI (593642) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.95 gx=0.1 gy=-0.0 gz=-0.3[0m
+[0;32mI (593642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (593642) SENSORS: BARO p=100326.1 Pa  t=28.31 C  alt=83.5 m[0m
+[0;32mI (593642) SENSORS: GNSS fix=NO[0m
+[0;32mI (595642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=-0.1 gy=-0.5 gz=0.1[0m
+[0;32mI (595642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (595642) SENSORS: BARO p=100327.0 Pa  t=28.30 C  alt=83.4 m[0m
+[0;32mI (595642) SENSORS: GNSS fix=NO[0m
+[0;32mI (597642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=-0.2 gy=0.0 gz=-0.1[0m
+[0;32mI (597642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (597642) SENSORS: BARO p=100325.7 Pa  t=28.30 C  alt=83.5 m[0m
+[0;32mI (597642) SENSORS: GNSS fix=NO[0m
+[0;32mI (599642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.0 gy=-0.1 gz=-0.1[0m
+[0;32mI (599642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (599642) SENSORS: BARO p=100325.7 Pa  t=28.30 C  alt=83.5 m[0m
+[0;32mI (599642) SENSORS: GNSS fix=NO[0m
+[0;33mW (601632) main: SD card not mounted - skip log[0m
+[0;32mI (601642) SENSORS: IMU  ax=0.25 ay=-0.03 az=0.95 gx=-0.0 gy=-0.4 gz=-0.1[0m
+[0;32mI (601642) SENSORS: MAG  heading=164.8 deg[0m
+[0;32mI (601642) SENSORS: BARO p=100324.6 Pa  t=28.31 C  alt=83.6 m[0m
+[0;32mI (601642) SENSORS: GNSS fix=NO[0m
+[0;32mI (603642) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.96 gx=-0.2 gy=0.3 gz=-0.0[0m
+[0;32mI (603642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (603642) SENSORS: BARO p=100326.0 Pa  t=28.30 C  alt=83.5 m[0m
+[0;32mI (603642) SENSORS: GNSS fix=NO[0m
+[0;32mI (605642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.3 gy=-0.3 gz=0.1[0m
+[0;32mI (605642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (605642) SENSORS: BARO p=100326.4 Pa  t=28.31 C  alt=83.5 m[0m
+[0;32mI (605642) SENSORS: GNSS fix=NO[0m
+[0;32mI (607642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=-0.0 gy=-0.0 gz=-0.1[0m
+[0;32mI (607642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (607642) SENSORS: BARO p=100326.4 Pa  t=28.31 C  alt=83.5 m[0m
+[0;32mI (607642) SENSORS: GNSS fix=NO[0m
+[0;32mI (609642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=-0.1 gy=-0.3 gz=0.1[0m
+[0;32mI (609642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (609642) SENSORS: BARO p=100326.9 Pa  t=28.31 C  alt=83.4 m[0m
+[0;32mI (609642) SENSORS: GNSS fix=NO[0m
+[0;33mW (611632) main: SD card not mounted - skip log[0m
+[0;32mI (611642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=0.1 gy=0.2 gz=0.1[0m
+[0;32mI (611642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (611642) SENSORS: BARO p=100325.3 Pa  t=28.30 C  alt=83.6 m[0m
+[0;32mI (611642) SENSORS: GNSS fix=NO[0m
+[0;32mI (613642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=-0.0 gy=-0.1 gz=0.1[0m
+[0;32mI (613642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (613642) SENSORS: BARO p=100325.9 Pa  t=28.32 C  alt=83.5 m[0m
+[0;32mI (613642) SENSORS: GNSS fix=NO[0m
+[0;32mI (615642) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.96 gx=0.2 gy=0.1 gz=-0.3[0m
+[0;32mI (615642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (615642) SENSORS: BARO p=100327.0 Pa  t=28.32 C  alt=83.4 m[0m
+[0;32mI (615642) SENSORS: GNSS fix=NO[0m
+[0;32mI (617642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=-0.1 gz=0.0[0m
+[0;32mI (617642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (617642) SENSORS: BARO p=100326.9 Pa  t=28.32 C  alt=83.4 m[0m
+[0;32mI (617642) SENSORS: GNSS fix=NO[0m
+[0;32mI (619642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=-0.2 gy=-0.3 gz=-0.0[0m
+[0;32mI (619642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (619642) SENSORS: BARO p=100326.1 Pa  t=28.31 C  alt=83.5 m[0m
+[0;32mI (619642) SENSORS: GNSS fix=NO[0m
+[0;33mW (621632) main: SD card not mounted - skip log[0m
+[0;32mI (621642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.2 gy=0.3 gz=0.1[0m
+[0;32mI (621642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (621642) SENSORS: BARO p=100323.7 Pa  t=28.30 C  alt=83.7 m[0m
+[0;32mI (621642) SENSORS: GNSS fix=NO[0m
+[0;32mI (623642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=-0.0 gy=-0.1 gz=-0.1[0m
+[0;32mI (623642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (623642) SENSORS: BARO p=100325.3 Pa  t=28.30 C  alt=83.6 m[0m
+[0;32mI (623642) SENSORS: GNSS fix=NO[0m
+[0;32mI (625642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.0 gy=-0.3 gz=-0.1[0m
+[0;32mI (625642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (625642) SENSORS: BARO p=100325.4 Pa  t=28.32 C  alt=83.6 m[0m
+[0;32mI (625642) SENSORS: GNSS fix=NO[0m
+[0;32mI (627642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.2 gy=-0.2 gz=-0.1[0m
+[0;32mI (627642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (627642) SENSORS: BARO p=100323.4 Pa  t=28.31 C  alt=83.7 m[0m
+[0;32mI (627642) SENSORS: GNSS fix=NO[0m
+[0;32mI (629642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=0.1 gy=0.2 gz=0.2[0m
+[0;32mI (629642) SENSORS: MAG  heading=165.0 deg[0m
+[0;32mI (629642) SENSORS: BARO p=100324.8 Pa  t=28.33 C  alt=83.6 m[0m
+[0;32mI (629642) SENSORS: GNSS fix=NO[0m
+[0;33mW (631632) main: SD card not mounted - skip log[0m
+[0;32mI (631642) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.96 gx=-0.1 gy=0.1 gz=-0.2[0m
+[0;32mI (631642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (631642) SENSORS: BARO p=100325.7 Pa  t=28.32 C  alt=83.5 m[0m
+[0;32mI (631642) SENSORS: GNSS fix=NO[0m
+[0;32mI (633642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=-0.0 gz=-0.0[0m
+[0;32mI (633642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (633642) SENSORS: BARO p=100324.4 Pa  t=28.32 C  alt=83.6 m[0m
+[0;32mI (633642) SENSORS: GNSS fix=NO[0m
+[0;32mI (635642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=0.1 gy=-0.1 gz=-0.1[0m
+[0;32mI (635642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (635642) SENSORS: BARO p=100323.2 Pa  t=28.30 C  alt=83.7 m[0m
+[0;32mI (635642) SENSORS: GNSS fix=NO[0m
+[0;32mI (637642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=-0.0 gy=-0.0 gz=0.2[0m
+[0;32mI (637642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (637642) SENSORS: BARO p=100323.3 Pa  t=28.31 C  alt=83.7 m[0m
+[0;32mI (637642) SENSORS: GNSS fix=NO[0m
+[0;32mI (639642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.0 gy=-0.2 gz=0.2[0m
+[0;32mI (639642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (639642) SENSORS: BARO p=100322.0 Pa  t=28.32 C  alt=83.8 m[0m
+[0;32mI (639642) SENSORS: GNSS fix=NO[0m
+[0;33mW (641632) main: SD card not mounted - skip log[0m
+[0;32mI (641642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.98 gx=-0.2 gy=-0.2 gz=-0.1[0m
+[0;32mI (641642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (641642) SENSORS: BARO p=100323.0 Pa  t=28.32 C  alt=83.8 m[0m
+[0;32mI (641642) SENSORS: GNSS fix=NO[0m
+[0;32mI (643642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=-0.0 gy=0.0 gz=0.1[0m
+[0;32mI (643642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (643642) SENSORS: BARO p=100324.5 Pa  t=28.34 C  alt=83.6 m[0m
+[0;32mI (643642) SENSORS: GNSS fix=NO[0m
+[0;32mI (645642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=-0.1 gy=0.2 gz=0.1[0m
+[0;32mI (645642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (645642) SENSORS: BARO p=100323.9 Pa  t=28.32 C  alt=83.7 m[0m
+[0;32mI (645642) SENSORS: GNSS fix=NO[0m
+[0;32mI (647642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.0 gy=-0.0 gz=-0.0[0m
+[0;32mI (647642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (647642) SENSORS: BARO p=100325.2 Pa  t=28.32 C  alt=83.6 m[0m
+[0;32mI (647642) SENSORS: GNSS fix=NO[0m
+[0;32mI (649642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.1 gy=0.1 gz=0.0[0m
+[0;32mI (649642) SENSORS: MAG  heading=164.9 deg[0m
+[0;32mI (649642) SENSORS: BARO p=100324.3 Pa  t=28.32 C  alt=83.7 m[0m
+[0;32mI (649642) SENSORS: GNSS fix=NO[0m
+[0;33mW (651632) main: SD card not mounted - skip log[0m
+[0;32mI (651642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=-0.2 gy=-0.1 gz=-0.2[0m
+[0;32mI (651642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (651642) SENSORS: BARO p=100325.5 Pa  t=28.31 C  alt=83.5 m[0m
+[0;32mI (651642) SENSORS: GNSS fix=NO[0m
+[0;32mI (653642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=-0.0 gy=0.1 gz=0.0[0m
+[0;32mI (653642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (653642) SENSORS: BARO p=100324.7 Pa  t=28.31 C  alt=83.6 m[0m
+[0;32mI (653642) SENSORS: GNSS fix=NO[0m
+[0;32mI (655642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=0.0 gy=-0.1 gz=0.0[0m
+[0;32mI (655642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (655642) SENSORS: BARO p=100325.3 Pa  t=28.29 C  alt=83.6 m[0m
+[0;32mI (655642) SENSORS: GNSS fix=NO[0m
+[0;32mI (657642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.95 gx=-0.0 gy=-0.5 gz=0.1[0m
+[0;32mI (657642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (657642) SENSORS: BARO p=100325.0 Pa  t=28.28 C  alt=83.6 m[0m
+[0;32mI (657642) SENSORS: GNSS fix=NO[0m
+[0;32mI (659642) SENSORS: IMU  ax=0.28 ay=-0.05 az=0.92 gx=-0.1 gy=-1.2 gz=-0.1[0m
+[0;32mI (659642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (659642) SENSORS: BARO p=100323.6 Pa  t=28.28 C  alt=83.7 m[0m
+[0;32mI (659642) SENSORS: GNSS fix=NO[0m
+[0;33mW (661632) main: SD card not mounted - skip log[0m
+[0;32mI (661642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.2 gy=0.2 gz=-0.1[0m
+[0;32mI (661642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (661642) SENSORS: BARO p=100324.9 Pa  t=28.28 C  alt=83.6 m[0m
+[0;32mI (661642) SENSORS: GNSS fix=NO[0m
+[0;32mI (663642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=0.1 gy=0.1 gz=0.1[0m
+[0;32mI (663642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (663642) SENSORS: BARO p=100324.5 Pa  t=28.30 C  alt=83.6 m[0m
+[0;32mI (663642) SENSORS: GNSS fix=NO[0m
+[0;32mI (665642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.94 gx=-0.2 gy=-0.5 gz=0.0[0m
+[0;32mI (665642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (665642) SENSORS: BARO p=100324.8 Pa  t=28.29 C  alt=83.6 m[0m
+[0;32mI (665642) SENSORS: GNSS fix=NO[0m
+[0;32mI (667642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.3 gy=-0.5 gz=-0.0[0m
+[0;32mI (667642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (667642) SENSORS: BARO p=100325.6 Pa  t=28.30 C  alt=83.5 m[0m
+[0;32mI (667642) SENSORS: GNSS fix=NO[0m
+[0;32mI (972) mag_driver: Init done, status=0x19[0m
+[0;32mI (972) baro_driver: BMP280 CHIP_ID=0x58[0m
+[0;32mI (1122) baro_driver: BMP280 init OK (oversampling x16, normal mode)[0m
+[0;32mI (1122) gnss_driver: GY-NEO7M UART init (baud=9600)[0m
+[0;32mI (1172) lora_driver: AS32 init OK (UART2, baud=9600, normal mode)[0m
+[0;32mI (1382) display_driver: SSD1306 init OK @0x3C on I2C1(GPIO1/2)[0m
+[0;32mI (1382) battery_monitor: ADC battery monitor init[0m
+[0;32mI (1382) power_mgmt: power_mgmt init[0m
+[1;31mE (1582) sdmmc_sd: sdmmc_init_sd_if_cond: send_if_cond (1) returned 0x108[0m
+[1;31mE (1582) vfs_fat_sdmmc: sdmmc_card_init failed (0x108).[0m
+[1;31mE (1582) vfs_fat_sdmmc: esp_vfs_fat_sdspi_sdcard_init failed (0x108).[0m
+[1;31mE (1582) main: SD mount failed: ESP_ERR_INVALID_RESPONSE[0m
+[0;33mW (1592) main: SD card init FAILED - tiếp tục không ghi log[0m
+[0;32mI (1602) state_machine: state: 0 -> 5[0m
+[0;32mI (1602) power_mgmt: policy: LOW_POWER -> giam tan suat heartbeat/display, GNSS off[0m
+[0;32mI (1602) SENSORS: IMU  ax=0.00 ay=0.00 az=0.00 gx=0.0 gy=0.0 gz=0.0[0m
+[0;32mI (1612) SENSORS: MAG  heading=0.0 deg[0m
+[0;32mI (1612) main: esp32_rescue_node started[0m
+[0;32mI (1612) SENSORS: BARO p=100322.5 Pa  t=28.04 C  alt=83.8 m[0m
+[0;33mW (1622) main: SD card not mounted - skip log[0m
+[0;32mI (1622) SENSORS: GNSS fix=NO[0m
+[0;32mI (1622) main_task: Returned from app_main()[0m
+[0;32mI (3632) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.96 gx=-0.0 gy=-0.0 gz=-0.0[0m
+[0;32mI (3632) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (3632) SENSORS: BARO p=100325.5 Pa  t=28.29 C  alt=83.5 m[0m
+[0;32mI (3632) SENSORS: GNSS fix=NO[0m
+[0;32mI (5632) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.96 gx=-0.0 gy=-0.0 gz=-0.2[0m
+[0;32mI (5632) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (5632) SENSORS: BARO p=100325.0 Pa  t=28.32 C  alt=83.6 m[0m
+[0;32mI (5632) SENSORS: GNSS fix=NO[0m
+[0;32mI (7632) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=-0.0 gz=0.0[0m
+[0;32mI (7632) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (7632) SENSORS: BARO p=100325.2 Pa  t=28.30 C  alt=83.6 m[0m
+[0;32mI (7632) SENSORS: GNSS fix=NO[0m
+[0;32mI (9632) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.2 gy=0.2 gz=-0.2[0m
+[0;32mI (9632) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (9632) SENSORS: BARO p=100324.1 Pa  t=28.29 C  alt=83.7 m[0m
+[0;32mI (9632) SENSORS: GNSS fix=NO[0m
+[0;32mI (11632) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=-0.1 gy=0.2 gz=-0.1[0m
+[0;32mI (11632) SENSORS: MAG  heading=164.3 deg[0m
+[0;33mW (11632) main: SD card not mounted - skip log[0m
+[0;32mI (11632) SENSORS: BARO p=100323.7 Pa  t=28.30 C  alt=83.7 m[0m
+[0;32mI (11632) SENSORS: GNSS fix=NO[0m
+[0;32mI (13642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.1 gy=0.0 gz=0.0[0m
+[0;32mI (13642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (13642) SENSORS: BARO p=100321.6 Pa  t=28.28 C  alt=83.9 m[0m
+[0;32mI (13642) SENSORS: GNSS fix=NO[0m
+[0;32mI (15642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=0.1 gy=0.3 gz=0.0[0m
+[0;32mI (15642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (15642) SENSORS: BARO p=100323.0 Pa  t=28.27 C  alt=83.8 m[0m
+[0;32mI (15642) SENSORS: GNSS fix=NO[0m
+[0;32mI (17642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=0.1 gy=-0.1 gz=-0.1[0m
+[0;32mI (17642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (17642) SENSORS: BARO p=100322.2 Pa  t=28.26 C  alt=83.8 m[0m
+[0;32mI (17642) SENSORS: GNSS fix=NO[0m
+[0;32mI (19642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=0.1 gy=-0.3 gz=0.1[0m
+[0;32mI (19642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (19642) SENSORS: BARO p=100323.3 Pa  t=28.24 C  alt=83.7 m[0m
+[0;32mI (19642) SENSORS: GNSS fix=NO[0m
+[0;33mW (21632) main: SD card not mounted - skip log[0m
+[0;32mI (21642) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.96 gx=-0.1 gy=0.1 gz=0.2[0m
+[0;32mI (21642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (21642) SENSORS: BARO p=100323.1 Pa  t=28.24 C  alt=83.7 m[0m
+[0;32mI (21642) SENSORS: GNSS fix=NO[0m
+[0;32mI (23642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.97 gx=-0.1 gy=0.1 gz=-0.3[0m
+[0;32mI (23642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (23642) SENSORS: BARO p=100321.7 Pa  t=28.23 C  alt=83.9 m[0m
+[0;32mI (23642) SENSORS: GNSS fix=NO[0m
+[0;32mI (25642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.1 gy=-0.1 gz=0.1[0m
+[0;32mI (25642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (25642) SENSORS: BARO p=100321.4 Pa  t=28.23 C  alt=83.9 m[0m
+[0;32mI (25642) SENSORS: GNSS fix=NO[0m
+[0;32mI (27642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=0.1 gy=0.2 gz=0.1[0m
+[0;32mI (27642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (27642) SENSORS: BARO p=100322.3 Pa  t=28.23 C  alt=83.8 m[0m
+[0;32mI (27642) SENSORS: GNSS fix=NO[0m
+[0;32mI (29642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.0 gy=-0.1 gz=-0.0[0m
+[0;32mI (29642) SENSORS: MAG  heading=165.0 deg[0m
+[0;32mI (29642) SENSORS: BARO p=100320.5 Pa  t=28.23 C  alt=84.0 m[0m
+[0;32mI (29642) SENSORS: GNSS fix=NO[0m
+[0;33mW (31632) main: SD card not mounted - skip log[0m
+[0;32mI (31642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=-0.1 gy=-0.2 gz=-0.1[0m
+[0;32mI (31642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (31642) SENSORS: BARO p=100321.2 Pa  t=28.20 C  alt=83.9 m[0m
+[0;32mI (31642) SENSORS: GNSS fix=NO[0m
+[0;32mI (33642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=0.1 gy=-0.0 gz=0.1[0m
+[0;32mI (33642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (33642) SENSORS: BARO p=100321.3 Pa  t=28.18 C  alt=83.9 m[0m
+[0;32mI (33642) SENSORS: GNSS fix=NO[0m
+[0;32mI (35642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.3 gy=0.2 gz=-0.0[0m
+[0;32mI (35642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (35642) SENSORS: BARO p=100319.5 Pa  t=28.16 C  alt=84.0 m[0m
+[0;32mI (35642) SENSORS: GNSS fix=NO[0m
+[0;32mI (37642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=-0.1 gy=0.0 gz=-0.0[0m
+[0;32mI (37642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (37642) SENSORS: BARO p=100321.0 Pa  t=28.13 C  alt=83.9 m[0m
+[0;32mI (37642) SENSORS: GNSS fix=NO[0m
+[0;32mI (39642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.2 gy=0.1 gz=0.0[0m
+[0;32mI (39642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (39642) SENSORS: BARO p=100320.3 Pa  t=28.11 C  alt=84.0 m[0m
+[0;32mI (39642) SENSORS: GNSS fix=NO[0m
+[0;33mW (41632) main: SD card not mounted - skip log[0m
+[0;32mI (41642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=0.1 gy=-0.2 gz=0.1[0m
+[0;32mI (41642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (41642) SENSORS: BARO p=100321.2 Pa  t=28.11 C  alt=83.9 m[0m
+[0;32mI (41642) SENSORS: GNSS fix=NO[0m
+[0;32mI (43642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=-0.2 gy=-0.0 gz=0.0[0m
+[0;32mI (43642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (43642) SENSORS: BARO p=100320.5 Pa  t=28.09 C  alt=84.0 m[0m
+[0;32mI (43642) SENSORS: GNSS fix=NO[0m
+[0;32mI (45642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.96 gx=0.0 gy=-0.0 gz=-0.0[0m
+[0;32mI (45642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (45642) SENSORS: BARO p=100320.2 Pa  t=28.08 C  alt=84.0 m[0m
+[0;32mI (45642) SENSORS: GNSS fix=NO[0m
+[0;32mI (47642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=0.2 gy=0.3 gz=-0.1[0m
+[0;32mI (47642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (47642) SENSORS: BARO p=100320.7 Pa  t=28.07 C  alt=84.0 m[0m
+[0;32mI (47642) SENSORS: GNSS fix=NO[0m
+[0;32mI (49642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=-0.0 gy=0.1 gz=0.1[0m
+[0;32mI (49642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (49642) SENSORS: BARO p=100318.5 Pa  t=28.09 C  alt=84.1 m[0m
+[0;32mI (49642) SENSORS: GNSS fix=NO[0m
+[0;32mI (422) imu_driver: MPU9250 init OK[0m
+[0;32mI (752) imu_driver: calibrate: gyro offset (9.29, -3.11, 1.46) deg/s - SAVED[0m
+[0;32mI (752) mag_driver: Init QMC5883P @0x2C...[0m
+[0;32mI (972) mag_driver: Init done, status=0x19[0m
+[0;32mI (972) baro_driver: BMP280 CHIP_ID=0x58[0m
+[0;32mI (1122) baro_driver: BMP280 init OK (oversampling x16, normal mode)[0m
+[0;32mI (1122) gnss_driver: GY-NEO7M UART init (baud=9600)[0m
+[0;32mI (1172) lora_driver: AS32 init OK (UART2, baud=9600, normal mode)[0m
+[0;32mI (1382) display_driver: SSD1306 init OK @0x3C on I2C1(GPIO1/2)[0m
+[0;32mI (1382) battery_monitor: ADC battery monitor init[0m
+[0;32mI (1382) power_mgmt: power_mgmt init[0m
+[1;31mE (1582) sdmmc_sd: sdmmc_init_sd_if_cond: send_if_cond (1) returned 0x108[0m
+[1;31mE (1582) vfs_fat_sdmmc: sdmmc_card_init failed (0x108).[0m
+[1;31mE (1582) vfs_fat_sdmmc: esp_vfs_fat_sdspi_sdcard_init failed (0x108).[0m
+[1;31mE (1582) main: SD mount failed: ESP_ERR_INVALID_RESPONSE[0m
+[0;33mW (1592) main: SD card init FAILED - tiếp tục không ghi log[0m
+[0;32mI (1602) state_machine: state: 0 -> 5[0m
+[0;32mI (1602) power_mgmt: policy: LOW_POWER -> giam tan suat heartbeat/display, GNSS off[0m
+[0;32mI (1602) SENSORS: IMU  ax=0.00 ay=0.00 az=0.00 gx=0.0 gy=0.0 gz=0.0[0m
+[0;32mI (1612) SENSORS: MAG  heading=0.0 deg[0m
+[0;32mI (1612) main: esp32_rescue_node started[0m
+[0;32mI (1612) SENSORS: BARO p=100322.0 Pa  t=27.81 C  alt=83.8 m[0m
+[0;33mW (1622) main: SD card not mounted - skip log[0m
+[0;32mI (1622) SENSORS: GNSS fix=NO[0m
+[0;32mI (1622) main_task: Returned from app_main()[0m
+[0;32mI (3632) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.97 gx=0.0 gy=0.1 gz=0.0[0m
+[0;32mI (3632) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (3632) SENSORS: BARO p=100321.5 Pa  t=28.06 C  alt=83.9 m[0m
+[0;32mI (3632) SENSORS: GNSS fix=NO[0m
+[0;32mI (752) imu_driver: calibrate: gyro offset (9.31, -3.13, 1.47) deg/s - SAVED[0m
+[0;32mI (752) mag_driver: Init QMC5883P @0x2C...[0m
+[0;32mI (972) mag_driver: Init done, status=0x19[0m
+[0;32mI (972) baro_driver: BMP280 CHIP_ID=0x58[0m
+[0;32mI (1122) baro_driver: BMP280 init OK (oversampling x16, normal mode)[0m
+[0;32mI (1122) gnss_driver: GY-NEO7M UART init (baud=9600)[0m
+[0;32mI (1172) lora_driver: AS32 init OK (UART2, baud=9600, normal mode)[0m
+[0;32mI (1382) display_driver: SSD1306 init OK @0x3C on I2C1(GPIO1/2)[0m
+[0;32mI (1382) battery_monitor: ADC battery monitor init[0m
+[0;32mI (1382) power_mgmt: power_mgmt init[0m
+[1;31mE (1582) sdmmc_sd: sdmmc_init_sd_if_cond: send_if_cond (1) returned 0x108[0m
+[1;31mE (1582) vfs_fat_sdmmc: sdmmc_card_init failed (0x108).[0m
+[1;31mE (1582) vfs_fat_sdmmc: esp_vfs_fat_sdspi_sdcard_init failed (0x108).[0m
+[1;31mE (1582) main: SD mount failed: ESP_ERR_INVALID_RESPONSE[0m
+[0;33mW (1592) main: SD card init FAILED - tiếp tục không ghi log[0m
+[0;32mI (1602) state_machine: state: 0 -> 5[0m
+[0;32mI (1602) power_mgmt: policy: LOW_POWER -> giam tan suat heartbeat/display, GNSS off[0m
+[0;32mI (1602) SENSORS: IMU  ax=0.00 ay=0.00 az=0.00 gx=0.0 gy=0.0 gz=0.0[0m
+[0;32mI (1612) SENSORS: MAG  heading=0.0 deg[0m
+[0;32mI (1612) main: esp32_rescue_node started[0m
+[0;32mI (1612) SENSORS: BARO p=100321.0 Pa  t=27.80 C  alt=83.9 m[0m
+[0;33mW (1622) main: SD card not mounted - skip log[0m
+[0;32mI (1622) SENSORS: GNSS fix=NO[0m
+[0;32mI (1622) main_task: Returned from app_main()[0m
+[0;32mI (3632) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=0.1 gy=-0.3 gz=0.0[0m
+[0;32mI (3632) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (3632) SENSORS: BARO p=100322.1 Pa  t=28.08 C  alt=83.8 m[0m
+[0;32mI (3632) SENSORS: GNSS fix=NO[0m
+[0;32mI (5632) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.97 gx=-0.0 gy=0.4 gz=-0.1[0m
+[0;32mI (5632) SENSORS: MAG  heading=164.8 deg[0m
+[0;32mI (5632) SENSORS: BARO p=100321.3 Pa  t=28.12 C  alt=83.9 m[0m
+[0;32mI (5632) SENSORS: GNSS fix=NO[0m
+[0;32mI (7632) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.98 gx=-0.1 gy=0.2 gz=-0.3[0m
+[0;32mI (7632) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (7632) SENSORS: BARO p=100322.0 Pa  t=28.13 C  alt=83.8 m[0m
+[0;32mI (7632) SENSORS: GNSS fix=NO[0m
+[0;32mI (9632) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.96 gx=0.1 gy=-0.2 gz=-0.1[0m
+[0;32mI (9632) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (9632) SENSORS: BARO p=100322.2 Pa  t=28.15 C  alt=83.8 m[0m
+[0;32mI (9632) SENSORS: GNSS fix=NO[0m
+[0;32mI (11632) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=-0.1 gy=-0.0 gz=0.0[0m
+[0;32mI (11632) SENSORS: MAG  heading=164.4 deg[0m
+[0;33mW (11632) main: SD card not mounted - skip log[0m
+[0;32mI (11632) SENSORS: BARO p=100320.7 Pa  t=28.17 C  alt=83.9 m[0m
+[0;32mI (11632) SENSORS: GNSS fix=NO[0m
+[0;32mI (13642) SENSORS: IMU  ax=0.27 ay=-0.06 az=0.90 gx=1.6 gy=-2.0 gz=3.7[0m
+[0;32mI (13642) SENSORS: MAG  heading=164.7 deg[0m
+[0;32mI (13642) SENSORS: BARO p=100321.5 Pa  t=28.19 C  alt=83.9 m[0m
+[0;32mI (13642) SENSORS: GNSS fix=NO[0m
+[0;32mI (752) imu_driver: calibrate: gyro offset (3.50, -6.48, 2.73) deg/s - SAVED[0m
+[0;32mI (752) mag_driver: Init QMC5883P @0x2C...[0m
+[0;32mI (972) mag_driver: Init done, status=0x19[0m
+[0;32mI (972) baro_driver: BMP280 CHIP_ID=0x58[0m
+[0;32mI (1122) baro_driver: BMP280 init OK (oversampling x16, normal mode)[0m
+[0;32mI (1122) gnss_driver: GY-NEO7M UART init (baud=9600)[0m
+[0;32mI (1172) lora_driver: AS32 init OK (UART2, baud=9600, normal mode)[0m
+[0;32mI (1382) display_driver: SSD1306 init OK @0x3C on I2C1(GPIO1/2)[0m
+[0;32mI (1382) battery_monitor: ADC battery monitor init[0m
+[0;32mI (1382) power_mgmt: power_mgmt init[0m
+[1;31mE (1582) sdmmc_sd: sdmmc_init_sd_if_cond: send_if_cond (1) returned 0x108[0m
+[1;31mE (1582) vfs_fat_sdmmc: sdmmc_card_init failed (0x108).[0m
+[1;31mE (1582) vfs_fat_sdmmc: esp_vfs_fat_sdspi_sdcard_init failed (0x108).[0m
+[1;31mE (1582) main: SD mount failed: ESP_ERR_INVALID_RESPONSE[0m
+[0;33mW (1592) main: SD card init FAILED - tiếp tục không ghi log[0m
+[0;32mI (1602) state_machine: state: 0 -> 5[0m
+[0;32mI (1602) power_mgmt: policy: LOW_POWER -> giam tan suat heartbeat/display, GNSS off[0m
+[0;32mI (1602) SENSORS: IMU  ax=0.00 ay=0.00 az=0.00 gx=0.0 gy=0.0 gz=0.0[0m
+[0;32mI (1612) SENSORS: MAG  heading=0.0 deg[0m
+[0;32mI (1612) main: esp32_rescue_node started[0m
+[0;32mI (1612) SENSORS: BARO p=100320.7 Pa  t=27.91 C  alt=84.0 m[0m
+[0;33mW (1622) main: SD card not mounted - skip log[0m
+[0;32mI (1622) SENSORS: GNSS fix=NO[0m
+[0;32mI (1622) main_task: Returned from app_main()[0m
+[0;32mI (3632) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=5.8 gy=3.5 gz=-1.2[0m
+[0;32mI (3632) SENSORS: MAG  heading=163.8 deg[0m
+[0;32mI (3632) SENSORS: BARO p=100321.7 Pa  t=28.17 C  alt=83.9 m[0m
+[0;32mI (3632) SENSORS: GNSS fix=NO[0m
+[0;32mI (5632) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=5.9 gy=3.5 gz=-1.2[0m
+[0;32mI (5632) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (5632) SENSORS: BARO p=100321.0 Pa  t=28.19 C  alt=83.9 m[0m
+[0;32mI (5632) SENSORS: GNSS fix=NO[0m
+[0;32mI (7632) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=5.8 gy=3.2 gz=-1.3[0m
+[0;32mI (7632) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (7632) SENSORS: BARO p=100321.0 Pa  t=28.18 C  alt=83.9 m[0m
+[0;32mI (7632) SENSORS: GNSS fix=NO[0m
+[0;32mI (9632) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=5.9 gy=3.3 gz=-1.3[0m
+[0;32mI (9632) SENSORS: MAG  heading=163.8 deg[0m
+[0;32mI (9632) SENSORS: BARO p=100320.1 Pa  t=28.17 C  alt=84.0 m[0m
+[0;32mI (9632) SENSORS: GNSS fix=NO[0m
+[0;32mI (11632) SENSORS: IMU  ax=0.21 ay=-0.04 az=0.98 gx=6.2 gy=3.2 gz=-1.4[0m
+[0;32mI (11632) SENSORS: MAG  heading=163.9 deg[0m
+[0;33mW (11632) main: SD card not mounted - skip log[0m
+[0;32mI (11632) SENSORS: BARO p=100321.8 Pa  t=28.17 C  alt=83.9 m[0m
+[0;32mI (11632) SENSORS: GNSS fix=NO[0m
+[0;32mI (13642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.95 gx=5.8 gy=3.1 gz=-1.2[0m
+[0;32mI (13642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (13642) SENSORS: BARO p=100322.2 Pa  t=28.18 C  alt=83.8 m[0m
+[0;32mI (13642) SENSORS: GNSS fix=NO[0m
+[0;32mI (15642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=5.7 gy=3.3 gz=-1.2[0m
+[0;32mI (15642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (15642) SENSORS: BARO p=100321.1 Pa  t=28.18 C  alt=83.9 m[0m
+[0;32mI (15642) SENSORS: GNSS fix=NO[0m
+[0;32mI (17642) SENSORS: IMU  ax=0.23 ay=-0.04 az=0.97 gx=5.9 gy=3.8 gz=-1.1[0m
+[0;32mI (17642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (17642) SENSORS: BARO p=100320.4 Pa  t=28.18 C  alt=84.0 m[0m
+[0;32mI (17642) SENSORS: GNSS fix=NO[0m
+[0;32mI (19642) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.97 gx=5.8 gy=4.2 gz=-1.2[0m
+[0;32mI (19642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (19642) SENSORS: BARO p=100320.0 Pa  t=28.18 C  alt=84.0 m[0m
+[0;32mI (19642) SENSORS: GNSS fix=NO[0m
+[0;33mW (21632) main: SD card not mounted - skip log[0m
+[0;32mI (21642) SENSORS: IMU  ax=0.22 ay=-0.02 az=0.97 gx=5.4 gy=3.6 gz=-1.1[0m
+[0;32mI (21642) SENSORS: MAG  heading=164.8 deg[0m
+[0;32mI (21642) SENSORS: BARO p=100319.4 Pa  t=28.18 C  alt=84.1 m[0m
+[0;32mI (21642) SENSORS: GNSS fix=NO[0m
+[0;32mI (23642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.98 gx=5.8 gy=3.6 gz=-1.3[0m
+[0;32mI (23642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (23642) SENSORS: BARO p=100319.6 Pa  t=28.19 C  alt=84.0 m[0m
+[0;32mI (23642) SENSORS: GNSS fix=NO[0m
+[0;32mI (25642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=5.9 gy=3.3 gz=-1.0[0m
+[0;32mI (25642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (25642) SENSORS: BARO p=100319.5 Pa  t=28.20 C  alt=84.1 m[0m
+[0;32mI (25642) SENSORS: GNSS fix=NO[0m
+[0;32mI (27642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=5.8 gy=3.3 gz=-1.2[0m
+[0;32mI (27642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (27642) SENSORS: BARO p=100321.0 Pa  t=28.19 C  alt=83.9 m[0m
+[0;32mI (27642) SENSORS: GNSS fix=NO[0m
+[0;32mI (29642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=5.8 gy=3.2 gz=-1.4[0m
+[0;32mI (29642) SENSORS: MAG  heading=164.2 deg[0m
+[0;32mI (29642) SENSORS: BARO p=100320.7 Pa  t=28.18 C  alt=84.0 m[0m
+[0;32mI (29642) SENSORS: GNSS fix=NO[0m
+[0;33mW (31632) main: SD card not mounted - skip log[0m
+[0;32mI (31642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=5.8 gy=3.4 gz=-1.3[0m
+[0;32mI (31642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (31642) SENSORS: BARO p=100319.0 Pa  t=28.18 C  alt=84.1 m[0m
+[0;32mI (31642) SENSORS: GNSS fix=NO[0m
+[0;32mI (33642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=5.8 gy=3.4 gz=-1.2[0m
+[0;32mI (33642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (33642) SENSORS: BARO p=100319.4 Pa  t=28.15 C  alt=84.1 m[0m
+[0;32mI (33642) SENSORS: GNSS fix=NO[0m
+[0;32mI (35642) SENSORS: IMU  ax=0.23 ay=-0.02 az=0.95 gx=6.0 gy=3.4 gz=-1.3[0m
+[0;32mI (35642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (35642) SENSORS: BARO p=100318.8 Pa  t=28.14 C  alt=84.1 m[0m
+[0;32mI (35642) SENSORS: GNSS fix=NO[0m
+[0;32mI (37642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.97 gx=5.9 gy=3.3 gz=-1.1[0m
+[0;32mI (37642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (37642) SENSORS: BARO p=100320.1 Pa  t=28.11 C  alt=84.0 m[0m
+[0;32mI (37642) SENSORS: GNSS fix=NO[0m
+[0;32mI (39642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=5.7 gy=3.2 gz=-1.2[0m
+[0;32mI (39642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (39642) SENSORS: BARO p=100319.7 Pa  t=28.09 C  alt=84.0 m[0m
+[0;32mI (39642) SENSORS: GNSS fix=NO[0m
+[0;33mW (41632) main: SD card not mounted - skip log[0m
+[0;32mI (41642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=5.8 gy=3.5 gz=-1.3[0m
+[0;32mI (41642) SENSORS: MAG  heading=163.8 deg[0m
+[0;32mI (41642) SENSORS: BARO p=100319.4 Pa  t=28.08 C  alt=84.1 m[0m
+[0;32mI (41642) SENSORS: GNSS fix=NO[0m
+[0;32mI (43642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.98 gx=6.0 gy=3.3 gz=-1.5[0m
+[0;32mI (43642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (43642) SENSORS: BARO p=100319.6 Pa  t=28.08 C  alt=84.0 m[0m
+[0;32mI (43642) SENSORS: GNSS fix=NO[0m
+[0;32mI (45642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.93 gx=5.3 gy=3.6 gz=-1.1[0m
+[0;32mI (45642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (45642) SENSORS: BARO p=100320.2 Pa  t=28.07 C  alt=84.0 m[0m
+[0;32mI (45642) SENSORS: GNSS fix=NO[0m
+[0;32mI (47642) SENSORS: IMU  ax=0.21 ay=-0.03 az=0.96 gx=5.7 gy=3.4 gz=-1.0[0m
+[0;32mI (47642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (47642) SENSORS: BARO p=100321.3 Pa  t=28.09 C  alt=83.9 m[0m
+[0;32mI (47642) SENSORS: GNSS fix=NO[0m
+[0;32mI (49642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=6.1 gy=3.5 gz=-1.3[0m
+[0;32mI (49642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (49642) SENSORS: BARO p=100319.3 Pa  t=28.09 C  alt=84.1 m[0m
+[0;32mI (49642) SENSORS: GNSS fix=NO[0m
+[0;33mW (51632) main: SD card not mounted - skip log[0m
+[0;32mI (51642) SENSORS: IMU  ax=0.22 ay=-0.04 az=0.96 gx=5.8 gy=3.5 gz=-1.3[0m
+[0;32mI (51642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (51642) SENSORS: BARO p=100318.3 Pa  t=28.11 C  alt=84.2 m[0m
+[0;32mI (51642) SENSORS: GNSS fix=NO[0m
+[0;32mI (53642) SENSORS: IMU  ax=0.24 ay=-0.03 az=0.95 gx=5.9 gy=3.0 gz=-1.3[0m
+[0;32mI (53642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (53642) SENSORS: BARO p=100319.2 Pa  t=28.11 C  alt=84.1 m[0m
+[0;32mI (53642) SENSORS: GNSS fix=NO[0m
+[0;32mI (55642) SENSORS: IMU  ax=0.15 ay=-0.05 az=1.02 gx=5.8 gy=5.3 gz=-1.2[0m
+[0;32mI (55642) SENSORS: MAG  heading=162.8 deg[0m
+[0;32mI (55642) SENSORS: BARO p=100318.7 Pa  t=28.13 C  alt=84.1 m[0m
+[0;32mI (55642) SENSORS: GNSS fix=NO[0m
+[0;32mI (57642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.98 gx=5.7 gy=3.7 gz=-1.3[0m
+[0;32mI (57642) SENSORS: MAG  heading=164.6 deg[0m
+[0;32mI (57642) SENSORS: BARO p=100318.5 Pa  t=28.12 C  alt=84.1 m[0m
+[0;32mI (57642) SENSORS: GNSS fix=NO[0m
+[0;32mI (59642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=5.8 gy=3.0 gz=-1.1[0m
+[0;32mI (59642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (59642) SENSORS: BARO p=100319.5 Pa  t=28.13 C  alt=84.1 m[0m
+[0;32mI (59642) SENSORS: GNSS fix=NO[0m
+[0;33mW (61632) main: SD card not mounted - skip log[0m
+[0;32mI (61642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=5.9 gy=3.0 gz=-1.4[0m
+[0;32mI (61642) SENSORS: MAG  heading=164.0 deg[0m
+[0;32mI (61642) SENSORS: BARO p=100319.8 Pa  t=28.14 C  alt=84.0 m[0m
+[0;32mI (61642) SENSORS: GNSS fix=NO[0m
+[0;32mI (63642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.98 gx=5.8 gy=3.7 gz=-1.3[0m
+[0;32mI (63642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (63642) SENSORS: BARO p=100319.9 Pa  t=28.13 C  alt=84.0 m[0m
+[0;32mI (63642) SENSORS: GNSS fix=NO[0m
+[0;32mI (65642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=5.9 gy=3.6 gz=-1.0[0m
+[0;32mI (65642) SENSORS: MAG  heading=163.9 deg[0m
+[0;32mI (65642) SENSORS: BARO p=100318.7 Pa  t=28.13 C  alt=84.1 m[0m
+[0;32mI (65642) SENSORS: GNSS fix=NO[0m
+[0;32mI (67642) SENSORS: IMU  ax=0.22 ay=-0.03 az=0.96 gx=5.8 gy=3.5 gz=-1.1[0m
+[0;32mI (67642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (67642) SENSORS: BARO p=100320.2 Pa  t=28.14 C  alt=84.0 m[0m
+[0;32mI (67642) SENSORS: GNSS fix=NO[0m
+[0;32mI (69642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.95 gx=5.9 gy=3.3 gz=-1.3[0m
+[0;32mI (69642) SENSORS: MAG  heading=164.4 deg[0m
+[0;32mI (69642) SENSORS: BARO p=100318.8 Pa  t=28.15 C  alt=84.1 m[0m
+[0;32mI (69642) SENSORS: GNSS fix=NO[0m
+[0;33mW (71632) main: SD card not mounted - skip log[0m
+[0;32mI (71642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=5.7 gy=3.3 gz=-1.2[0m
+[0;32mI (71642) SENSORS: MAG  heading=164.5 deg[0m
+[0;32mI (71642) SENSORS: BARO p=100319.2 Pa  t=28.16 C  alt=84.1 m[0m
+[0;32mI (71642) SENSORS: GNSS fix=NO[0m
+[0;32mI (73642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.96 gx=6.0 gy=3.3 gz=-1.2[0m
+[0;32mI (73642) SENSORS: MAG  heading=164.3 deg[0m
+[0;32mI (73642) SENSORS: BARO p=100318.5 Pa  t=28.18 C  alt=84.1 m[0m
+[0;32mI (73642) SENSORS: GNSS fix=NO[0m
+[0;32mI (75642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=5.7 gy=3.3 gz=-1.5[0m
+[0;32mI (75642) SENSORS: MAG  heading=164.1 deg[0m
+[0;32mI (75642) SENSORS: BARO p=100318.1 Pa  t=28.19 C  alt=84.2 m[0m
+[0;32mI (75642) SENSORS: GNSS fix=NO[0m
+[0;32mI (77642) SENSORS: IMU  ax=0.23 ay=-0.03 az=0.97 gx=5.9 gy=3.4 gz=-1.2[0m
+[0;32mI (77642) SENSORS: MAG  heading=163.6 deg[0m
+[0;32mI (77642) SENSORS: BARO p=100318.7 Pa  t=28.20 C  alt=84.1 m[0m
+[0;32mI (77642) SENSORS: GNSS fix=NO[0m

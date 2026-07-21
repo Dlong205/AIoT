@@ -50,20 +50,21 @@
 
 /* ---------- UART cho AS32 (LoRa module AT-command qua UART) ---------- */
 #define AS32_UART_PORT       UART_NUM_2
-#define AS32_UART_TX_GPIO    19
-#define AS32_UART_RX_GPIO    20
+#define AS32_UART_TX_GPIO    39
+#define AS32_UART_RX_GPIO    48
 #define AS32_UART_BAUD       9600
-#define AS32_M0_GPIO         21
-#define AS32_M1_GPIO         33
+#define AS32_M0_GPIO         41
+#define AS32_M1_GPIO         40
+//#define aux
 
 /* ---------- Nút bấm + buzzer ---------- */
-#define BTN_SOS_GPIO        14
-#define BTN_CANCEL_GPIO     15
-#define BUZZER_GPIO         21
+#define BTN_SOS_GPIO        4
+#define BTN_CANCEL_GPIO     14   /* ĐÃ SỬA: trước đây = 5, trùng LORA_RST_GPIO */
+#define BUZZER_GPIO         21   /* ĐÃ SỬA: trước đây = 6, trùng LORA_BUSY_GPIO */
 
 /* ---------- ADC đo pin (cầu phân áp) ---------- */
 #define BATTERY_ADC_UNIT    ADC_UNIT_1
-#define BATTERY_ADC_CHANNEL ADC_CHANNEL_3   /* GPIO tương ứng tùy board */
+#define BATTERY_ADC_CHANNEL ADC_CHANNEL_4   /* ĐÃ SỬA: ADC_CHANNEL_4 = GPIO 5 (trước đây là CH3 = GPIO 4, trùng với nút SOS!) */
 #define BATTERY_DIVIDER_RATIO  2.0f         /* R1=R2 -> chia đôi điện áp */
 
 /* ---------- Hằng số hệ thống ---------- */
